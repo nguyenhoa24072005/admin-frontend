@@ -1,0 +1,119 @@
+.program-detail {
+  padding-top: 120px;
+  border-radius: 10px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.program-detail h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: "arial-black";
+}
+
+.program-detail-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-detail-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.program-content {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.program-content p {
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+  color: #333;
+  font-family: "arial-black";
+}
+
+.program-content strong {
+  color: #333;
+  font-size: 1.3rem;
+}
+.program-gallery{
+  margin-top: 40px;
+  text-align: center;
+}
+
+.program-gallery h3 {
+  text-align: center;
+    font-size: 2rem;
+    font-family: "arial-black";
+}
+
+.gallery-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.gallery-item {
+  flex: 1 1 calc(33.33% - 20px); /* 3 ảnh mỗi hàng */
+  max-width: calc(33.33% - 20px);
+  text-align: center;
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.show-more-button {
+  background-color:white;
+  color: #8db883;
+  border: 2px solid #8db883;
+  padding: 10px 20px;
+  /* border: none; */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px;
+  font-size: 1.3rem;
+}
+
+.show-more-button:hover {
+  background-color:#8db883;
+  color: #fff;
+}
+
+.favorites-banner{
+  display: none;
+}
+@media (max-width: 768px) {
+  .program-detail {
+    padding: 1rem;
+  }
+
+  .program-detail h1 {
+    font-size: 1.5rem;
+  }
+}

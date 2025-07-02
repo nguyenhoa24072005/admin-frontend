@@ -1,0 +1,237 @@
+.about-mon {
+  position: absolute;
+  top: 90px;
+  background-color: #fff;
+}
+.about-share {
+  background: url("https://imagev3.vietnamplus.vn/w1000/Uploaded/2024/fsmsy/2024_06_16/ttxvn-tre-em-gaza-1855.jpg.webp");
+  background-size: cover;
+  background-position: center;
+  height: 312px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  width: 98.9vw;
+}
+.about-pon {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+.about-list {
+  padding: 0;
+  list-style-position: outside;
+  margin: 0;
+  list-style: none;
+}
+.about-item {
+  line-height: 24px;
+  /* font-size: 16px; */
+  font-family: sofia-pro;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  color: #001936;
+  font-size: 18px !important;
+  margin-right: 2px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 5px;
+  margin-bottom: 9px;
+}
+.about-cn {
+  text-decoration: none;
+  font: inherit;
+  color: white;
+}
+.about-name {
+  text-decoration: underline;
+}
+.about-after {
+  margin-left: 3px;
+  color: #9ba3c0;
+}
+.about-da {
+  line-height: 24px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  font-size: 52px !important;
+  margin-right: 2px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 5px;
+  margin-bottom: 9px;
+}
+.about-inline {
+  transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in,
+    i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
+  direction: ltr;
+  display: block;
+  opacity: 1;
+  text-align: right;
+}
+.about-st {
+  display: inline-block;
+  background-color: #666666;
+  min-width: 120px;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease-in, top 0.2s ease-in;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  margin-right: 8px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.about-sharing {
+  color: #fff;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  position: relative;
+  top: 8px;
+  vertical-align: top;
+  max-width: 100%;
+  max-height: 100%;
+}
+.about-svg {
+  color: #fff;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  min-width: 60px;
+  opacity: 1;
+  padding: 0 6px;
+  position: relative;
+  vertical-align: top;
+}
+.about-data {
+  display: inline-block;
+  background-color: #666666;
+  min-width: 120px;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease-in, top 0.2s ease-in;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  margin-right: 8px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.about-label {
+  display: inline-block;
+  min-width: 50px;
+  background-color: #666666;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease-in, top 0.2s ease-in;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  margin-right: 8px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.about-last {
+  display: inline-block;
+  min-width: 50px;
+  background-color: #666666;
+  margin-right: 0px;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease-in, top 0.2s ease-in;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.about-aem {
+  background-color: #fff;
+  float: left;
+  clear: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.about-grid {
+  display: block;
+  width: 100%;
+}
+.about-page {
+  margin-left: 25%;
+  float: left;
+  width: 50%;
+  display: block;
+  clear: none !important;
+  padding-bottom: 32px !important;
+  /* margin: 0; */
+  max-width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.about-class {
+  margin: 0 auto;
+  max-width: 100%;
+  text-align: center;
+}
+.about-h1 {
+  font-size: 57.33px;
+  line-height: 55px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 16px;
+  /* margin: 0 auto; */
+  max-width: 820px;
+  color: #001936;
+}
+.about-p {
+  font-size: 20.2px;
+  line-height: 24px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  margin-bottom: 16px;
+  /* margin: 0 auto; */
+  max-width: 820px;
+  color: #8db883;
+}

@@ -1,0 +1,238 @@
+.share-container {
+  float: left;
+  clear: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.share-aem {
+  display: block;
+  width: 100%;
+}
+.share-card {
+  background-color: #fff;
+  margin-left: 0;
+  float: left;
+  width: 100%;
+  display: block;
+  clear: none !important;
+  padding-bottom: 32px !important;
+  padding-top: 32px !important;
+  box-sizing: border-box;
+}
+.share-wrapper {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+}
+.share-header {
+  margin-left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+.share-title {
+  font-size: 33.18px;
+  line-height: 37px;
+  font-family: sofia-pro;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+  color: #001936;
+}
+.share-row {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 430px;
+}
+.share-active {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0 !important;
+  justify-content: left;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+  list-style-position: outside;
+  margin: 0;
+}
+.share-Item {
+  margin-left: 0;
+  flex: 0 0 calc(33.33333% - 20px);
+  margin: 0 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 90vw;
+  transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+  box-shadow: 10px 10px 15px 0 #e6e8ef;
+  padding: 0;
+}
+.share-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.share-discover {
+  display: none;
+  font: inherit;
+  color: inherit;
+  text-decoration: inherit;
+}
+.share-image {
+  height: 190px;
+  border-radius: 20px 20px 0 0;
+  object-fit: cover;
+  overflow: hidden;
+}
+.share-anh {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  display: block;
+  vertical-align: middle;
+}
+.share-description {
+  flex-grow: 1;
+  padding: 20px 20px 65px;
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+  border: 1px solid #cdd1e0;
+  height: calc(100% - 190px);
+  border-radius: 0 0 20px 20px;
+  min-height: 190px;
+}
+.share-ton {
+  text-align: left;
+  font-family: sofia-pro;
+  font-size: 25.04px;
+  line-height: 29px;
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  color: #001936;
+  margin-bottom: 16px;
+  letter-spacing: -0.2px;
+}
+.share-date {
+  font-family: sofia-pro;
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  color: #001936;
+  line-height: 1.5rem;
+  font-size: 18px;
+  line-height: 24px;
+}
+.share-Item:hover {
+  transform: scale(1.05);
+}
+
+/* Our Values */
+.our-container {
+  background-color: #fff;
+  float: left;
+  clear: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.our-aem {
+  display: block;
+  width: 100%;
+}
+.our-text {
+  margin-left: 253.188px;
+  float: left;
+  width: 66.66666667%;
+  display: block;
+  clear: none !important;
+  padding-bottom: 32px !important;
+  padding-top: 32px !important;
+  box-sizing: border-box;
+}
+.our-data {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+}
+.our-about {
+  text-align: left;
+  font-size: 47.78px;
+  line-height: 55px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0;
+}
+.our-about p {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: sofia-pro;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  margin: 0;
+}
+.our-para {
+  font-size: 19.2px;
+  line-height: 24px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+/*  */
+.accordion {
+  /* border-top: 1px solid #ddd; */
+  padding-left: 250px;
+  padding-right: 245px;
+  background-color: #fff;
+  float: left;
+  clear: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "arial-black";
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.accordion-title:hover {
+  background-color: #f9f9f9;
+}
+
+.accordion-title h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.accordion-title span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.accordion-content {
+  padding: 10px 15px;
+  background-color: #effbeb;
+  font-family: "arial-black";
+  color: #8db883;
+}

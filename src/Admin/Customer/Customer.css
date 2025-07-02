@@ -1,0 +1,228 @@
+/* .customer-management {
+  padding-top: 0px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+} */
+
+.customer-management h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.customer-list {
+  padding: 0.875rem 1.5rem;
+  color: #4b5563;
+  flex: 1 1 auto;
+}
+
+.customer-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  border: 1px solid #ebecef;
+  border-radius: 8px;
+  min-width: max-content;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+.customer-thead {
+  vertical-align: bottom;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+.customer-tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+.customer-tr th {
+  border-inline-end: 0;
+  border-start-start-radius: 8px;
+  background-color: #f5f6fa;
+  border-bottom: 1px solid #ebecef !important;
+  color: #111827 !important;
+  padding: 16px !important;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  vertical-align: top;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+.customer-tbody {
+  vertical-align: middle;
+  border-color: #dee2e6;
+  border-style: solid;
+  border-width: 0;
+}
+.customer-tbody tr {
+  border-color: #dee2e6;
+  border-style: solid;
+  border-width: 0;
+}
+
+.customer-tbody td {
+  color: #4b5563;
+  padding: 16px !important;
+  border-bottom: 1px solid #ebecef;
+  background-color: #fff;
+  vertical-align: middle;
+  border-color: #dee2e6;
+  border-style: solid;
+  border-width: 0;
+}
+
+.customer-btn {
+  height: 2rem;
+  background-color: rgba(69, 179, 105, 0.1490196078);
+  color: #45b369;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  display: inline-flex;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+  border: 1px solid rgba(69, 179, 105, 0.1490196078);
+}
+.customer-delete {
+  height: 2rem;
+  background-color: rgba(239, 71, 112, 0.1490196078);
+  color: #ef4a00;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  display: inline-flex;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+  border: 1px solid rgba(239, 71, 112, 0.1490196078);
+}
+.search-column {
+  padding: 0.875rem 1.5rem;
+  display: inline-block;
+  position: relative;
+}
+.search-field {
+  margin-right: 20px;
+  width: 16vw;
+  height: 31px;
+  background-color: #fff;
+  border: 1px solid #666;
+  padding-block: 0.3125rem;
+  padding-inline-start: 2.625rem;
+  padding-inline-end: 1.25rem;
+  color: #8db883;
+  appearance: none;
+  vertical-align: middle;
+  font: inherit;
+  border-radius: 10px;
+}
+.customer-search {
+  position: absolute;
+  top: 35%;
+  inset-inline-start: 0.9375rem;
+  font-size: 1.125rem;
+  color: #273142;
+  transform: translateY(-50%);
+  transform: translateX(110%);
+}
+.customer-setbin {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.customer-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.customer-form h2 {
+  text-align: center;
+  color: black;
+  margin-bottom: 20px;
+  font-family: "arial-black";
+}
+
+.customer-form input {
+  width: 96%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "arial-black";
+}
+
+.customer-form input:focus {
+  outline: none;
+  border-color: #8db883;
+  box-shadow: 0 0 5px rgba(97, 137, 100, 0.5);
+}
+
+.customer-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: #8db883;
+  border: 1px solid #8db883;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.customer-form button:hover {
+  background-color: #8db883;
+  color: white;
+}
+
+.customer-form {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  background-color: #f9f9f9;
+  padding: 0 20px;
+  margin-top: 10px;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+}
+
+.customer-form.show {
+  max-height: 300px; /* Adjust according to your content height */
+  padding: 20px;
+}
+
+.customer-form.hide {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  max-height: 0;
+  padding: 0;
+}
+.customer-form {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+}
+
+.customer-form.show {
+  opacity: 1;
+  transform: translateY(0);
+  background: #fff;
+  font-family: "arial-black";
+}

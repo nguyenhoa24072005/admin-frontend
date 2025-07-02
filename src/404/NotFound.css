@@ -1,0 +1,45 @@
+/* src/pages/NotFound.css */
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  text-align: center;
+  margin-top: 500px;
+}
+/* src/pages/NotFound.css */
+.not-found-container img {
+  max-width: 300px; /* Adjust this value to make the image smaller */
+  width: 100%; /* Makes the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px;
+}
+
+.not-found-container h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+.donate-completed {
+  width: 22vw;
+}
+
+.not-found-container p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.not-found-container .back-to-home {
+  text-decoration: none;
+  font-size: 18px;
+  color: #8db883;
+  border: 2px solid #8db883;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.not-found-container .back-to-home:hover {
+  background-color: #8db883;
+  color: white;
+}

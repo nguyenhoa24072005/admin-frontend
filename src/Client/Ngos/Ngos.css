@@ -1,0 +1,266 @@
+/* Header Section */
+.news-header {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  justify-content: space-around;
+  background-color: #effbeb;
+}
+.brand {
+  background: url("https://imagev3.vietnamplus.vn/w1000/Uploaded/2024/fsmsy/2024_06_16/ttxvn-tre-em-gaza-1855.jpg.webp");
+  background-size: cover;
+  background-position: center;
+  height: 312px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+}
+.new-h1 {
+  font-family: "arial-black";
+  color: white;
+  font-size: 52px;
+}
+
+.banner-image img {
+  width: 90%; /* Kích thước ảnh lớn */
+  height: 342px; /* Chiều cao cố định */
+  border-radius: 20px;
+  padding-bottom: 0px;
+  margin-left: 55px;
+  border-radius: 24px; /* Bo nhẹ các góc */
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+.header-content {
+  margin-right: 180px;
+  background: linear-gradient(to left, #c0eaca, #eef2ed);
+  padding: 20px;
+  border-radius: 16px; /* Bo góc cho khối nội dung */
+  margin-left: 20px;
+  max-width: 30%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "arial-black";
+}
+
+.header-content h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.header-content p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* News Grid Section */
+.new-container {
+  padding: 80px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.new-items {
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột trên mỗi hàng */
+  gap: 70px; /* Khoảng cách giữa các mục */
+  margin-bottom: 15px;
+}
+.new-item {
+  background-color: white;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+  height: 400px;
+  display: grid;
+  align-content: stretch;
+
+  
+}
+
+.new-item:hover {
+  transform: translateY(-5px);
+}
+
+.new-item-image {
+  width: 100%;
+  height: 210px; /* Chiều cao cố định */
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+.new-item-content {
+  padding: 25px;
+  font-family: "arial-black";
+  display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+}
+
+.new-item-content h2 {
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.new-item-content p {
+  font-size: 1.3rem;
+  text-align: unset;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 70px;
+  overflow: hidden;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  /* background-color: #007bff; */
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Breadcrumb Section */
+.breadcrumb {
+  margin-right: 200px;
+  color: #555;
+  /* max-width: 620px; */
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #0056b3;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  color: #007bff;
+}
+
+.breadcrumb span.separator {
+  margin: 0 5px;
+  color: #888;
+}
+
+.breadcrumb .current {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Additional Styling for Background */
+.color {
+  background-color: #fff;
+  /* padding: 30px; */
+  margin-top: 100px;
+  width: 98.9vw;
+}
+
+.load-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more {
+  /* background-color: #007bff; */
+  background: white;
+  color: #8db883;
+  padding: 10px 20px;
+  border: 1px solid #8db883;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+  font-family: "arial-black";
+}
+
+.load-more:hover {
+  background-color: #8db883;
+  color: white;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+/* Search Section */
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.search-bar {
+  width: 30%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding-right: 285px;
+}
+
+/* Search Bar Positioning */
+.searchbar-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.searchbar-input {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 200px;
+}
+.search {
+  display: flex;
+  justify-content: space-around;
+}
+.search-icon-new {
+  margin-left: -30px;
+  font-size: 1.8rem;
+}
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.suggestions-dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.search-bar-container {
+  position: relative;
+  display: flex;
+}

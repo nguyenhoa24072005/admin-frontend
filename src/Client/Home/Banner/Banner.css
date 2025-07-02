@@ -1,0 +1,54 @@
+.banner-highlights{
+    float: left;
+    clear: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+.banner-wrapper{
+    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.2), hsla(0, 0%, 100%, 0.2)) #49516f;
+    min-height: 202px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.banner-ul{
+    margin-top: 32px;
+    flex-direction: row;
+    margin: 0 auto;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1050px;
+    padding: 0;
+}
+.banner-ul li{
+    max-width: 220px;
+    min-width: 220px;
+    text-align: center;
+    margin: 0 auto 32px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.banner-ul p{
+    font-size: 40.81px;
+    line-height: 48px;
+    font-family: sofia-pro;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.banner-ul p1{
+    font-size: 16px;
+    line-height: 16px;
+    font-family: sofia-pro;
+    font-style: normal;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+}

@@ -1,0 +1,166 @@
+.GalleryImageList-container {
+  padding: 20px;
+  font-family: "arial-black";
+  padding-left: 30px;
+}
+
+.GalleryImageList-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  background: linear-gradient(to left, #8db883, #ccf4d5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.GalleryImageList-search-input {
+  width: 22%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #8db883;
+  font-family: "arial-black";
+
+  border-radius: 10px;
+}
+
+.GalleryImageList-form {
+  margin-bottom: 20px;
+}
+
+.GalleryImageList-items {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Tạo 2 cột */
+}
+
+.GalleryImageList-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 36vw;
+}
+
+.GalleryImageList-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.GalleryImageList-caption {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.GalleryImageList-no-image {
+  font-style: italic;
+  color: #777;
+}
+
+.GalleryImageList-edit-btn,
+.GalleryImageList-delete-btn {
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.GalleryImageList-edit-btn {
+  border: none;
+  padding: 8px;
+  background: #d0e3ff;
+  color: #334eac;
+  border-radius: 100%;
+}
+
+.GalleryImageList-delete-btn {
+  border: none;
+  padding: 8px;
+  background: #f0d2d2;
+  color: #ff0000;
+  border-radius: 100%;
+}
+
+.GalleryImageList-pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.GalleryImageList-pagination-btn {
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: white;
+  color: #8db883;
+  border: 1px solid #8db883;
+  border-radius: 50px;
+}
+
+.GalleryImageList-pagination-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/*  */
+.GalleryImageForm-container {
+  gap: 15px;
+  /* padding: 20px; */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  width: 21%;
+  max-width: 400px;
+  /* margin: 0 auto; */
+  text-align: left;
+}
+
+.GalleryImageForm-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: "arial-black";
+}
+
+.GalleryImageForm-label {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "arial-black";
+  margin-bottom: 10px;
+}
+
+.GalleryImageForm-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #8db883;
+  border-radius: 9px;
+  margin-top: 5px;
+}
+
+.GalleryImageForm-file-input {
+  padding: 8px;
+  font-size: 14px;
+  font-family: "arial-black";
+}
+
+.GalleryImageForm-submit-btn {
+  background-color: white;
+  color: #8db883;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #8db883;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.GalleryImageForm-submit-btn:hover {
+  background-color: #8db883;
+  color: white;
+}

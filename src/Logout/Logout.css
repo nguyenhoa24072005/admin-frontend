@@ -1,0 +1,9 @@
+/* Add this to your CSS */
+
+.logout-icon {
+  margin-right: 8px; /* Add space between icon and text */
+  color: white;
+}
+.logout-item:hover {
+  color: #8db883;
+}

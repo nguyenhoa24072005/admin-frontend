@@ -1,0 +1,377 @@
+/* Tổng thể bố cục */
+.admin-container {
+  display: flex;
+  height: 100vh;
+  font-family: "arial-black";
+}
+
+/* Sidebar */
+.admin-sidebar {
+  height: 100%;
+  width: 250px;
+  background-color: #cfdfca;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.admin-content {
+  height: 100%;
+}
+
+.logo {
+  margin-bottom: 30px;
+  text-align: center;
+  margin-top: 27px;
+  /* display: none; */
+}
+
+.logo h2 {
+  color: #ecf0f1;
+  font-size: 24px;
+  margin: 0;
+}
+
+.admin-nav {
+  height: 100%;
+  width: 100%;
+}
+
+.admin-nav ul {
+  margin-top: 0;
+  list-style-type: none; /* Loại bỏ dấu chấm */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-nav li {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 5px 0;
+  height: 50px;
+}
+
+.admin-nav a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 5px;
+  transition: background 0.3s;
+  font-family: "arial-black";
+}
+
+.admin-nav a:hover {
+  background-color: #8db883;
+  color: #fff;
+}
+
+/* .admin-nav ul li .active a {
+  background-color: #34495e;
+  color: #fff;
+} */
+
+.admin-nav ul li.active a {
+  background-color: #8db883;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+/* Main Content */
+.admin-main {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.admin-mobile-link li {
+  font-size: 1.5rem;
+}
+
+.admin-main h1 {
+  margin-top: 0;
+  font-family: "arial-black";
+}
+
+.admin-dark {
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  position: relative;
+}
+
+.admin-light {
+  text-decoration: none;
+  white-space: nowrap;
+  width: 250px;
+  text-align: center;
+}
+
+/* Mobile nav*/
+.logo1 {
+  text-align: center;
+  display: none;
+}
+
+.admin-icon {
+  border: none;
+  color: #7c9095;
+  font-size: 1.5rem;
+  display: none;
+}
+
+.admin-icon1 {
+  border: none;
+  color: #7c9095;
+  font-size: 1.5rem;
+  display: none;
+}
+
+.admin-icon:hover {
+  cursor: pointer;
+}
+
+.admin-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  cursor: pointer;
+}
+
+.admin-overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  cursor: pointer;
+}
+
+.admin-into {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.admin-overlay.show {
+  display: block;
+}
+
+.admin-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  background-color: #2c3e50;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.admin-mobile1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  background-color: #2c3e50;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+/* .admin-overlay1.show{
+  display: block;
+} */
+
+.admin-mobile.open {
+  transform: translateX(0);
+}
+
+.admin-mobile-link {
+  margin-top: 70px;
+  padding-left: 0;
+}
+
+.admin-mobile-list {
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  display: block;
+  padding: 8px 0;
+  font-size: 1.5rem;
+  height: 50px;
+}
+
+.admin-mobile-close {
+  font-size: 2rem;
+  color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.admin-mobile-close:hover {
+  cursor: pointer;
+}
+
+.admin-content {
+  height: 100%;
+  /* padding-top: 20px; */
+  background-color: #fff;
+}
+
+.admin-vs {
+  background-color: #fff;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-isolate {
+  margin-right: 66%;
+}
+
+.admin-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Khoảng cách giữa các phần tử */
+}
+
+/* Ô tìm kiếm */
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 40px;
+}
+
+.search-input {
+  border: none;
+  padding: 0 10px;
+  outline: none;
+  font-size: 1rem;
+  flex: 1;
+  font-family: "arial-black";
+}
+
+.search-btn {
+  background-color: #fff;
+  border: none;
+  color: #555;
+  padding: 0 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon {
+  font-size: 1.2rem;
+}
+
+/* Icon Gmail và Thông báo */
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #007bff;
+}
+
+/* Thông tin người dùng */
+/* .admin-vs{
+  min-height: 70px;
+  padding: 0 30px;
+  border-color: #f0f1f3 !important;
+  font-family: 'Public Sans', sans-serif;
+} */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+}
+
+.user-name {
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+@media (max-width: 1023px) {
+  .admin-icon {
+    display: block;
+    padding-bottom: -3%;
+  }
+  .admin-icon1 {
+    display: block;
+    padding-bottom: -3%;
+  }
+  .admin-sidebar {
+    display: none;
+  }
+  .adimn-a {
+  }
+  .logo1 {
+    margin-bottom: 0;
+    margin-top: 0;
+    display: block;
+  }
+  .admin-vs {
+    display: none;
+  }
+  .admin-inhud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+  .admin-mobile1 {
+    display: block;
+  }
+  .admin-isolate {
+    margin-right: 0;
+  }
+  .icon {
+    color: #fff;
+  }
+  .user-name {
+    color: #fff;
+  }
+
+  .user-info {
+    padding-top: 20px;
+  }
+
+  .notification-icon {
+    padding-top: 20px;
+  }
+}

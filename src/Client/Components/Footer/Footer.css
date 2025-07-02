@@ -1,0 +1,173 @@
+.footer {
+  background-image: url("https://templates.bwlthemes.com/generosity/images/footer_bg.jpg"); /* Đường dẫn tới hình ảnh */
+  background-size: cover; /* Đảm bảo hình ảnh phủ toàn bộ footer */
+  background-position: center; /* Căn giữa hình ảnh */
+  background-repeat: no-repeat; /* Tránh lặp lại hình ảnh */
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 50px 20px;
+  display: table;
+  width: 97.34%; /* Sửa lại để đảm bảo full width */
+  position: relative; /* Đảm bảo ::before có thể căn chỉnh đúng */
+  z-index: 0; /* Đảm bảo footer là lớp nền */
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu đen trong suốt */
+  z-index: 1; /* Đảm bảo lớp overlay nằm trên nền */
+}
+
+.footer-container,
+.footer * {
+  position: relative;
+  z-index: 2; /* Đảm bảo nội dung nổi trên lớp overlay */
+}
+
+/* Các phần CSS còn lại giữ nguyên như cũ */
+
+.footer-container {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 229px;
+  width: 80vw;
+  text-align: center;
+  margin-left: 131px;
+  font-family: "arial-black";
+}
+
+.footer-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: 1;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+}
+
+.footer-section h3 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  font-size: 17px;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  color: #8db883;
+}
+
+.footer-contact {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80vw;
+  text-align: center;
+  /* margin-left: 131px; */
+  font-family: "arial-black";
+  display: flex;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 100px;
+}
+
+.footer-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.footer-social {
+  margin-top: 20px;
+  display: flex;
+  gap: 26px;
+}
+
+.social-icon {
+  color: #c7c7c7;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 178px;
+  font-size: 17px;
+  color: white;
+  border-top: 1px solid #8db883;
+  margin-bottom: -37px;
+  padding-top: 23px;
+}
+.fa-angle-double-right::before {
+  content: "\f101";
+  color: #8db883;
+  font-size: 13px;
+  margin-right: 10px;
+}
+.footer-p {
+  font: 16px /28px;
+  font-size: normal;
+  font-weight: 400;
+  letter-spacing: 0.01rem;
+  margin: 0 0 16px;
+  padding: 0;
+  text-align: left;
+}
+.footer-p1 {
+  font-size: 16px;
+  color: white;
+  text-align: left;
+  margin-top: 138px;
+}
+.fa-mail-forward {
+  margin-right: 10px;
+  font-size: 18px;
+}
+.footer-house {
+  margin-left: 31px;
+  /* position: relative; */
+  padding-left: -6px;
+  position: absolute;
+  margin-top: -3px;
+}
+.footer-email {
+  margin-left: 31px;
+  /* position: relative; */
+  padding-left: -6px;
+  position: absolute;
+  margin-top: -3px;
+}
+.footer-sdt {
+  margin-left: 30px;
+  /* position: relative; */
+  padding-left: -6px;
+  position: absolute;
+  margin-top: -3px;
+}

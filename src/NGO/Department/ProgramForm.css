@@ -1,0 +1,140 @@
+.product-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.product-form div {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.product-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.product-form input,
+.product-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.product-form-button-save {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.product-form-button-save:hover {
+  background-color: #218838;
+}
+/*  */
+/* ProgramForm.css */
+
+.Programadd {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #8db883;
+}
+
+.Programadd h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.Programadd form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Programadd label {
+  margin-bottom: 8px;
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.Programadd input,
+.Programadd textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #8db883;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.Programadd textarea {
+  resize: vertical;
+}
+
+.Program-submit {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: 1px solid #8db883;
+  border-radius: 4px;
+  background-color: white;
+  color: #8db883;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 36%;
+}
+
+.Program-submit:hover {
+  background-color: #8db883;
+  color: white;
+}
+.Program-Cance {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: 1px solid red;
+  border-radius: 4px;
+  background-color: white;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 15%;
+}
+.Program-Cance:hover {
+  background-color: red;
+  color: white;
+}
+.Program-Save-Cancel {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+
+.Programadd button[type="button"] {
+}
+
+.Programadd button[type="button"]:hover {
+}
+
+.Programadd p {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}

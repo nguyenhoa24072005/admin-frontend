@@ -1,0 +1,333 @@
+/* General styling for container */
+.admin-partners-management {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: "Arial", sans-serif;
+}
+
+/* Title styling */
+.management-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 0px;
+}
+
+/* Search Section */
+.search-section-partner {
+  display: flex;
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+  margin-bottom: 20px;
+}
+
+.search-input-field {
+  padding: 6px 10px; /* Giảm padding */
+  width: 180px; /* Giảm chiều rộng trường tìm kiếm */
+  border-radius: 5px;
+  font-size: 14px; /* Thu nhỏ font-size */
+  outline: none;
+  transition: border-color 0.3s;
+  margin-right: 0; /* Loại bỏ margin-right để ô tìm kiếm sát vào icon */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 28px;
+}
+
+.search-input-field:focus {
+  border-color: #4caf50;
+}
+
+.search-icon-partner {
+  display: flex;
+  align-items: center;
+}
+
+.icon-btn-add {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 6px; /* Giảm padding để đưa icon gần hơn */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0; /* Loại bỏ margin để icon sát vào ô tìm kiếm */
+}
+
+.icon-btn-add i {
+  color: black;
+}
+
+/* Thêm icon dấu cộng vào hình người */
+.icon-btn-add i::before {
+  content: "\f007 \f055"; /* Font Awesome Unicode cho "user" và "plus" */
+  font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands"; /* Đảm bảo fontawesome được sử dụng */
+  font-weight: 900;
+  display: inline-block;
+}
+
+/* Add Partner Section */
+.add-partner-section {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partner-section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  left: 0;
+  text-align: left;
+  padding: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #4caf50;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+/* Partners List Section */
+.partners-list-section {
+  margin-bottom: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.partners-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.partner-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.partner-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  width: 30%;
+}
+
+.partner-description,
+.partner-contact {
+  font-size: 16px;
+  color: #555;
+  width: 30%;
+}
+
+/* Icon Edit */
+.edit-icon-btn1 {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Giảm kích thước icon */
+  padding: 6px; /* Giảm padding */
+  background-color: #d1e9d9;
+  border-radius: 5050px;
+  transition: color 0.3s ease;
+}
+
+/* Icon Delete */
+.delete-icon-btn2 {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Giảm kích thước icon */
+  background-color: #ecbfab;
+  padding: 6px; /* Giảm padding */
+  border-radius: 50px;
+  transition: color 0.3s ease;
+}
+
+.delete-icon-btn2 i {
+  color: #f44336; /* Màu đỏ cho icon Delete */
+  font-size: 14px; /* Giảm kích thước chữ trong icon */
+}
+
+/* Thêm hiệu ứng hover cho icon Edit và Delete */
+.edit-icon-btn1:hover i {
+  color: #45a049; /* Màu xanh đậm khi hover trên Edit */
+}
+
+.delete-icon-btn2:hover i {
+  color: #e53935; /* Màu đỏ đậm khi hover trên Delete */
+}
+
+/* Giảm kích thước và làm icon mỏng hơn */
+.edit-icon-btn1 i,
+.delete-icon-btn2 i {
+  font-size: 13px; /* Giảm kích thước icon */
+  font-weight: 100; /* Giảm độ dày của icon */
+  transform: scale(0.9); /* Thu nhỏ icon một chút mà không làm mất tỉ lệ */
+}
+
+.add-partner-section {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.input-field {
+  width: 96%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-button,
+.cancel-button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  width: 100%;
+  margin: 10px;
+  padding-left: -10px;
+  margin-left: 1px;
+}
+
+.update-button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+}
+
+/* Edit Partner Section */
+.edit-partner-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  margin-left: -29px;
+}
+
+.edit-partner-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.update-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.update-button:hover {
+  background-color: #45a049;
+}
+
+/* Styling for buttons in general */
+button {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .search-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-input-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .icon-btn-add {
+    margin-left: 0; /* Đảm bảo icon không bị lệch */
+    margin-top: 10px; /* Khoảng cách trên icon */
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  .add-partner-section,
+  .edit-partner-section {
+    padding: 15px;
+  }
+
+  .partner-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .partner-name,
+  .partner-description,
+  .partner-contact {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

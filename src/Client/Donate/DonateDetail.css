@@ -1,0 +1,66 @@
+.donation-list {
+  margin-top: 106px;
+}
+.donateDetail-container {
+  background: url("https://imagev3.vietnamplus.vn/w1000/Uploaded/2024/fsmsy/2024_06_16/ttxvn-tre-em-gaza-1855.jpg.webp");
+  background-size: cover;
+  background-position: center;
+  height: 312px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+}
+.donateDetail-container h2 {
+  font-size: 30px;
+}
+.donateDetail-container-table {
+  margin-top: 50px;
+  /* padding: 30px; */
+  /* margin: 30px; */
+  margin-left: 59px;
+  /* margin-right: -116px; */
+  width: 91vw;
+}
+.donateDetail-container-h2 {
+  text-align: center;
+  margin: 30px;
+  font-size: 30px;
+}
+.donateDetail-container-td {
+  color: #8db883;
+  height: 46px;
+}
+.donateDetail-container-div {
+  text-align: right;
+  width: 93vw;
+  margin: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.donateDetail-container__button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: black;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Button hover effect */
+.donateDetail-container__button:hover {
+  background-color: #8db883;
+  color: white;
+}
+
+/* Active button styles */
+.donateDetail-container__button--active {
+  background-color: #8db883;
+  color: white;
+  cursor: default;
+  border: none;
+}

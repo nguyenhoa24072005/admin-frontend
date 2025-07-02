@@ -1,0 +1,332 @@
+.product-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.product-button-add {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.product-button-add:hover {
+  background-color: #218838;
+}
+
+.product-search {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.product-button-edit {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.product-button-edit:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-link:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: right;
+  padding: 0;
+  /* right: 0; */
+  position: relative;
+  width: 85%;
+  text-align: right;
+  border-radius: 50%;
+}
+
+.page-item {
+  margin: 0 5px;
+  border-radius: 50%;
+  border: 1px solid #8db883;
+  color: #8db883;
+  background-color: white;
+}
+.page-item:hover {
+  background-color: #8db883;
+  color: white;
+}
+
+.page-link {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.page-item.active .page-link {
+  background-color: #f86d72;
+  color: white;
+  border-color: #f86d72;
+}
+.api-select {
+  margin-left: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 18%;
+}
+.product-button-delete {
+  background-color: #dc3545; /* Màu đỏ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.product-button-delete:c82333 {
+  background-color: #c0392b; /* Đỏ đậm hơn khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Nút Restore */
+.product-button-restore {
+  background-color: #27ae60; /* Màu xanh lá cây */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.product-button-restore:hover {
+  background-color: #28a745; /* Xanh lá đậm hơn khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.Program-List-h1 {
+  font-size: 32px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: #8db883;
+}
+.Program-icon {
+  gap: 10px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-left: 50px;
+  height: 112px;
+}
+.Program-search {
+  border: 1px solid #8db883;
+  font-size: 20px;
+  border-radius: 14px;
+  padding-left: 13px;
+  font-family: "arial-black";
+}
+.Program-add {
+  font-size: 21px;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  background: #e0ebdd;
+  color: #8db883;
+}
+.Program-table {
+  width: 87%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-left: 51px;
+  border: none;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+.Program-tr {
+  border-bottom: 1px solid #8db883;
+  /* height: 22px; */
+  font-size: 20px;
+  padding: 10px;
+  background-color: #e0ebdd;
+}
+.Program-tr th {
+  padding: 10px;
+  text-align: left;
+  padding-left: 24px;
+  font-size: 18px;
+}
+.Program-name {
+  font-size: 1.1rem;
+  color: black;
+}
+.Program-td {
+  color: #75df5d;
+}
+.Program-tr1 td {
+  padding: 24px;
+}
+.Program-icon1 {
+  display: flex;
+  gap: 10px;
+}
+.Program-Detail {
+  border: none;
+  padding: 8px;
+  background: #e0ebdd;
+  color: #8db883;
+  border-radius: 100%;
+}
+.Program-Detail-icon {
+  font-size: 19px;
+}
+.Program-Edit {
+  border: none;
+  padding: 8px;
+  background: #d0e3ff;
+  color: #6074bc;
+  border-radius: 100%;
+}
+.Program-Edit-icon {
+  font-size: 17px;
+}
+.Program-Delete {
+  border: none;
+  padding: 8px;
+  background: #f0d2d2;
+  color: #d56565;
+  border-radius: 100%;
+}
+.Program-Delete-icon {
+  font-size: 16px;
+}
+.Program-Pagination {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  gap: 4px;
+  width: 73vw;
+}
+.Program-filters-Search1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 77vw;
+  gap: 208px;
+  margin-top: 50px;
+}
+.Program-filters {
+  margin-left: 0px;
+  display: flex;
+  gap: 3px;
+  margin-bottom: 18px;
+}
+.Program-Search1 {
+  padding-left: 29px;
+  gap: 5px;
+  display: flex;
+  padding-right: 49px;
+  /* margin-right: -45px; */
+}
+/* Thùng chứa input và select */
+.Program-date,
+.Program-status {
+  width: 33%; /* Chiều rộng đầy đủ */
+  padding: 12px;
+  margin-bottom: 20px; /* Khoảng cách giữa các trường */
+  border-radius: 8px;
+  border: 1px solid #8db883;
+  background-color: white;
+  font-family: "arial-black";
+  font-size: 14px;
+  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
+  transition: all 0.3s ease-in-out; /* Hiệu ứng khi hover */
+}
+
+/* Hiệu ứng hover và focus */
+.Program-date:hover,
+.Program-status:hover,
+.Program-date:focus,
+.Program-status:focus {
+  border-color: #8db883; /* Đổi màu viền khi hover hoặc focus */
+  background-color: #f1f5f0; /* Màu nền nhẹ khi hover/focus */
+  outline: none; /* Xóa viền mặc định khi focus */
+}
+
+/* Đặc biệt cho các input type="date" */
+.Program-date::-webkit-calendar-picker-indicator {
+  border-radius: 50%;
+  padding: 2px;
+}
+
+/* Đặc biệt cho select */
+.Program-status {
+  cursor: pointer;
+  background-color: white; /* Màu nền nhẹ */
+}
+
+/* Tùy chỉnh cho select options */
+.Program-status option {
+  padding: 10px;
+  font-size: 16px;
+  color: #34495e;
+}
+
+.Program-status option:hover {
+  background-color: #f1f5f0;
+  color: #ffffff;
+}

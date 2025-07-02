@@ -1,0 +1,251 @@
+/* InvitationAdmin.css */
+.invitation-admin-container {
+  width: 80%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.invitation-admin-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.search-invitations {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-input1 {
+  width: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+}
+
+.invitation-list {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.invitation-card {
+  text-align: center;
+  width: 45%;
+  margin: 15px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.invitation-card:hover {
+  transform: scale(1.05);
+}
+
+.invitation-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.invitation-card-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.invitation-card-date {
+  font-size: 0.875rem;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.edit-button1 {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button1 {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover, .delete-button:hover {
+  background-color: #0056b3;
+}
+
+.add-invitation-form, .edit-invitation-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #007bff;
+}
+
+.form-textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.add-button, .update-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.125rem;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover, .update-button:hover {
+  background-color: #218838;
+}
+.add-invitation-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-invitation-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.add-invitation-form input,
+.add-invitation-form textarea,
+.add-invitation-form button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-invitation-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.add-invitation-form input:focus,
+.add-invitation-form textarea:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.add-invitation-form button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-invitation-form button:hover {
+  background-color: #45a049;
+}
+
+.add-invitation-form button:active {
+  background-color: #3e8e41;
+}
+
+.add-invitation-form input::placeholder,
+.add-invitation-form textarea::placeholder {
+  color: #aaa;
+}
+
+@media (max-width: 600px) {
+  .add-invitation-form {
+    padding: 15px;
+  }
+
+  .add-invitation-form h2 {
+    font-size: 20px;
+  }
+
+  .add-invitation-form input,
+  .add-invitation-form textarea,
+  .add-invitation-form button {
+    font-size: 14px;
+  }
+}
+
+.customer-setbin1{
+  margin-left: 20px;
+  font-size: 1.5rem;
+}
+.add-invitation-form {
+  display: none; /* Initially hidden */
+  position: relative;
+  transition: transform 0.3s ease-out;
+  transform: translateY(-50px); /* Slide from top */
+}
+
+.add-invitation-form.slide-down {
+  display: block; /* Show when toggled */
+  transform: translateY(0); /* Slide into view */
+}

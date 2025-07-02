@@ -1,0 +1,209 @@
+.favorites-banner11 {
+  background-image: url("https://imagev3.vietnamplus.vn/w1000/Uploaded/2024/fsmsy/2024_06_16/ttxvn-tre-em-gaza-1855.jpg.webp"); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  height: 312px; /* Set the height of the banner */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+}
+
+.donate-container {
+  display: flex;
+  /* flex-direction: column;
+    justify-content: center; */
+  align-items: center;
+  max-width: 100%;
+  font-family: "Arial", sans-serif;
+  color: #333;
+}
+
+.donate-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #8db883;
+  margin-bottom: 1rem;
+}
+
+.donate-description {
+  max-width: 800px;
+  color: #333;
+  margin: 0px 0;
+  max-height: 49px;
+  font-size: 1.3rem;
+  margin-top: 0;
+  overflow: hidden;
+  font-family: "arial-black";
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.target-progress {
+  width: 70%;
+  border-radius: 8px;
+  margin: 5%;
+  margin-bottom: 2rem;
+}
+
+.target-amount,
+.total-donated,
+.progress-percentage,
+.excess-amount {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.progress-container {
+  height: 20px;
+  background: #c8e6c9;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #43a047;
+  transition: width 0.3s ease-in-out;
+}
+
+.donation-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  margin-top: 20px;
+}
+
+.donation-stats p {
+  margin: 0;
+  text-align: center;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100px;
+  background-color: #f9f9f9; /* Light background for the box */
+  border: 1px solid #ddd; /* Subtle border for separation */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  padding: 10px;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666; /* Slightly darker color for label */
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333; /* Darker color for value */
+  margin-top: 5px;
+}
+
+.donate-paypal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* Khoảng cách giữa các thành phần */
+}
+
+.donation-input-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donation-amount-input {
+  width: 80%; /* Điều chỉnh độ rộng input */
+  padding: 8px;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 8px; /* Khoảng cách giữa input và lỗi (nếu có) */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.payment-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #28a745; /* Màu nền cho nút Donate Now */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-button button:hover {
+  background-color: #218838; /* Màu khi hover */
+  background-color: #8db883; /* Màu khi hover */
+}
+
+.paypal-buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-button button {
+  padding: 0.75rem 1.5rem;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.payment-button button:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.payment-button button:active {
+  background-color: #2e7d32;
+  transform: scale(1);
+}
+
+.loading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .donate-container {
+    padding: 1rem;
+  }
+
+  .donate-title {
+    font-size: 2rem;
+  }
+
+  .donate-description {
+    font-size: 1rem;
+  }
+
+  .target-progress {
+    width: 100%;
+  }
+}

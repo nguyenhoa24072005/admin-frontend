@@ -1,0 +1,125 @@
+/* AdminDashboard.css */
+.admin-dashboard {
+  padding: 20px;
+  font-family: "arial-black";
+  /* background-color: #f9f9f9; */
+}
+
+.cadmin-dashboard h1 {
+  text-align: center;
+  color: #333;
+  font-family: "arial-black";
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.stat-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 21vw;
+}
+
+.stat-card h3 {
+  color: #333;
+}
+
+.stat-card p {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.recent-transactions {
+  width: 100%;
+  flex: 0 0 auto;
+  margin-top: 50px;
+}
+
+.recent-saction {
+  display: flex;
+  gap: 30px;
+}
+
+.recent-transactions h2 {
+  text-align: left;
+  color: black;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.Dashboard-td {
+  color: #8db883;
+}
+
+th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+.donation-leaderboard {
+  width: 25%;
+  flex: 0 0 auto;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.donation-leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.donation-leaderboard th,
+.donation-leaderboard td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.donation-leaderboard th {
+  background-color: #f4f4f4;
+}
+
+.performance-summary {
+  margin-top: 30px;
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.performance-summary .stat-card {
+  width: 21vw;
+  /* margin-right: 20px; */
+  margin: 8px;
+}
+
+.recent-donation-container {
+  display: flex;
+  gap: 30px;
+}

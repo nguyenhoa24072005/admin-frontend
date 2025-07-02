@@ -1,0 +1,97 @@
+/* Profile.css */
+.customer-data {
+  margin-top: 108px;
+  background: linear-gradient(to left, #d8f1d1, #f6f7f6);
+}
+.customer-Profile {
+  display: flex;
+}
+.Profile-image {
+  width: 50%;
+  height: 672px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.customer-data-container {
+  margin: 30px auto;
+  width: 50%;
+
+  border-radius: 10px;
+  padding: 25px;
+  margin-top: 100px;
+  height: 525px;
+  margin-left: 30px;
+}
+
+.customer-title {
+  font-size: 2rem;
+  background: linear-gradient(to left, #8db883, #ccf4d5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  font-weight: bold;
+  justify-content: center;
+  padding-top: 50px;
+  display: flex;
+}
+
+/* Grid layout for customer data */
+.customer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Individual grid item */
+.customer-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.customer-item:hover {
+  background-color: #eaf6fc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon styling */
+.icon {
+  font-size: 1.5rem;
+  color: #3498db;
+}
+
+/* Responsive design for better mobile support */
+@media screen and (max-width: 768px) {
+  .customer-title {
+    font-size: 1.5rem;
+  }
+
+  .customer-field {
+    flex-direction: column; /* Stack labels and data vertically */
+    align-items: flex-start;
+  }
+
+  .customer-field strong {
+    margin-bottom: 5px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .customer-title {
+    font-size: 1.3rem;
+  }
+
+  .customer-field {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+
+  .customer-field strong {
+    font-size: 0.9rem;
+  }
+}

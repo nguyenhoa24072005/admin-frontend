@@ -1,0 +1,225 @@
+/* NgoDetail.css */  
+
+.NgoDetail-container {  
+  margin: 0 auto;  
+  padding-top: 50px;  
+}  
+
+.NgoDetail-name {  
+  margin-bottom: 20px;  
+  margin-top: 5px;  
+  font-size: 2.5rem;  
+  color: #2c3e50;  
+  margin-left: 62px;  
+  font-family: "arial-black";  
+}  
+
+.NgoDetail-main {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: flex-start;  
+  margin-top: 20px;  
+}  
+
+.NgoDetail-img {  
+  padding-right: 20px;  
+  padding-left: 25px;  
+}  
+
+.NgoDetail-logo {  
+  width: 100%;  
+  max-width: 470px;  
+  border-radius: 10px;  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  height: 360px;  
+}  
+
+.NgoDetail-info {  
+  flex: 2;  
+  padding-left: 20px;  
+  margin-left: 20px;  
+}  
+
+.NgoDetail-description {  
+  font-family: "arial-black";  
+  font-size: 1.3rem;  
+  color: #333;  
+  line-height: 1.6;  
+  margin-left: 62px;  
+  margin-right: 190px;  
+  margin-top: 40px;  
+  margin-bottom: 15px;  
+}  
+
+.NgoDetail-section {  
+  text-align: justify;  
+  margin-left: 200px;  
+  margin-right: 200px;  
+}  
+
+.NgoDetail-section h3 {  
+  font-size: 1.7rem;  
+  margin-bottom: 10px;   
+  font-family: "arial-black";   
+}  
+
+.NgoDetail-section p {  
+  font-size: 1.3rem;  
+  color: #333;  
+  margin: 0;  
+  text-align: justify;  
+  font-family: "arial-black";  
+}  
+
+.NgoDetail-section p strong {  
+  font-weight: bold;  
+  color: #2c3e50;  
+}  
+
+.NgoDetail-big {  
+  margin-left: 170px;  
+  margin-right: 100px;  
+  padding-top: 100px;  
+}  
+
+.NgoDetail-but {  
+  font-size: 1.3rem;  
+  background: white;  
+  width: 15%;  
+  text-align: center;  
+  border: 1px solid #8db883;  
+  border-radius: 10px;  
+  color: #8db883;  
+  padding-top: 10px;  
+  padding-bottom: 10px;  
+  font-family: "arial-black";  
+  cursor: pointer;  
+  margin-left: 65px;  
+}  
+
+.NgoDetail-but:hover {  
+  background: #8db883;  
+  color: white;  
+}  
+
+.NgoDetail-section1 {  
+  text-align: center;  
+  padding-top: 10px;  
+  padding-bottom: 20px;  
+}  
+
+.NgoDetail-section2 {  
+  margin-top: 25px;  
+  padding-top: 20px;  
+}  
+
+.new-itemss {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  margin-top: 20px;  
+}  
+
+.new-itemss h2 {  
+  font-family: "arial-black";  
+}  
+
+.new-item h2 {  
+  margin-bottom: 10px;  
+}  
+
+.ngo-slider {  
+  display: flex;  
+  position: relative;  
+  width: 70%;  
+  overflow: hidden;  
+  margin: 0 auto;  
+}  
+
+.ngo-slider-content {  
+  display: flex;  
+  transition: transform 0.5s ease;  
+  width: max-content;  
+  margin-bottom: 30px;  
+  padding-bottom: 25px;  
+}  
+
+.new-item {  
+  flex: 0 0 29.33%; /* Control the width of each NGO item */  
+  box-sizing: border-box;  
+  margin: 0px 21px;  
+}  
+
+.arrow-left,  
+.arrow-right {  
+  font-size: 3rem;
+  position: absolute;  
+  top: 50%; /* Center vertically */  
+  transform: translateY(-50%); /* Center vertically */  
+  z-index: 2; /* Ensure they appear above other content */  
+  padding: 15px; /* Increase padding to make the arrows bigger */  
+  border-radius: 50%; /* Make the buttons circular */  
+  background-color: transparent; /* Make the background transparent */  
+  border: none; /* Remove border */  
+  cursor: pointer; /* Change cursor to indicate it's clickable */  
+  transition: all 0.3s ease; /* Add a smooth transition effect */  
+}  
+
+/* Arrow positioning */  
+.arrow-left {  
+  left: 10px; /* Position the left arrow */  
+}  
+
+.arrow-right {  
+  right: 10px; /* Position the right arrow */  
+}  
+
+/* Hover effect for arrows */  
+.arrow-left:hover,  
+.arrow-right:hover {  
+  transform: translateY(-50%) scale(1.2); /* Slightly enlarge on hover */  
+}  
+
+/* Styling for related items section */  
+.related-articles {  
+  margin: 40px 0;  
+  text-align: center;  
+}  
+
+.related-articles-container {  
+  display: flex;  
+  justify-content: center;  
+  gap: 20px;  
+  flex-wrap: wrap;  
+}  
+
+.related-article-card {  
+  background-color: #ffffff;  
+  border-radius: 10px;  
+  overflow: hidden;  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  width: 300px;  
+  transition: transform 0.2s;  
+}  
+
+.related-article-card:hover {  
+  transform: scale(1.05);  
+}  
+
+.related-article-image {  
+  width: 100%;  
+  height: 200px;  
+  object-fit: cover;  
+}  
+
+.related-article-card h3 {  
+  margin: 15px;  
+  font-size: 1.2rem;  
+}  
+
+.related-article-card p {  
+  margin: 0 15px 15px;  
+  color: #555;  
+}
+
+

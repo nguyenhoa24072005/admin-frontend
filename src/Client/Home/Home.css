@@ -1,0 +1,122 @@
+/* Container chính */
+.featured-product {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 40px; */
+  background-color: #fff;
+  overflow: hidden; /* Đảm bảo phần tử ẩn khi chưa xuất hiện */
+}
+/* Nội dung và ảnh trước khi hiển thị */
+.product-info {
+  opacity: 0;
+  transform: translateX(100%); /* Nội dung trượt từ bên phải */
+  transition: all 0.7s ease-out;
+}
+
+.product-image {
+  opacity: 0;
+  transform: translateX(-100%); /* Ảnh trượt từ bên trái */
+  transition: all 0.7s ease-out;
+}
+
+/* Khi hiển thị */
+.featured-product.active .product-info {
+  opacity: 1;
+  transform: translateX(0); /* Trở về vị trí gốc */
+}
+
+.featured-product.active .product-image {
+  opacity: 1;
+  transform: translateX(0); /* Trở về vị trí gốc */
+}
+.product-image-1 {
+  width: 100%;
+  height: 100%;
+  padding-left: 200px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+.featured-product h2 {
+  /* padding-left: 300px; */
+  /* font-size: 36px; */
+  color: #333;
+  /* margin-bottom: 20px; */
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+}
+
+.featured-product h3 {
+  padding-left: 300px;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.featured-product p {
+  /* padding-left: 400px; */
+  /* padding-right: 100px; */
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 80px;
+}
+
+/* Phần các nhà sản xuất nổi tiếng */
+.manufacturers {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 40px 0px; */
+  background-color: #fff;
+}
+
+.manufacturers h2 {
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.manufacturer-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Divides into 3 equal columns */
+  gap: 20px; /* Space between columns */
+  width: 100%;
+  max-width: 1200px; /* Centers content with a max width */
+}
+
+.manufacturer {
+  text-align: center;
+}
+
+.manufacturer-logo {
+  width: 200px; /* Set a fixed size for uniformity */
+  height: 200px; /* Set equal height to make it square */
+  object-fit: cover; /* Ensures image covers the circular area without distortion */
+  border-radius: 50%; /* Makes the image circular */
+  display: block;
+  margin: 0 auto 10px; /* Centers the image and adds spacing below */
+}
+
+.manufacturer p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+/* Phần footer và các phần còn lại */
+.footer1 {
+  text-align: center;
+  padding: 30px;
+  background-color: #333;
+  color: white;
+  margin-top: 40px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,31 @@
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tabs button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.tabs button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.tabs button:focus {
+  outline: none;
+}

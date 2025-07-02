@@ -1,0 +1,59 @@
+.admin-approval {
+    margin-top: 20px;
+    /* max-width: 800px; */
+    /* margin: 0 auto; */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-approval h1, h4 {
+    text-align: center;
+    color: #333;
+}
+
+.admin-approval ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-approval li {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.program-list {
+    margin-top: 15px;
+}
+
+.admin-approval button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-approval button:hover {
+    background-color: #0056b3;
+}
+
+.censor p{
+
+}
+
+.ngo-info1 {
+    display: flex;
+}
+.ngo-url1{
+    margin-left: 3%;
+}

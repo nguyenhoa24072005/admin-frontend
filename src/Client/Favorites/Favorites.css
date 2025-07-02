@@ -1,0 +1,246 @@
+/* Tổng quan container */
+.favorites-container {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  width: 96vw;
+  margin: 0 auto; /* Center container */
+  margin-top: 20px;
+  background-color: #fff; /* Nền trắng */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng */
+}
+
+/* Banner */
+.favorites-banner1 {
+  background-image: url("https://imagev3.vietnamplus.vn/w1000/Uploaded/2024/fsmsy/2024_06_16/ttxvn-tre-em-gaza-1855.jpg.webp");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  border-radius: 8px; /* Bo góc */
+  margin-bottom: 20px;
+}
+
+.favorites-banner1 h1 {
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  font-weight: bold;
+  margin-top: 78px;
+}
+
+/* Danh sách */
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.favorites-header,
+.favorite-card {
+  display: flex;
+  width: 98.5%;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f5f5f5;
+  align-items: center;
+}
+
+.favorites-header {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Cột thông thường */
+.favorites-column {
+  flex: 1 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border-right: 1px solid #ddd;
+  position: relative;
+  display: flex;
+}
+
+/* Cột SL (Số lượng) */
+.favorites-column.sl-column {
+  flex: 0.1 1;
+  text-align: center;
+  /* position: absolute; */
+  position: relative;
+  text-align: center;
+  display: flex;
+}
+
+.favorites-column:last-child {
+  border-right: none; /* Không có gạch ở cột cuối */
+}
+
+/* Thẻ chương trình */
+.favorite-card {
+  display: flex;
+  width: 98%;
+  justify-content: space-between;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: white;
+  align-items: center;
+}
+
+.favorite-card .favorites-column {
+  text-align: left;
+  font-size: 14px;
+  border-right: 1px solid #ddd; /* Phân cách giữa các cột */
+}
+
+.favorite-card .favorites-column:last-child {
+  border-right: none; /* Không có gạch ở cột cuối */
+}
+
+.favorite-card img {
+  width: 80px; /* Kích thước ảnh */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Nút xóa */
+.remove-btn {
+  background-color: #ecbfab;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.remove-btn:hover {
+  background-color: darkred;
+  transition: background-color 0.3s ease;
+}
+
+/* Nút Donate */
+.donate-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.donate-btn:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+}
+
+/* Thông báo trống */
+.empty-message {
+  font-size: 18px;
+  color: gray;
+  margin-top: 20px;
+  font-style: italic;
+}
+/* Nút xóa */
+.remove-btn {
+  background-color: #ecbfab;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Điều chỉnh kích thước nhỏ */
+  color: #ef4a00;
+  border-radius: 50%;
+  position: relative; /* Đảm bảo hiển thị chữ lên trên icon */
+}
+
+.remove-btn:hover {
+  color: #ef4a00;
+  background-color: #ecbfab;
+}
+
+/* Thêm chữ "Delete" khi hover vào icon xóa */
+.remove-btn:hover::after {
+  content: "Delete"; /* Thêm chữ Delete */
+  position: absolute;
+  top: -25px; /* Vị trí phía trên icon */
+  left: 50%;
+  transform: translateX(-50%); /* Căn giữa */
+  font-size: 12px;
+  color: #ef4a00;
+  font-weight: bold;
+}
+
+/* Nút Donate */
+.donate-btn {
+  background-color: #b3c3ef;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px; /* Điều chỉnh kích thước nhỏ */
+  color: #487fff;
+  border-radius: 50%;
+  position: relative; /* Đảm bảo hiển thị chữ lên trên icon */
+}
+
+.donate-btn:hover {
+  color: #487fff;
+  background-color: #b3c3ef;
+}
+
+/* Thêm chữ "Donate" khi hover vào icon Donate */
+.donate-btn:hover::after {
+  content: "Donate"; /* Thêm chữ Donate */
+  position: absolute;
+  top: -25px; /* Vị trí phía trên icon */
+  left: 50%;
+  transform: translateX(-50%); /* Căn giữa */
+  font-size: 12px;
+  color: #487fff;
+  font-weight: bold;
+}
+.empty-message {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.empty-image {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .favorites-header,
+  .favorite-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .favorites-column {
+    text-align: left;
+    padding: 8px 0;
+    border-right: none; /* Bỏ gạch trên màn hình nhỏ */
+  }
+
+  .favorite-card img {
+    width: 100%; /* Hình ảnh full chiều rộng trên màn hình nhỏ */
+    height: auto;
+  }
+}

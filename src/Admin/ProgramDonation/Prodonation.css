@@ -1,0 +1,183 @@
+/* ProgramDonationList.css */
+
+/* General container for the entire component */
+.ProgramDonationList-container {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Heading style */
+.ProgramDonationList-title {
+  text-align: center;
+  background: linear-gradient(to left, #8db883, #ccf4d5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "arial-black";
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+/* Search bar container */
+.ProgramDonationList-search-container {
+  display: flex;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Search bar input field */
+.ProgramDonationList-search-input {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  font-family: "arial-black";
+
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.ProgramDonationList-search-input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* Table container */
+.ProgramDonationList-table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+  height: 475px;
+}
+
+/* Table styles */
+.ProgramDonationList-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.ProgramDonationList-table th,
+.ProgramDonationList-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-family: "arial-black";
+}
+
+.ProgramDonationList-table th {
+  background-color: #e0ebdd;
+  color: black;
+  font-family: "arial-black";
+}
+
+.ProgramDonationList-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.ProgramDonationList-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination buttons */
+.ProgramDonationList-pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.ProgramDonationList-pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  font-size: 16px;
+  border: 1px solid #8db883;
+  border-radius: 4px;
+  color: #8db883;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ProgramDonationList-pagination button:hover {
+  background-color: #8db883;
+  color: white;
+}
+
+.ProgramDonationList-pagination button:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+  color: #aaa;
+}
+
+.ProgramDonationList-pagination button:focus {
+  outline: none;
+}
+.ProgramDonationList-td {
+  color: #8db883;
+}
+.donation-list1 {
+  font-family: "arial-black";
+  padding: 50px;
+}
+.donation-h2 {
+  text-align: center;
+  margin-bottom: 58px;
+  color: #8db883;
+  font-size: 32px;
+}
+.donation-search-container {
+}
+.donation-search-input {
+  width: 21%;
+  /* height: 36px; */
+  margin-bottom: 50px;
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 10px;
+  border: 1px solid #8db883;
+}
+.donation-table1 {
+}
+.donation-table1-thead {
+  height: 50px;
+}
+.donation-table1-tr {
+}
+.donation-table1-tr2 {
+  height: 74px;
+  font-size: 16px;
+}
+.Program-pagination {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  right: 0;
+  position: relative;
+  margin-top: 20px;
+  margin-left: 867px;
+  gap: 13px;
+}
+.Program-pagination-button {
+  font-size: 20px;
+  color: #8db883;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 100%;
+  background: #dfefdb;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.disabled1 {
+  font-size: 20px;
+  color: #c2ddbb;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 100%;
+  background: #edf0ed;
+  padding-left: 15px;
+  padding-right: 15px;
+}

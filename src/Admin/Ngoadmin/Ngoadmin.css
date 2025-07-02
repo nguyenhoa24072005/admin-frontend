@@ -1,0 +1,100 @@
+/* Ngoadmin.css */
+
+.ngoadmin-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+ .ngoadmin-container h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .loading-text {
+    text-align: center;
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .ngos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .ong{
+    list-style-type: none;
+
+  }
+  
+  .ngos-table th,
+  .ngos-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .ngo-row:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .ngo-logo-cell img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .ngo-text-cell {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .ngo-actions-cell {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .approve-btn,
+  .delete-btn {
+    margin-right: 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .approve-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .approve-btn:hover {
+    background-color: #218838;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .approve-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .delete-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  .ngo-src{
+    padding: 30px;
+  }
+  

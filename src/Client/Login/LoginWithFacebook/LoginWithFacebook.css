@@ -1,0 +1,20 @@
+.facebook-login-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .facebook-button {
+    background-color: #1877f2;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .facebook-button:hover {
+    background-color: #165eab;
+  }
+  

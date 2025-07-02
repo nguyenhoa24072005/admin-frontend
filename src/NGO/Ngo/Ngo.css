@@ -1,0 +1,154 @@
+.grid-container {
+  display: grid;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-columns: 0.8fr 3.2fr; /* Define grid columns */
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar active item */
+.sidebar-list-item.active .sidebar-link {
+  background-color: #b1d8a6; /* Thay đổi màu nền khi chọn */
+  color: white; /* Thay đổi màu chữ khi chọn */
+  font-weight: bold; /* Làm đậm chữ */
+  border-radius: 10px;
+}
+
+.sidebar-list-item .sidebar-link {
+  color: #333; /* Màu chữ mặc định */
+  text-decoration: none;
+  padding: 10px 10px;
+  display: block;
+}
+
+/* .sidebar-list-item .sidebar-link:hover {
+  background-color: #f1f1f1; /* Màu nền khi hover 
+} */
+
+
+/* Header */
+.header3 {
+  grid-area: header;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #8db883;
+}
+
+.menu-icon {
+  display: none;
+}
+
+/* Sidebar */
+#sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  background: #cfdfca;
+  color: #333;
+  overflow-y: auto;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px 0 30px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.sidebar-title > span {
+  display: none;
+}
+
+.sidebar-brand {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-list {
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.sidebar-list-item {
+  padding: 20px;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.sidebar-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.sidebar-list-item > a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar-responsive {
+  display: inline !important;
+  position: absolute;
+  z-index: 12 !important;
+}
+
+/* Main content area */
+.main {
+  grid-area: main;
+  padding: 20px;
+}
+.icon-1 {
+  color: #333;
+  font-size: 17px;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+
+  .sidebar-title > span {
+    display: inline;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .charts {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header-left {
+    display: none;
+  }
+}

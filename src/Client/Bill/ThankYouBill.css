@@ -1,0 +1,135 @@
+.thank-you-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "arial-black";
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid black;
+}
+
+.thank-you-bro {
+  border: 1px solid #ddd;
+  width: 43%;
+}
+
+.logo-charity img {
+  width: 35%;
+  height: auto;
+  margin-bottom: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.thank-you-header h1 {
+  font-size: 2.5rem;
+  color: #8db883;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you-header p {
+  font-size: 1rem;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.donation-details {
+  border-radius: 10px;
+  padding: 20px;
+  width: 94%;
+  text-align: left;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 194px;
+}
+
+.donation-details p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+}
+
+.donation-details .label {
+  font-weight: bold;
+  color: #8db883;
+  width: 150px;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.donation-details .value {
+  flex: 1;
+  text-align: left;
+}
+
+.thank-you-note {
+  margin-top: 20px;
+}
+
+.thank-you-note p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.go-home-btn {
+  background: white;
+  color: #8db883;
+  border: 1px solid #8db883;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.go-home-btn:hover {
+  background: #8db883;
+  color: white;
+  transform: scale(1.05);
+}
+
+.thank-you-footer {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: black;
+}
+
+.thank-you-footer a {
+  color: #8db883;
+  text-decoration: none;
+}
+
+.thank-you-footer a:hover {
+  text-decoration: underline;
+}
+.go-home-btn-icon {
+  margin-right: -546px;
+  text-align: right;
+  position: relative;
+  margin-top: 10px;
+  border: none;
+  color: #8db883;
+  background: white;
+}
+.go-home-btn-icon:hover {
+  color: black;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

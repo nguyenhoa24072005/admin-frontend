@@ -1,0 +1,95 @@
+.section-content {
+  background-color: #f7f5f3;
+  margin-left: 0;
+  float: left;
+  width: 100%;
+  display: block;
+  clear: none !important;
+  box-sizing: border-box;
+}
+.section-aem {
+  display: block;
+  width: 100%;
+}
+.section-res {
+  float: left;
+  clear: none;
+  width: 100%;
+  padding-bottom: 32px !important;
+  padding-top: 0 !important;
+  box-sizing: border-box;
+  background: #effbeb;
+}
+.section-before {
+  position: absolute;
+  background-image: url(https://www.charitynavigator.org/etc.clientlibs/cn/clientlibs/clientlib-site/resources/images/card/dot_rectangle_pattern.png);
+  height: 250px;
+  width: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.section-default {
+  background-color: #f7f5f3;
+}
+.section-top {
+  display: block;
+  width: 100%;
+}
+.section-layer {
+  margin-left: 253.188px;
+  float: left;
+  display: block;
+  clear: none !important;
+  padding-bottom: 32px !important;
+  padding-top: 32px !important;
+  box-sizing: border-box;
+}
+.section-div {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+}
+.section-miss {
+  text-align: left;
+  font-size: 47.78px;
+  line-height: 55px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0;
+}
+.section-b {
+  font-weight: bolder;
+}
+.section-p {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "arial-black";
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  margin: 0;
+  color: #8db883;
+}
+.section-p1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #f7f5f3;
+  width: 100%;
+  height: 1px;
+}
+.section-para {
+  font-size: 20.2px;
+  line-height: 24px;
+  font-family: sofia-pro;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+.section-blank {
+  text-decoration: revert;
+  color: #49516f;
+  font: inherit;
+}

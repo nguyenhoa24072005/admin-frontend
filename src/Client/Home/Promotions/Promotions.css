@@ -1,0 +1,174 @@
+/* Tổng thể */
+.promo-div {
+  width: 100%;
+  background-color: #f7f5f3;
+  display: block;
+}
+
+.promo-aem {
+  width: 100%;
+}
+
+.promo-list {
+  padding: 80px 0;
+  margin: 0;
+  background: #effbeb;
+}
+
+.promo-warp {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.promo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.promo-title {
+  font-size: 33.18px;
+  line-height: 37px;
+  color: black;
+  font-weight: 700;
+  font-family: "arial-black";
+}
+
+.promo-button .promo-a {
+  border-radius: 8px;
+  padding: 9px 18px;
+  background: white;
+  color: #8db883;
+  text-decoration: none;
+  font-family: "arial-black";
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border: 1px solid #8db883;
+  margin-right: 13px;
+}
+
+.promo-button .promo-a:hover {
+  background: #8db883;
+  color: white;
+}
+
+/* Danh sách promotions */
+.promo-cards {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.promo-active {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  justify-content: flex-start;
+}
+
+/* Thẻ promotion */
+.promo-Item {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc(33.333% - 20px);
+  background: #fff;
+  border: 1px solid #8db883;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px rgba(230, 232, 239, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease; /* Bỏ transform */
+}
+
+.promo-Item:hover {
+  box-shadow: 0 15px 25px rgba(230, 232, 239, 1); /* Chỉ thay đổi shadow */
+}
+
+/* Nội dung mỗi promotion */
+.promo-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.promo-image {
+  position: relative;
+  height: 400px; /* Chiều cao cố định cho hình ảnh */
+  overflow: hidden;
+}
+
+.promo-anh {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.4s ease;
+}
+
+.promo-content:hover .promo-anh {
+  filter: brightness(0.5); /* Làm tối ảnh */
+}
+
+.promo-description {
+  position: absolute;
+  bottom:  -166%; /* Ẩn hoàn toàn */
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: white;
+  transition: bottom 0.4s ease-in-out;
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  max-height: 80px;
+
+}
+
+.promo-content:hover .promo-description {
+  bottom: 0; /* Hiển thị thông tin chi tiết khi hover */
+}
+
+.promo-ton {
+  font-size: 20px;
+  font-weight: 600;
+  color: #001936;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.promo-date {
+  font-size: 15px;
+  color: #8db883;
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .promo-Item {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-Item {
+    flex: 1 1 100%;
+  }
+
+  .promo-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .promo-button {
+    margin-top: 10px;
+  }
+}
