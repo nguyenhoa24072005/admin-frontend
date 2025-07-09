@@ -1,9 +1,7 @@
-// src/components/PositionForm.js
 import React, { useState, useEffect } from "react";
-import {
-  addPosition,
-  updatePosition,
-} from "../Service/positionService";
+import { addPosition, updatePosition } from "../Service/positionService";
+import { FaSave, FaTimes } from "react-icons/fa";
+import "./Position.css";
 
 const PositionForm = ({ editPosition, onSave, onCancel }) => {
   const [positionName, setPositionName] = useState("");
@@ -35,24 +33,41 @@ const PositionForm = ({ editPosition, onSave, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Position Name:</label>
-      <input
-        type="text"
-        value={positionName}
-        onChange={(e) => setPositionName(e.target.value)}
-        required
-      />
+    <>
+      <div className="PositionOverlay" onClick={onCancel} />
+      <div className="PositionModal">
+        <form className="PositionForm" onSubmit={handleSubmit}>
+          <label>Position Name:</label>
+          <input
+            type="text"
+            value={positionName}
+            onChange={(e) => setPositionName(e.target.value)}
+            required
+          />
 
-      <label>Status:</label>
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value="Active">Active</option>
-        <option value="Inactive">Inactive</option>
-      </select>
+          <label>Status:</label>
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
 
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
-    </form>
+          <div className="PositionFormButtons">
+            <button type="submit" className="PositionSaveButton">
+              <FaSave style={{ marginRight: 5 }} />
+              Save
+            </button>
+            <button
+              type="button"
+              className="PositionCancelButton"
+              onClick={onCancel}
+            >
+              <FaTimes style={{ marginRight: 5 }} />
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

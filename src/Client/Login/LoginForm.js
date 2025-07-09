@@ -82,9 +82,11 @@ const LoginForm = () => {
 
   return (
     <div className="body-login">
-      <Header />
       <div className="form-container-login">
         <form onSubmit={handleSubmit} className="form">
+          <div>
+            <h3 className="Login">Login</h3>
+          </div>
           <div className="form-group-login">
             <label htmlFor="username" className="conten-login">
               Username
@@ -133,9 +135,11 @@ const LoginForm = () => {
         <div className="additional-links-login">
           <p className="login-link1-p">
             Don't have an account?
-            <Link to="/register" className="login-link2"> Register here.</Link>
+            <Link to="/register" className="login-link2">
+              {" "}
+              Register here.
+            </Link>
           </p>
-          <Link to="/" className="login-link3">Back to Home</Link>
         </div>
 
         {/* Nếu dùng đăng nhập bằng Google */}

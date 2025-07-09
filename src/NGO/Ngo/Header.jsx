@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BsFillBellFill,
   BsFillEnvelopeFill,
@@ -12,29 +12,29 @@ import "./Header.css";
 function Header({ OpenSidebar }) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  // Use useEffect to set dropdown visibility when the component mounts
-  useEffect(() => {
-    setIsDropdownVisible(true); // Show the dropdown immediately when the component mounts
-  }, []);
+  const toggleDropdown = () => {
+    setIsDropdownVisible((prev) => !prev);
+  };
 
   return (
-    <header className="header3">
-      <div className="menu-icon">
-        <BsJustify className="icon" onClick={OpenSidebar} />
+    <header className="HeaderContainer">
+      <div className="HeaderMenuIcon">
+        <BsJustify className="HeaderIcon" onClick={OpenSidebar} />
       </div>
-      <div className="header-left">
-        <BsSearch className="icon" />
-      </div>
-      <div className="header-right">
-        <BsFillBellFill className="icon" />
-        <BsFillEnvelopeFill className="icon" />
-
-        {/* Always show the menu dropdown */}
-        {isDropdownVisible && (
-          <div className="menu-logout">
-            <Logout onLogout={() => setIsDropdownVisible(false)} />
-          </div>
-        )}
+      {/* <div className="HeaderLeft">
+        <BsSearch className="HeaderIcon" />
+      </div> */}
+      <div className="HeaderRight">
+        <BsFillBellFill className="HeaderIcon" />
+        <BsFillEnvelopeFill className="HeaderIcon" />
+        <div className="HeaderProfile">
+          <BsPersonCircle className="HeaderIcon" onClick={toggleDropdown} />
+          {isDropdownVisible && (
+            <div className="HeaderDropdown">
+              <Logout onLogout={() => setIsDropdownVisible(false)} />
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

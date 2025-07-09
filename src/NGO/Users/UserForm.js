@@ -1,5 +1,6 @@
-// src/Component/UserForm.js
 import React, { useState, useEffect } from "react";
+import { FaSave, FaTimes } from "react-icons/fa";
+import "./User.css";
 
 const UserForm = ({ editUser, onSave, onCancel }) => {
   const [form, setForm] = useState({
@@ -33,51 +34,85 @@ const UserForm = ({ editUser, onSave, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>{editUser ? "Edit User" : "Add User"}</h3>
+    <>
+      <div className="UserOverlay" onClick={onCancel} />
+      <div className="UserModal">
+        <form className="UserForm" onSubmit={handleSubmit}>
+          <h3>{editUser ? "Edit User" : "Add User"}</h3>
 
-      <input
-        name="employeeId"
-        value={form.employeeId}
-        onChange={handleChange}
-        placeholder="Employee ID"
-      />
+          <div className="UserFormGrid">
+            <div className="UserFormField">
+              <label>Employee ID:</label>
+              <input
+                name="employeeId"
+                value={form.employeeId}
+                onChange={handleChange}
+                placeholder="Employee ID"
+              />
+            </div>
 
-      <input
-        name="username"
-        value={form.username}
-        onChange={handleChange}
-        placeholder="Username"
-        required
-      />
+            <div className="UserFormField">
+              <label>Username:</label>
+              <input
+                name="username"
+                value={form.username}
+                onChange={handleChange}
+                placeholder="Username"
+                required
+              />
+            </div>
 
-      <input
-        type="password"
-        name="password"
-        value={form.password}
-        onChange={handleChange}
-        placeholder="Password"
-        required={!editUser}
-      />
+            <div className="UserFormField">
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Password"
+                required={!editUser}
+              />
+            </div>
 
-      <input
-        name="email"
-        value={form.email}
-        onChange={handleChange}
-        placeholder="Email"
-        required
-      />
+            <div className="UserFormField">
+              <label>Email:</label>
+              <input
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Email"
+                required
+              />
+            </div>
 
-      <input
-        name="roleId"
-        value={form.roleId}
-        onChange={handleChange}
-        placeholder="Role ID"
-      />
+            <div className="UserFormField">
+              <label>Role ID:</label>
+              <input
+                name="roleId"
+                value={form.roleId}
+                onChange={handleChange}
+                placeholder="Role ID"
+              />
+            </div>
+          </div>
 
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
-    </form>
+          <div className="UserFormButtons">
+            <button type="submit" className="UserSaveButton">
+              <FaSave style={{ marginRight: 5 }} />
+              Save
+            </button>
+            <button
+              type="button"
+              className="UserCancelButton"
+              onClick={onCancel}
+            >
+              <FaTimes style={{ marginRight: 5 }} />
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

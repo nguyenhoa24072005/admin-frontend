@@ -1,48 +1,88 @@
-.header-right {
+/* Header.css */
+
+/* Container */
+.HeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #ffffff; /* White background */
+  font-family: "Segoe UI", sans-serif;
+  border-bottom: 0.01cm solid #000000; /* 1cm black border at bottom */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Menu Icon */
+.HeaderMenuIcon {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Adjust spacing between icons */
 }
 
-.icon {
-  font-size: 1.5rem; /* Adjust icon size */
+/* Header Left (Search) */
+.HeaderLeft {
+  display: flex;
+  align-items: center;
+}
+
+/* Header Right (Icons and Profile) */
+.HeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icons */
+.HeaderIcon {
+  font-size: 24px;
+  color: #f5a623; /* Yellow-orange */
   cursor: pointer;
-  transition: color 0.3s ease; /* Smooth color transition */
-  color: black;
+  transition: color 0.2s, transform 0.2s;
 }
 
-.icon:hover {
-  color: #8db883; /* Change icon color on hover */
+.HeaderIcon:hover {
+  color: #d68f1e; /* Darker yellow-orange */
+  transform: scale(1.1);
 }
 
-.admin-container {
+/* Profile Dropdown */
+.HeaderProfile {
   position: relative;
 }
 
-.menu {
+.HeaderDropdown {
   position: absolute;
-  top: 5.5%;
-  right: 0.5%;
-  background: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  top: 100%;
+  right: 0;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #dee2e6;
   border-radius: 4px;
-  width: 150px; /* Adjust width as needed */
-  z-index: 1000; /* Ensure dropdown is on top of other elements */
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  z-index: 1001;
+  min-width: 120px;
 }
 
-.item {
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: #333;
-  transition: background 0.2s ease, color 0.2s ease;
-}
+/* Responsive */
+@media (max-width: 768px) {
+  .HeaderContainer {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
 
-.item:hover {
-  background: #f1f1f1; /* Change background on hover */
-  color: #007bff; /* Change text color on hover */
-}
+  .HeaderRight {
+    gap: 12px;
+  }
 
-/* Style for logout item */
+  .HeaderIcon {
+    font-size: 20px;
+  }
+
+  .HeaderDropdown {
+    min-width: 100px;
+    right: -10px;
+  }
+}

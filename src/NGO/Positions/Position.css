@@ -1,0 +1,308 @@
+/* Position.css */
+
+/* Container */
+.PositionContainer {
+  padding: 24px;
+  background-color: #ffffff; /* White background */
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 10px;
+  max-width: 1100px;
+  margin: 30px auto;
+  border: 0.001cm solid #000000; /* 1cm black border */
+}
+
+/* Header */
+.PositionContainer h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  border-bottom: 1px solid #ccc; /* Light separator */
+}
+
+/* Controls */
+.PositionControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.PositionControls input,
+.PositionControls select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #ffffff; /* White background */
+  transition: border-color 0.2s ease-in-out;
+}
+
+.PositionControls input:focus,
+.PositionControls select:focus {
+  border-color: #f5a623; /* Yellow-orange border on focus */
+  outline: none;
+}
+
+/* Add button */
+.PositionAddButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #f5a623; /* Yellow-orange background */
+  color: #ffffff; /* White text */
+  border: none;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.PositionAddButton:hover {
+  background-color: #d68f1e; /* Darker yellow-orange on hover */
+}
+
+/* Table */
+.PositionTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.PositionTable th,
+.PositionTable td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 14px;
+  text-align: left;
+}
+
+.PositionTable th {
+  background-color: #f5f5f5; /* Light gray for header */
+  font-weight: 600;
+  color: #333;
+}
+
+.PositionTable tr:last-child td {
+  border-bottom: none;
+}
+
+/* Action buttons */
+.PositionEditButton,
+.PositionDeleteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.PositionEditButton {
+  background-color: #f5a623; /* Yellow-orange background */
+  color: #ffffff; /* White text */
+}
+
+.PositionEditButton:hover {
+  background-color: #d68f1e; /* Darker yellow-orange */
+}
+
+.PositionDeleteButton {
+  background-color: #dc3545; /* Red for delete */
+  color: #ffffff; /* White text */
+}
+
+.PositionDeleteButton:hover {
+  background-color: #c82333; /* Darker red */
+}
+
+/* Status styling */
+.PositionStatus.Active {
+  color: #f5a623; /* Yellow-orange for Active */
+  font-weight: bold;
+}
+
+.PositionStatus.Inactive {
+  color: #6c757d; /* Gray for Inactive */
+  font-weight: bold;
+}
+
+/* Modal */
+.PositionOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.PositionModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background: #ffffff; /* White background */
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  border: 0.01cm solid #000000; /* 1cm black border */
+}
+
+/* Form */
+.PositionForm label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+.PositionForm input,
+.PositionForm select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff; /* White background */
+}
+
+.PositionForm input:focus,
+.PositionForm select:focus {
+  border-color: #f5a623; /* Yellow-orange border on focus */
+  outline: none;
+}
+
+.PositionFormButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.PositionSaveButton,
+.PositionCancelButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.PositionSaveButton {
+  background: #f5a623; /* Yellow-orange background */
+}
+
+.PositionSaveButton:hover {
+  background: #d68f1e; /* Darker yellow-orange */
+}
+
+.PositionCancelButton {
+  background: #6c757d; /* Gray for cancel */
+}
+
+.PositionCancelButton:hover {
+  background: #5a6268; /* Darker gray */
+}
+
+/* Pagination */
+.PaginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.PaginationButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #f5a623; /* Yellow-orange background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.PaginationButton:hover:not(:disabled) {
+  background-color: #d68f1e; /* Darker yellow-orange */
+}
+
+.PaginationButton:disabled {
+  background-color: #cccccc; /* Gray for disabled */
+  cursor: not-allowed;
+}
+
+.PaginationNumbers {
+  display: flex;
+  gap: 5px;
+}
+
+.PaginationNumber {
+  padding: 8px 12px;
+  background-color: #ffffff; /* White background */
+  color: #333;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.PaginationNumber:hover {
+  background-color: #ffe8a8; /* Light yellow-orange on hover */
+}
+
+.PaginationNumber.active {
+  background-color: #f5a623; /* Yellow-orange for active page */
+  color: #ffffff; /* White text */
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .PositionControls {
+    flex-direction: column;
+  }
+
+  .PositionAddButton,
+  .PositionEditButton,
+  .PositionDeleteButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .PositionFormButtons {
+    flex-direction: column;
+  }
+
+  .PaginationControls {
+    flex-direction: column;
+  }
+
+  .PaginationNumbers {
+    justify-content: center;
+  }
+}

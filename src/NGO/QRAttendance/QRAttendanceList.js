@@ -1,15 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { getAllActiveAttendances, deleteAttendance } from "../Service/qrAttendanceService";
+import {
+  getAllActiveAttendances,
+  deleteAttendance,
+} from "../Service/qrAttendanceService";
+import "./QRAttendance.css";
+import { FaSearch, FaTrash, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const QRAttendanceList = () => {
   const [attendances, setAttendances] = useState([]);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const mapStatus = (status) => {
+    // Normalize status to handle various backend values
+    const normalizedStatus = status ? status.toString().toLowerCase() : "";
+    if (["valid", "active", "true", "1"].includes(normalizedStatus)) {
+      return "Active";
+    }
+    if (["expired", "inactive", "false", "0"].includes(normalizedStatus)) {
+      return "Inactive";
+    }
+    return status; // Fallback to original status if unknown
+  };
 
   const loadData = async () => {
     try {
       const data = await getAllActiveAttendances();
-      setAttendances(data);
+      const mappedData = data.map((a) => {
+        const displayStatus = mapStatus(a.status);
+        console.log(
+          `Attendance ${a.qrId} status: ${a.status}, mapped to: ${displayStatus}`
+        ); // Debug log
+        return { ...a, displayStatus };
+      });
+      setAttendances(mappedData);
     } catch (err) {
+      console.error("Failed to fetch QR Attendances:", err);
       alert("Failed to fetch QR Attendances.");
     }
   };
@@ -23,7 +50,11 @@ const QRAttendanceList = () => {
       try {
         await deleteAttendance(qrId);
         loadData();
-      } catch {
+        if (filtered.length <= 1 && currentPage > 1) {
+          setCurrentPage(currentPage - 1);
+        }
+      } catch (err) {
+        console.error("Failed to delete attendance:", err);
         alert("Xoá thất bại.");
       }
     }
@@ -33,21 +64,66 @@ const QRAttendanceList = () => {
     a.employee?.fullName?.toLowerCase().includes(search.toLowerCase())
   );
 
+  // Pagination logic with ellipsis
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentAttendances = filtered.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const maxVisiblePages = 5;
+  const pageNumbers = [];
+  const ellipsis = "...";
+
+  if (totalPages <= maxVisiblePages) {
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    const startPage = Math.max(2, currentPage - 2);
+    const endPage = Math.min(totalPages - 1, currentPage + 2);
+
+    pageNumbers.push(1); // Always show first page
+    if (startPage > 2) {
+      pageNumbers.push(ellipsis);
+    }
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+    if (endPage < totalPages - 1) {
+      pageNumbers.push(ellipsis);
+    }
+    if (totalPages > 1) {
+      pageNumbers.push(totalPages); // Always show last page
+    }
+  }
+
   return (
-    <div style={{ padding: 20 }}>
+    <div className="QRAttendanceContainer">
       <h2>Danh sách chấm công QR / FaceGPS</h2>
 
-      <div style={{ marginBottom: 15 }}>
+      <div className="QRAttendanceControls">
         <input
           type="text"
           placeholder="Tìm theo tên nhân viên..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{ padding: 6, width: 250 }}
         />
+        <button
+          className="QRAttendanceSearchButton"
+          onClick={() => setCurrentPage(1)}
+        >
+          <FaSearch style={{ marginRight: 6 }} />
+          Tìm
+        </button>
       </div>
 
-      <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
+      <table className="QRAttendanceTable">
         <thead>
           <tr>
             <th>ID</th>
@@ -62,14 +138,16 @@ const QRAttendanceList = () => {
           </tr>
         </thead>
         <tbody>
-          {filtered.length > 0 ? (
-            filtered.map((a) => (
+          {currentAttendances.length > 0 ? (
+            currentAttendances.map((a) => (
               <tr key={a.qrId}>
                 <td>{a.qrId}</td>
                 <td>{a.employee?.fullName || "Không rõ"}</td>
                 <td>{new Date(a.attendanceDate).toLocaleDateString()}</td>
                 <td>{a.attendanceMethod}</td>
-                <td>{a.status}</td>
+                <td className={`QRAttendanceStatus ${a.displayStatus}`}>
+                  {a.displayStatus}
+                </td>
                 <td>{a.latitude}</td>
                 <td>{a.longitude}</td>
                 <td>
@@ -84,7 +162,13 @@ const QRAttendanceList = () => {
                   )}
                 </td>
                 <td>
-                  <button onClick={() => handleDelete(a.qrId)}>Xoá</button>
+                  <button
+                    className="QRAttendanceDeleteButton"
+                    onClick={() => handleDelete(a.qrId)}
+                  >
+                    <FaTrash style={{ marginRight: 4 }} />
+                    Xoá
+                  </button>
                 </td>
               </tr>
             ))
@@ -97,6 +181,46 @@ const QRAttendanceList = () => {
           )}
         </tbody>
       </table>
+
+      {totalPages > 1 && (
+        <div className="PaginationControls">
+          <button
+            className="PaginationButton"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            <FaArrowLeft style={{ marginRight: 6 }} />
+            Trước
+          </button>
+          <div className="PaginationNumbers">
+            {pageNumbers.map((page, index) =>
+              page === ellipsis ? (
+                <span key={`ellipsis-${index}`} className="PaginationEllipsis">
+                  {ellipsis}
+                </span>
+              ) : (
+                <button
+                  key={page}
+                  className={`PaginationNumber ${
+                    currentPage === page ? "active" : ""
+                  }`}
+                  onClick={() => handlePageChange(page)}
+                >
+                  {page}
+                </button>
+              )
+            )}
+          </div>
+          <button
+            className="PaginationButton"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Tiếp
+            <FaArrowRight style={{ marginLeft: 6 }} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -33,7 +33,6 @@ import ResetPassword from "./Client/ResetPassword/ResetPassword";
 import Ngo from "./NGO/Ngo/Ngo";
 import DashBoard from "./NGO/Ngo/Home";
 import DepartmentList from "./NGO/Department/DepartmentList";
-import ProgramDetail from "./NGO/Department/ProgramDetail";
 import PositionList from "./NGO/Positions/PositionList";
 import EmployeeList from "./NGO/Employees/EmployeeList";
 import UserList from "./NGO/Users/UserList";
@@ -97,11 +96,8 @@ function App() {
             <Route index element={<DashBoard />} />
             <Route path="dashboard" element={<DashBoard />} />
             <Route path="departments" element={<DepartmentList />} />
-            {/* <Route path="program-list" element={<ProgramList1 />} /> */}
-            <Route path="program/:id" element={<ProgramDetail />} />
             <Route path="ngo-detail" element={<NgoDetail />} />
             <Route path="Positions" element={<PositionList />} />
-           
             <Route path="Employees" element={<EmployeeList />} />
             <Route path="Users" element={<UserList />} />
             <Route path="Roles" element={<RoleList />} />

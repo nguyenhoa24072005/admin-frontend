@@ -1,0 +1,336 @@
+/* WorkSchedule.css */
+
+/* Container */
+.WorkScheduleContainer {
+  padding: 24px;
+  background-color: #ffffff; /* White background */
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 10px;
+  max-width: 1100px;
+  margin: 30px auto;
+  border: 0.01cm solid #000000; /* 1cm black border */
+}
+
+/* Header */
+.WorkScheduleContainer h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  border-bottom: 1px solid #ccc; /* Light separator */
+}
+
+/* Controls */
+.WorkScheduleControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+/* Add button */
+.WorkScheduleAddButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #f5a623; /* Yellow-orange background */
+  color: #ffffff; /* White text */
+  border: none;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.WorkScheduleAddButton:hover {
+  background-color: #d68f1e; /* Darker yellow-orange on hover */
+}
+
+/* Table */
+.WorkScheduleTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.WorkScheduleTable th,
+.WorkScheduleTable td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 14px;
+  text-align: left;
+}
+
+.WorkScheduleTable th {
+  background-color: #f5f5f5; /* Light gray for header */
+  font-weight: 600;
+  color: #333;
+}
+
+.WorkScheduleTable tr:last-child td {
+  border-bottom: none;
+}
+
+/* Action buttons */
+.WorkScheduleEditButton,
+.WorkScheduleDeleteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-right: 8px;
+}
+
+.WorkScheduleEditButton {
+  background-color: #f5a623; /* Blue for edit */
+  color: #ffffff; /* White text */
+}
+
+.WorkScheduleEditButton:hover {
+  background-color: #d68f1e; /* Darker blue */
+}
+
+.WorkScheduleDeleteButton {
+  background-color: #dc3545; /* Red for delete */
+  color: #ffffff; /* White text */
+}
+
+.WorkScheduleDeleteButton:hover {
+  background-color: #c82333; /* Darker red */
+}
+
+/* Status styling */
+.WorkScheduleTable .WorkScheduleStatus.Active {
+  color: #f5a623 !important; /* Yellow-orange for Active */
+  font-weight: bold;
+}
+
+.WorkScheduleTable .WorkScheduleStatus.Inactive {
+  color: #6c757d !important; /* Gray for Inactive */
+  font-weight: bold;
+}
+
+/* Modal */
+.WorkScheduleOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.WorkScheduleModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background: #ffffff; /* White background */
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  border: 0.01cm solid #000000; /* 1cm black border */
+}
+
+/* Form */
+.WorkScheduleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.WorkScheduleForm h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.WorkScheduleFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 16px;
+}
+
+.WorkScheduleFormField {
+  display: flex;
+  flex-direction: column;
+}
+
+.WorkScheduleForm label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.WorkScheduleForm input,
+.WorkScheduleForm select {
+  width: 92%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff; /* White background */
+}
+
+.WorkScheduleForm input:focus,
+.WorkScheduleForm select:focus {
+  border-color: #f5a623; /* Yellow-orange border on focus */
+  outline: none;
+}
+
+.WorkScheduleFormButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.WorkScheduleSaveButton,
+.WorkScheduleCancelButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.WorkScheduleSaveButton {
+  background: #f5a623; /* Yellow-orange background */
+}
+
+.WorkScheduleSaveButton:hover {
+  background: #d68f1e; /* Darker yellow-orange */
+}
+
+.WorkScheduleCancelButton {
+  background: #6c757d; /* Gray for cancel */
+}
+
+.WorkScheduleCancelButton:hover {
+  background: #5a6268; /* Darker gray */
+}
+
+/* Pagination */
+.PaginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.PaginationButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #f5a623; /* Yellow-orange background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.PaginationButton:hover:not(:disabled) {
+  background-color: #d68f1e; /* Darker yellow-orange */
+}
+
+.PaginationButton:disabled {
+  background-color: #cccccc; /* Gray for disabled */
+  cursor: not-allowed;
+}
+
+.PaginationNumbers {
+  display: flex;
+  gap: 5px;
+}
+
+.PaginationNumber {
+  padding: 8px 12px;
+  background-color: #ffffff; /* White background */
+  color: #333;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.PaginationNumber:hover {
+  background-color: #ffe8a8; /* Light yellow-orange on hover */
+}
+
+.PaginationNumber.active {
+  background-color: #f5a623; /* Yellow-orange for active page */
+  color: #ffffff; /* White text */
+  font-weight: bold;
+}
+
+.PaginationEllipsis {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .WorkScheduleControls {
+    flex-direction: column;
+  }
+
+  .WorkScheduleAddButton,
+  .WorkScheduleEditButton,
+  .WorkScheduleDeleteButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .WorkScheduleFormGrid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .WorkScheduleFormButtons {
+    flex-direction: column;
+  }
+
+  .PaginationControls {
+    flex-direction: column;
+  }
+
+  .PaginationNumbers {
+    justify-content: center;
+  }
+
+  .WorkScheduleTable th,
+  .WorkScheduleTable td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .WorkScheduleModal {
+    max-width: 90%;
+  }
+}

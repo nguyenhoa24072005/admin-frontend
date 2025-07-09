@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { addRole, updateRole } from "../Service/RoleService";
+import React, { useState, useEffect } from "react";
+import { FaSave, FaTimes } from "react-icons/fa";
+import "./Role.css";
 
 const RoleForm = ({ editRole, onSave, onCancel }) => {
   const [form, setForm] = useState({
@@ -26,43 +27,55 @@ const RoleForm = ({ editRole, onSave, onCancel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (editRole) {
-        await updateRole(editRole.roleId, form);
-      } else {
-        await addRole(form);
-      }
-      onSave();
-    } catch (error) {
-      alert("Failed to save role");
-    }
+    onSave(form);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>{editRole ? "Edit Role" : "Add Role"}</h3>
+    <>
+      <div className="RoleOverlay" onClick={onCancel} />
+      <div className="RoleModal">
+        <form className="RoleForm" onSubmit={handleSubmit}>
+          <h3>{editRole ? "Edit Role" : "Add Role"}</h3>
 
-      <input
-        name="roleName"
-        value={form.roleName}
-        onChange={handleChange}
-        placeholder="Role Name"
-        required
-      />
+          <div className="RoleFormField">
+            <label>Role Name:</label>
+            <input
+              name="roleName"
+              value={form.roleName}
+              onChange={handleChange}
+              placeholder="Role Name"
+              required
+            />
+          </div>
 
-      <input
-        name="description"
-        value={form.description}
-        onChange={handleChange}
-        placeholder="Description"
-        required
-      />
+          <div className="RoleFormField">
+            <label>Description:</label>
+            <input
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Description"
+              required
+            />
+          </div>
 
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
-    </form>
+          <div className="RoleFormButtons">
+            <button type="submit" className="RoleSaveButton">
+              <FaSave style={{ marginRight: 5 }} />
+              Save
+            </button>
+            <button
+              type="button"
+              className="RoleCancelButton"
+              onClick={onCancel}
+            >
+              <FaTimes style={{ marginRight: 5 }} />
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

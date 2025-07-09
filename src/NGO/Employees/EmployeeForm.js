@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  addEmployee,
-  updateEmployee,
-} from "../Service/employeeService";
+import { addEmployee, updateEmployee } from "../Service/employeeService";
 import { getDepartments } from "../Service/departmentService";
 import { getPositions } from "../Service/positionService";
+import { FaSave, FaTimes } from "react-icons/fa";
+import "./Employee.css";
 
 const EmployeeForm = ({ editEmployee, onSave, onCancel }) => {
   const [form, setForm] = useState({
@@ -26,8 +25,12 @@ const EmployeeForm = ({ editEmployee, onSave, onCancel }) => {
     const fetchData = async () => {
       const dept = await getDepartments("Active");
       const pos = await getPositions("Active");
-      setDepartments(dept.sort((a, b) => a.departmentName.localeCompare(b.departmentName)));
-      setPositions(pos.sort((a, b) => a.positionName.localeCompare(b.positionName)));
+      setDepartments(
+        dept.sort((a, b) => a.departmentName.localeCompare(b.departmentName))
+      );
+      setPositions(
+        pos.sort((a, b) => a.positionName.localeCompare(b.positionName))
+      );
     };
     fetchData();
   }, []);
@@ -43,7 +46,7 @@ const EmployeeForm = ({ editEmployee, onSave, onCancel }) => {
         img: editEmployee.img || "",
         departmentId: editEmployee.departmentId || "",
         positionId: editEmployee.positionId || "",
-        hireDate: "", // khi edit thì không cần gửi lên
+        hireDate: "",
       });
     }
   }, [editEmployee]);
@@ -61,7 +64,7 @@ const EmployeeForm = ({ editEmployee, onSave, onCancel }) => {
     try {
       const payload = { ...form };
       if (editEmployee) {
-        delete payload.hireDate; // Không gửi hireDate khi cập nhật
+        delete payload.hireDate;
         await updateEmployee(editEmployee.employeeId, payload);
       } else {
         await addEmployee(payload);
@@ -73,98 +76,141 @@ const EmployeeForm = ({ editEmployee, onSave, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>{editEmployee ? "Edit Employee" : "Add Employee"}</h3>
+    <>
+      <div className="EmployeeOverlay" onClick={onCancel} />
+      <div className="EmployeeModal">
+        <form className="EmployeeForm" onSubmit={handleSubmit}>
+          <h3>{editEmployee ? "Edit Employee" : "Add Employee"}</h3>
 
-      <input
-        name="fullName"
-        value={form.fullName}
-        onChange={handleChange}
-        placeholder="Full Name"
-        required
-      />
+          <div className="EmployeeFormGrid">
+            <div className="EmployeeFormField">
+              <label>Full Name:</label>
+              <input
+                name="fullName"
+                value={form.fullName}
+                onChange={handleChange}
+                placeholder="Full Name"
+                required
+              />
+            </div>
 
-      <select name="gender" value={form.gender} onChange={handleChange}>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
+            <div className="EmployeeFormField">
+              <label>Gender:</label>
+              <select name="gender" value={form.gender} onChange={handleChange}>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
 
-      <input
-        name="dateOfBirth"
-        type="date"
-        value={form.dateOfBirth}
-        onChange={handleChange}
-        required
-      />
+            <div className="EmployeeFormField">
+              <label>Date of Birth:</label>
+              <input
+                name="dateOfBirth"
+                type="date"
+                value={form.dateOfBirth}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-      <input
-        name="phone"
-        value={form.phone}
-        onChange={handleChange}
-        placeholder="Phone"
-        required
-      />
+            <div className="EmployeeFormField">
+              <label>Phone:</label>
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+                required
+              />
+            </div>
 
-      <input
-        name="address"
-        value={form.address}
-        onChange={handleChange}
-        placeholder="Address"
-        required
-      />
+            <div className="EmployeeFormField">
+              <label>Address:</label>
+              <input
+                name="address"
+                value={form.address}
+                onChange={handleChange}
+                placeholder="Address"
+                required
+              />
+            </div>
 
-      <input
-        name="img"
-        value={form.img}
-        onChange={handleChange}
-        placeholder="Image URL"
-      />
+            <div className="EmployeeFormField">
+              <label>Image URL:</label>
+              <input
+                name="img"
+                value={form.img}
+                onChange={handleChange}
+                placeholder="Image URL"
+              />
+            </div>
 
-      <select
-        name="departmentId"
-        value={form.departmentId}
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Department --</option>
-        {departments.map((d) => (
-          <option key={d.departmentId} value={d.departmentId}>
-            {d.departmentName}
-          </option>
-        ))}
-      </select>
+            <div className="EmployeeFormField">
+              <label>Department:</label>
+              <select
+                name="departmentId"
+                value={form.departmentId}
+                onChange={handleChange}
+                required
+              >
+                <option value="">-- Select Department --</option>
+                {departments.map((d) => (
+                  <option key={d.departmentId} value={d.departmentId}>
+                    {d.departmentName}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-      <select
-        name="positionId"
-        value={form.positionId}
-        onChange={handleChange}
-        required
-      >
-        <option value="">-- Select Position --</option>
-        {positions.map((p) => (
-          <option key={p.positionId} value={p.positionId}>
-            {p.positionName}
-          </option>
-        ))}
-      </select>
+            <div className="EmployeeFormField">
+              <label>Position:</label>
+              <select
+                name="positionId"
+                value={form.positionId}
+                onChange={handleChange}
+                required
+              >
+                <option value="">-- Select Position --</option>
+                {positions.map((p) => (
+                  <option key={p.positionId} value={p.positionId}>
+                    {p.positionName}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-      {/* Chỉ hiện trường hireDate khi thêm mới */}
-      {!editEmployee && (
-        <input
-          name="hireDate"
-          type="date"
-          value={form.hireDate}
-          onChange={handleChange}
-          required
-        />
-      )}
+            {!editEmployee && (
+              <div className="EmployeeFormField">
+                <label>Hire Date:</label>
+                <input
+                  name="hireDate"
+                  type="date"
+                  value={form.hireDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            )}
+          </div>
 
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
-    </form>
+          <div className="EmployeeFormButtons">
+            <button type="submit" className="EmployeeSaveButton">
+              <FaSave style={{ marginRight: 5 }} />
+              Save
+            </button>
+            <button
+              type="button"
+              className="EmployeeCancelButton"
+              onClick={onCancel}
+            >
+              <FaTimes style={{ marginRight: 5 }} />
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

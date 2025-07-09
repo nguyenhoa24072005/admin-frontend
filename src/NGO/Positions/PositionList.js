@@ -1,17 +1,23 @@
-// src/components/PositionList.js
 import React, { useState, useEffect } from "react";
-import {
-  getPositions,
-  deletePosition,
-} from "../Service/positionService";
+import { getPositions, deletePosition } from "../Service/positionService";
 import PositionForm from "./PositionForm";
+import "./Position.css";
+import {
+  FaPlus,
+  FaEdit,
+  FaTrash,
+  FaArrowLeft,
+  FaArrowRight,
+} from "react-icons/fa";
 
 const PositionList = () => {
   const [positions, setPositions] = useState([]);
   const [editPosition, setEditPosition] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [statusFilter, setStatusFilter] = useState(""); // "Active", "Inactive", or ""
+  const [statusFilter, setStatusFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const loadPositions = async () => {
     try {
@@ -30,6 +36,10 @@ const PositionList = () => {
     if (window.confirm("Are you sure you want to delete this position?")) {
       await deletePosition(id);
       loadPositions();
+      // Reset to previous page if current page becomes empty
+      if (filteredPositions.length <= 1 && currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
     }
   };
 
@@ -37,11 +47,23 @@ const PositionList = () => {
     pos.positionName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredPositions.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPositions = filteredPositions.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="PositionContainer">
       <h2>Position List</h2>
 
-      <div style={{ marginBottom: "15px", display: "flex", gap: "10px" }}>
+      <div className="PositionControls">
         <input
           type="text"
           placeholder="Search by name..."
@@ -59,12 +81,14 @@ const PositionList = () => {
         </select>
 
         <button
+          className="PositionAddButton"
           onClick={() => {
             setEditPosition(null);
             setShowForm(true);
           }}
         >
-          + Add Position
+          <FaPlus style={{ marginRight: 6 }} />
+          Add Position
         </button>
       </div>
 
@@ -79,7 +103,7 @@ const PositionList = () => {
         />
       )}
 
-      <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
+      <table className="PositionTable">
         <thead>
           <tr>
             <th>ID</th>
@@ -89,22 +113,28 @@ const PositionList = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredPositions.length > 0 ? (
-            filteredPositions.map((pos) => (
+          {currentPositions.length > 0 ? (
+            currentPositions.map((pos) => (
               <tr key={pos.positionId}>
                 <td>{pos.positionId}</td>
                 <td>{pos.positionName}</td>
-                <td>{pos.status}</td>
+                <td className={`PositionStatus ${pos.status}`}>{pos.status}</td>
                 <td>
                   <button
+                    className="PositionEditButton"
                     onClick={() => {
                       setEditPosition(pos);
                       setShowForm(true);
                     }}
                   >
+                    <FaEdit style={{ marginRight: 4 }} />
                     Edit
                   </button>
-                  <button onClick={() => handleDelete(pos.positionId)}>
+                  <button
+                    className="PositionDeleteButton"
+                    onClick={() => handleDelete(pos.positionId)}
+                  >
+                    <FaTrash style={{ marginRight: 4 }} />
                     Delete
                   </button>
                 </td>
@@ -119,6 +149,42 @@ const PositionList = () => {
           )}
         </tbody>
       </table>
+
+      {totalPages > 1 && (
+        <div className="PaginationControls">
+          <button
+            className="PaginationButton"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            <FaArrowLeft style={{ marginRight: 6 }} />
+            Previous
+          </button>
+          <div className="PaginationNumbers">
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  className={`PaginationNumber ${
+                    currentPage === page ? "active" : ""
+                  }`}
+                  onClick={() => handlePageChange(page)}
+                >
+                  {page}
+                </button>
+              )
+            )}
+          </div>
+          <button
+            className="PaginationButton"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+            <FaArrowRight style={{ marginLeft: 6 }} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

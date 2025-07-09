@@ -1,48 +1,72 @@
-// src/Components/DepartmentForm.js
 import React, { useState, useEffect } from "react";
 import {
   addDepartment,
   updateDepartment,
 } from "../Service/departmentService";
+import { FaSave, FaTimes } from "react-icons/fa";
+import "./Department.css";
 
 const DepartmentForm = ({ editDepartment, onSave, onCancel }) => {
   const [departmentName, setDepartmentName] = useState("");
 
+  /* Prefill when edit */
   useEffect(() => {
     if (editDepartment) {
       setDepartmentName(editDepartment.departmentName);
     }
   }, [editDepartment]);
 
+  /* Submit */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { departmentName };
+    const payload = { departmentName };
 
     try {
       if (editDepartment) {
-        await updateDepartment(editDepartment.departmentId, data);
+        await updateDepartment(editDepartment.departmentId, payload);
       } else {
-        await addDepartment(data);
+        await addDepartment(payload);
       }
-      onSave(); // reload lại danh sách
+      onSave();
       setDepartmentName("");
-    } catch (error) {
+    } catch {
       alert("Failed to save department");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Department Name:</label>
-      <input
-        type="text"
-        value={departmentName}
-        onChange={(e) => setDepartmentName(e.target.value)}
-        required
-      />
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
-    </form>
+    <>
+      {/* Overlay click = cancel */}
+      <div className="DepartmentOverlay" onClick={onCancel} />
+
+      <div className="DepartmentModal">
+        <form className="DepartmentForm" onSubmit={handleSubmit}>
+          <label>Department Name:</label>
+          <input
+            type="text"
+            value={departmentName}
+            onChange={(e) => setDepartmentName(e.target.value)}
+            required
+          />
+
+          <div className="DepartmentFormButtons">
+            <button type="submit" className="DepartmentSaveButton">
+              <FaSave style={{ marginRight: 5 }} />
+              Save
+            </button>
+
+            <button
+              type="button"
+              className="DepartmentCancelButton"
+              onClick={onCancel}
+            >
+              <FaTimes style={{ marginRight: 5 }} />
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

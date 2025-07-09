@@ -1,33 +1,42 @@
+/* Ngo.css */
 .grid-container {
   display: grid;
   grid-template-rows: 0.2fr 3fr;
-  grid-template-columns: 0.8fr 3.2fr; /* Define grid columns */
+  grid-template-columns: 0.8fr 3.2fr;
   grid-template-areas:
     "sidebar header"
     "sidebar main";
   height: 100vh;
   transition: all 0.3s ease-in-out;
+  background-color: #ffffff; /* White background for grid container */
 }
 
 /* Sidebar active item */
 .sidebar-list-item.active .sidebar-link {
-  background-color: #b1d8a6; /* Thay đổi màu nền khi chọn */
-  color: white; /* Thay đổi màu chữ khi chọn */
-  font-weight: bold; /* Làm đậm chữ */
+  background-color: #f5a623; /* Yellow-orange for active item */
+  color: #ffffff; /* White text for active item */
+  font-weight: bold;
   border-radius: 10px;
+}
+.icon_header.active .sidebar-link {
+  color: #ffffff;
 }
 
 .sidebar-list-item .sidebar-link {
-  color: #333; /* Màu chữ mặc định */
+  color: #333; /* Default text color */
   text-decoration: none;
-  padding: 10px 10px;
-  display: block;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
 }
 
-/* .sidebar-list-item .sidebar-link:hover {
-  background-color: #f1f1f1; /* Màu nền khi hover 
-} */
-
+/* Hover effect */
+.sidebar-list-item:hover .sidebar-link {
+  background-color: #ffe8a8; /* Light yellow-orange for hover */
+  color: #333;
+  border-radius: 10px;
+}
 
 /* Header */
 .header3 {
@@ -37,43 +46,48 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  border-bottom: 1px solid #8db883;
-}
-
-.menu-icon {
-  display: none;
+  background-color: #ffffff; /* White background */
+  border-bottom: 0.01cm solid #000000; /* 1cm black border */
 }
 
 /* Sidebar */
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  background: #cfdfca;
+  background: #ffffff; /* White background */
   color: #333;
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
+  border-right: 0.01cm solid #000000; /* 1cm black border */
 }
 
+/* Sidebar title */
 .sidebar-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px 0 30px;
+  padding: 15px 30px;
   margin-bottom: 30px;
   color: #333;
-}
-
-.sidebar-title > span {
-  display: none;
+  border-bottom: 0.01cm solid #000000; /* 1cm black border below title */
 }
 
 .sidebar-brand {
   margin-top: 15px;
   font-size: 20px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.sidebar-title > span {
+  display: none;
+  cursor: pointer;
+}
+
+/* Sidebar list */
 .sidebar-list {
   padding: 0;
   list-style-type: none;
@@ -81,14 +95,10 @@
 }
 
 .sidebar-list-item {
-  padding: 20px;
-  font-size: 1.4rem;
+  padding: 15px 20px;
+  font-size: 1.2rem;
   color: #333;
-}
-
-.sidebar-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
+  border-bottom: 1px solid #ccc; /* Light separator for list items */
 }
 
 .sidebar-list-item > a {
@@ -96,6 +106,7 @@
   color: #333;
 }
 
+/* Responsive sidebar */
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
@@ -106,10 +117,16 @@
 .main {
   grid-area: main;
   padding: 20px;
+  background-color: #ffffff; /* White background */
+  border-left: 1cm solid #000000; /* 1cm black border */
+  border-top: 1cm solid #000000; /* 1cm black border */
 }
-.icon-1 {
-  color: #333;
-  font-size: 17px;
+
+/* Icons */
+.icon-1,
+.icon_header {
+  color: #f5a623; /* Yellow-orange for icons */
+  font-size: 18px;
 }
 
 /* Media queries for responsiveness */
@@ -123,14 +140,20 @@
 
   #sidebar {
     display: none;
+    border-right: none; /* Remove border when sidebar is hidden */
   }
 
   .menu-icon {
     display: inline;
+    color: #f5a623; /* Yellow-orange for menu icon */
   }
 
   .sidebar-title > span {
     display: inline;
+  }
+
+  .sidebar-responsive {
+    border-right: 1cm solid #000000; /* Restore border when responsive sidebar is active */
   }
 }
 

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "./WorkScheduleInfo.css";
+import { FaSave, FaTimes } from "react-icons/fa";
 
 const WorkScheduleInfoForm = ({ editData, onSave, onCancel }) => {
   const [form, setForm] = useState({
@@ -32,52 +34,84 @@ const WorkScheduleInfoForm = ({ editData, onSave, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>{editData ? "Edit" : "Add"} Work Schedule Info</h3>
+    <div className="WorkScheduleInfoModal">
+      <form className="WorkScheduleInfoForm" onSubmit={handleSubmit}>
+        <h3>{editData ? "Edit" : "Add"} Work Schedule Info</h3>
 
-      <input
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        placeholder="Name"
-        required
-      />
+        <div className="WorkScheduleInfoFormGrid">
+          <div className="WorkScheduleInfoFormField">
+            <label>Name:</label>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Name"
+              required
+            />
+          </div>
 
-      <input
-        name="description"
-        value={form.description}
-        onChange={handleChange}
-        placeholder="Description"
-      />
+          <div className="WorkScheduleInfoFormField">
+            <label>Description:</label>
+            <input
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Description"
+            />
+          </div>
 
-      <input
-        type="time"
-        name="defaultStartTime"
-        value={form.defaultStartTime}
-        onChange={handleChange}
-        required
-      />
+          <div className="WorkScheduleInfoFormField">
+            <label>Start Time:</label>
+            <input
+              type="time"
+              name="defaultStartTime"
+              value={form.defaultStartTime}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-      <input
-        type="time"
-        name="defaultEndTime"
-        value={form.defaultEndTime}
-        onChange={handleChange}
-        required
-      />
+          <div className="WorkScheduleInfoFormField">
+            <label>End Time:</label>
+            <input
+              type="time"
+              name="defaultEndTime"
+              value={form.defaultEndTime}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-      <select name="status" value={form.status} onChange={handleChange} required>
-        <option value="Active">Active</option>
-        <option value="Inactive">Inactive</option>
-      </select>
+          <div className="WorkScheduleInfoFormField">
+            <label>Status:</label>
+            <select
+              name="status"
+              value={form.status}
+              onChange={handleChange}
+              required
+            >
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
 
-      <div style={{ marginTop: 10 }}>
-        <button type="submit">Save</button>
-        <button type="button" onClick={onCancel} style={{ marginLeft: 10 }}>
-          Cancel
-        </button>
-      </div>
-    </form>
+        <div className="WorkScheduleInfoFormButtons">
+          <button type="submit" className="WorkScheduleInfoSaveButton">
+            <FaSave style={{ marginRight: 5 }} />
+            Save
+          </button>
+          <button
+            type="button"
+            className="WorkScheduleInfoCancelButton"
+            onClick={onCancel}
+          >
+            <FaTimes style={{ marginRight: 5 }} />
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
