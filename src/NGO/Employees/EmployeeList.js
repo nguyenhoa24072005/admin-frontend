@@ -15,13 +15,14 @@ const EmployeeList = () => {
   const [editEmployee, setEditEmployee] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [statusFilter, setStatusFilter] = useState("");
+  const [roleFilter, setRoleFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const loadEmployees = async () => {
     try {
-      const data = await getEmployees(statusFilter);
+      const data = await getEmployees(statusFilter, roleFilter);
       setEmployees(data);
     } catch (error) {
       alert("Failed to load employees.");
@@ -30,13 +31,12 @@ const EmployeeList = () => {
 
   useEffect(() => {
     loadEmployees();
-  }, [statusFilter]);
+  }, [statusFilter, roleFilter]);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this employee?")) {
       await deleteEmployee(id);
       loadEmployees();
-      // Reset to previous page if current page becomes empty
       if (filteredEmployees.length <= 1 && currentPage > 1) {
         setCurrentPage(currentPage - 1);
       }
@@ -44,10 +44,9 @@ const EmployeeList = () => {
   };
 
   const filteredEmployees = employees.filter((emp) =>
-    emp.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+    emp.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Pagination logic
   const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -75,9 +74,19 @@ const EmployeeList = () => {
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
-          <option value="">All</option>
+          <option value="">All Status</option>
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
+        </select>
+
+        <select
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+        >
+          <option value="">All Roles</option>
+          <option value="User">User</option>
+          <option value="Hr">Hr</option>
+          <option value="Admin">Admin</option>
         </select>
 
         <button
@@ -112,6 +121,7 @@ const EmployeeList = () => {
             <th>Phone</th>
             <th>Department</th>
             <th>Position</th>
+            <th>Role</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -126,6 +136,7 @@ const EmployeeList = () => {
                 <td>{emp.phone}</td>
                 <td>{emp.departmentName}</td>
                 <td>{emp.positionName}</td>
+                <td>{emp.roleName || "-"}</td>
                 <td className={`EmployeeStatus ${emp.status}`}>{emp.status}</td>
                 <td>
                   <button
@@ -150,7 +161,7 @@ const EmployeeList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="8" style={{ textAlign: "center" }}>
+              <td colSpan="9" style={{ textAlign: "center" }}>
                 No employees found.
               </td>
             </tr>

@@ -43,4 +43,16 @@ export const deleteUser = async (id) => {
     headers: getAuthHeaders(),
   });
 };
+export const getUserById = async (userId) => {
+  // Nếu muốn lấy thông tin người dùng hiện tại
+  const response = await axios.get(`${API_BASE_URL}/me`, {
+    headers: getAuthHeaders(),
+  });
 
+  // Nếu muốn lấy theo userId
+  // const response = await axios.get(`${API_BASE_URL}/${userId}`, {
+  //   headers: getAuthHeaders(),
+  // });
+
+  return response.data.result;
+};

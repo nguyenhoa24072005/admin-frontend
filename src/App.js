@@ -8,7 +8,7 @@ import LoginForm from "./Client/Login/LoginForm";
 import RegisterForm from "./Client/Register/RegisterForm";
 import ForgotAndResetPassword from "./Client/ForgotPassword/ForgotPassword";
 import Authentication from "./Admin/Authentication/Authentication";
-import AuthContext, { AuthProvider } from "./Context/AuthContext"; 
+import AuthContext, { AuthProvider } from "./Context/AuthContext";
 import CustomerData from "./Client/Profile/Profile";
 import Favorites from "./Client/Favorites/Favorites";
 import ProgramList from "./Client/ProgramList/ProgramList";
@@ -44,8 +44,8 @@ import LeaveList from "./NGO/Leave/LeaveList";
 import WorkScheduleInfoList from "./NGO/WorkScheduleInfo/WorkScheduleInfoList";
 import WorkScheduleList from "./NGO/WorkSchedule/WorkScheduleList";
 import AttendanceList from "./NGO/Attendance/AttendanceList";
-
-
+import AttendanceAppealList from "./NGO/AttendanceAppeal/AttendanceAppealList";
+import UserDetail from "./NGO/UserDetail/UserDetail";
 
 import "./App.css"; // Ensure no duplicate imports
 
@@ -90,7 +90,6 @@ function App() {
             <Route path="censorngo" element={<CensorNgo />} />
             <Route path="programdonation" element={<ProgramDonation />} />
             <Route path="transactionhistory" element={<TransactionHistory />} />
-            
           </Route>
           <Route path="/ngo" element={<Ngo />}>
             <Route index element={<DashBoard />} />
@@ -108,8 +107,10 @@ function App() {
             <Route path="WorkScheduleInfo" element={<WorkScheduleInfoList />} />
             <Route path="WorkSchedule" element={<WorkScheduleList />} />
             <Route path="Attendance" element={<AttendanceList />} />
+            <Route path="AttendanceAppeal" element={<AttendanceAppealList />} />
 
-
+            {/* Route con cho UserDetail */}
+            <Route path="users/:userId" element={<UserDetail />} />
           </Route>
           {/* Reset Password Route */}
           <Route path="/reset-password" element={<ResetPassword />} />

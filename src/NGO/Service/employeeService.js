@@ -9,10 +9,22 @@ const getAuthHeaders = () => {
   };
 };
 
-export const getEmployees = async (status = "") => {
+export const getEmployees = async (status = "", role = "") => {
+  const params = {};
+  if (status) params.status = status;
+  if (role) params.role = role;
+
   const response = await axios.get(API_BASE_URL, {
     headers: getAuthHeaders(),
-    params: status ? { status } : {},
+    params,
+  });
+  return response.data.result;
+};
+
+export const getEmployeesByRole = async (role) => {
+  const response = await axios.get(`${API_BASE_URL}/by-role`, {
+    headers: getAuthHeaders(),
+    params: { role },
   });
   return response.data.result;
 };

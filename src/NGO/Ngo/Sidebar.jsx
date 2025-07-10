@@ -153,6 +153,15 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <FaCheckCircle className="icon-1" /> Attendance
           </Link>
         </li>
+        <li
+          className={`sidebar-list-item ${
+            isActive("/ngo/AttendanceAppeal") ? "active" : ""
+          }`}
+        >
+          <Link to="/ngo/AttendanceAppeal" className="sidebar-link">
+            <FaCheckCircle className="icon-1" /> AttendanceAppeal
+          </Link>
+        </li>
       </ul>
     </aside>
   );

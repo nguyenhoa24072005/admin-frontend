@@ -3,14 +3,15 @@ import {
   BsFillBellFill,
   BsFillEnvelopeFill,
   BsPersonCircle,
-  BsSearch,
   BsJustify,
 } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import Logout from "../../Logout/Logout";
 import "./Header.css";
 
 function Header({ OpenSidebar }) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const userId = localStorage.getItem("userId");
 
   const toggleDropdown = () => {
     setIsDropdownVisible((prev) => !prev);
@@ -21,9 +22,7 @@ function Header({ OpenSidebar }) {
       <div className="HeaderMenuIcon">
         <BsJustify className="HeaderIcon" onClick={OpenSidebar} />
       </div>
-      {/* <div className="HeaderLeft">
-        <BsSearch className="HeaderIcon" />
-      </div> */}
+
       <div className="HeaderRight">
         <BsFillBellFill className="HeaderIcon" />
         <BsFillEnvelopeFill className="HeaderIcon" />
@@ -31,6 +30,9 @@ function Header({ OpenSidebar }) {
           <BsPersonCircle className="HeaderIcon" onClick={toggleDropdown} />
           {isDropdownVisible && (
             <div className="HeaderDropdown">
+              {/* Thêm link đến thông tin tài khoản */}
+              <Link to={`/ngo/users/${userId}`}>View User</Link>
+
               <Logout onLogout={() => setIsDropdownVisible(false)} />
             </div>
           )}
