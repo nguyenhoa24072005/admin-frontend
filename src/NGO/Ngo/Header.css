@@ -8,7 +8,7 @@
   padding: 12px 24px;
   background-color: #ffffff; /* White background */
   font-family: "Segoe UI", sans-serif;
-  border-bottom: 0.01cm solid #000000; /* 1cm black border at bottom */
+  /* border-bottom: 0.01cm solid #000000; */ /* Removed black border */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;

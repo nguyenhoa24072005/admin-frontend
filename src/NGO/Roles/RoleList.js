@@ -131,14 +131,14 @@ const RoleList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="RoleDeleteButton"
                     onClick={() => handleDelete(r.roleId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
                 </td>
               </tr>

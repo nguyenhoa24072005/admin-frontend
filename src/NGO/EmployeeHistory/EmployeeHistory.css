@@ -3,12 +3,12 @@
 /* Container */
 .EmployeeHistoryContainer {
   padding: 24px;
-  background-color: #ffffff; /* White background */
+  background-color: #ffffff;
   font-family: "Segoe UI", sans-serif;
   border-radius: 10px;
   max-width: 1100px;
   margin: 30px auto;
-  border: 0.01cm solid #000000; /* 1cm black border */
+  /* Removed black border */
 }
 
 /* Header */
@@ -16,7 +16,7 @@
   margin-bottom: 20px;
   font-size: 24px;
   color: #333;
-  border-bottom: 1px solid #ccc; /* Light separator */
+  border-bottom: 1px solid #ccc;
 }
 
 /* Controls */
@@ -33,12 +33,12 @@
   font-size: 14px;
   border: 1px solid #ced4da;
   border-radius: 4px;
-  background-color: #ffffff; /* White background */
+  background-color: #ffffff;
   transition: border-color 0.2s ease-in-out;
 }
 
 .EmployeeHistoryControls input:focus {
-  border-color: #f5a623; /* Yellow-orange border on focus */
+  border-color: #f5a623;
   outline: none;
 }
 
@@ -48,8 +48,8 @@
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  background-color: #f5a623; /* Yellow-orange background */
-  color: #ffffff; /* White text */
+  background-color: #f5a623;
+  color: #ffffff;
   border: none;
   font-weight: 600;
   border-radius: 4px;
@@ -59,7 +59,7 @@
 }
 
 .EmployeeHistoryAddButton:hover {
-  background-color: #d68f1e; /* Darker yellow-orange on hover */
+  background-color: #d68f1e;
 }
 
 /* Table */
@@ -67,7 +67,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  background-color: #ffffff; /* White background */
+  background-color: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 6px;
   overflow: hidden;
@@ -82,7 +82,7 @@
 }
 
 .EmployeeHistoryTable th {
-  background-color: #f5f5f5; /* Light gray for header */
+  background-color: #f5f5f5;
   font-weight: 600;
   color: #333;
 }
@@ -108,31 +108,34 @@
 }
 
 .EmployeeHistoryEditButton {
-  background-color: #f5a623; /* Yellow-orange background */
-  color: #ffffff; /* White text */
+  /* background-color: #f5a623; */
+  color: #f5a623;
 }
 
 .EmployeeHistoryEditButton:hover {
-  background-color: #d68f1e; /* Darker yellow-orange */
+  background-color: #d68f1e;
 }
 
 .EmployeeHistoryDeleteButton {
-  background-color: #dc3545; /* Red for delete */
-  color: #ffffff; /* White text */
+  /* background-color: #dc3545; */
+  color: #dc3545;
 }
 
 .EmployeeHistoryDeleteButton:hover {
-  background-color: #c82333; /* Darker red */
+  background-color: #c82333;
+}
+.iconemployhis{
+  display: flex;
 }
 
 /* Status styling */
 .EmployeeHistoryStatus.Active {
-  color: #f5a623; /* Yellow-orange for Active */
+  color:green;
   font-weight: bold;
 }
 
 .EmployeeHistoryStatus.Inactive {
-  color: #6c757d; /* Gray for Inactive */
+  color: #6c757d;
   font-weight: bold;
 }
 
@@ -150,13 +153,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
-  background: #ffffff; /* White background */
+  background: #ffffff;
   padding: 50px;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 800px; /* Wider for horizontal layout */
-  border: 0.01cm solid #000000; /* 1cm black border */
+  max-width: 800px;
+  /* Removed black border */
 }
 
 /* Form */
@@ -174,7 +177,7 @@
 
 .EmployeeHistoryFormGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
@@ -197,12 +200,12 @@
   border: 1px solid #ced4da;
   border-radius: 4px;
   font-size: 14px;
-  background: #ffffff; /* White background */
+  background: #ffffff;
 }
 
 .EmployeeHistoryForm input:focus,
 .EmployeeHistoryForm select:focus {
-  border-color: #f5a623; /* Yellow-orange border on focus */
+  border-color: #f5a623;
   outline: none;
 }
 
@@ -220,26 +223,26 @@
   padding: 8px 14px;
   font-size: 14px;
   font-weight: 600;
-  color: #ffffff; /* White text */
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .EmployeeHistorySaveButton {
-  background: #f5a623; /* Yellow-orange background */
+  background: #f5a623;
 }
 
 .EmployeeHistorySaveButton:hover {
-  background: #d68f1e; /* Darker yellow-orange */
+  background: #d68f1e;
 }
 
 .EmployeeHistoryCancelButton {
-  background: #6c757d; /* Gray for cancel */
+  background: #6c757d;
 }
 
 .EmployeeHistoryCancelButton:hover {
-  background: #5a6268; /* Darker gray */
+  background: #5a6268;
 }
 
 /* Pagination */
@@ -257,8 +260,8 @@
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  background-color: #f5a623; /* Yellow-orange background */
-  color: #ffffff; /* White text */
+  background-color: #f5a623;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   font-size: 14px;
@@ -268,11 +271,11 @@
 }
 
 .PaginationButton:hover:not(:disabled) {
-  background-color: #d68f1e; /* Darker yellow-orange */
+  background-color: #d68f1e;
 }
 
 .PaginationButton:disabled {
-  background-color: #cccccc; /* Gray for disabled */
+  background-color: #cccccc;
   cursor: not-allowed;
 }
 
@@ -283,7 +286,7 @@
 
 .PaginationNumber {
   padding: 8px 12px;
-  background-color: #ffffff; /* White background */
+  background-color: #ffffff;
   color: #333;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -293,12 +296,12 @@
 }
 
 .PaginationNumber:hover {
-  background-color: #ffe8a8; /* Light yellow-orange on hover */
+  background-color: #ffe8a8;
 }
 
 .PaginationNumber.active {
-  background-color: #f5a623; /* Yellow-orange for active page */
-  color: #ffffff; /* White text */
+  background-color: #f5a623;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -316,7 +319,7 @@
   }
 
   .EmployeeHistoryFormGrid {
-    grid-template-columns: 1fr; /* Single column on small screens */
+    grid-template-columns: 1fr;
   }
 
   .EmployeeHistoryFormButtons {

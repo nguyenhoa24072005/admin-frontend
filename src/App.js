@@ -46,6 +46,7 @@ import WorkScheduleList from "./NGO/WorkSchedule/WorkScheduleList";
 import AttendanceList from "./NGO/Attendance/AttendanceList";
 import AttendanceAppealList from "./NGO/AttendanceAppeal/AttendanceAppealList";
 import UserDetail from "./NGO/UserDetail/UserDetail";
+import Notification from "./NGO/Notification/Notification";
 
 import "./App.css"; // Ensure no duplicate imports
 
@@ -108,6 +109,7 @@ function App() {
             <Route path="WorkSchedule" element={<WorkScheduleList />} />
             <Route path="Attendance" element={<AttendanceList />} />
             <Route path="AttendanceAppeal" element={<AttendanceAppealList />} />
+            <Route path="Notification" element={<Notification/>} />
 
             {/* Route con cho UserDetail */}
             <Route path="users/:userId" element={<UserDetail />} />

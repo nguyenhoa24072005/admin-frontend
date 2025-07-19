@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import {
   getWorkSchedules,
   createWorkSchedule,
+  createBulkWorkSchedules,
   updateWorkSchedule,
   deleteWorkSchedule,
+  softDeleteWorkSchedule,
+  getSchedulesByEmployeeAndDateRange,
+  getEditableSchedules,
+  approveOvertime,
+  getOvertimeSchedulesByStatus,
+  getOvertimeSchedulesFlexible,
 } from "../Service/workScheduleService";
 import WorkScheduleForm from "./WorkScheduleForm";
 import "./WorkSchedule.css";
@@ -13,6 +20,8 @@ import {
   FaTrash,
   FaArrowLeft,
   FaArrowRight,
+  FaFilter,
+  FaCheck,
 } from "react-icons/fa";
 
 const WorkScheduleList = () => {
@@ -20,10 +29,14 @@ const WorkScheduleList = () => {
   const [showForm, setShowForm] = useState(false);
   const [editData, setEditData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [employeeId, setEmployeeId] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [otStatus, setOtStatus] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
   const itemsPerPage = 10;
 
   const mapStatus = (status) => {
-    // Normalize status for display
     const normalizedStatus = status ? status.toString().toLowerCase() : "";
     if (["active", "true", "1"].includes(normalizedStatus)) {
       return "Active";
@@ -31,20 +44,29 @@ const WorkScheduleList = () => {
     if (["inactive", "false", "0"].includes(normalizedStatus)) {
       return "Inactive";
     }
-    return status; // Fallback to original status
+    if (["pending", "approved", "rejected"].includes(normalizedStatus)) {
+      return normalizedStatus.charAt(0).toUpperCase() + normalizedStatus.slice(1);
+    }
+    return status;
   };
 
   const loadSchedules = async () => {
     try {
-      const data = await getWorkSchedules();
-      const mappedData = data.data?.result || data; // Handle .data.result if present
-      const processedData = mappedData.map((s) => {
-        const displayStatus = mapStatus(s.status);
-        console.log(
-          `Schedule ${s.scheduleId} status: ${s.status}, mapped to: ${displayStatus}`
-        ); // Debug log
-        return { ...s, displayStatus };
-      });
+      let data;
+      if (employeeId && fromDate && toDate) {
+        if (otStatus) {
+          data = await getOvertimeSchedulesFlexible(employeeId, otStatus, fromDate, toDate);
+        } else {
+          data = await getSchedulesByEmployeeAndDateRange(employeeId, fromDate, toDate);
+        }
+      } else {
+        data = await getWorkSchedules();
+      }
+      const mappedData = data.data?.result || data;
+      const processedData = mappedData.map((s) => ({
+        ...s,
+        displayStatus: mapStatus(s.status),
+      }));
       setSchedules(processedData);
     } catch (err) {
       console.error("Failed to load work schedules:", err);
@@ -54,30 +76,23 @@ const WorkScheduleList = () => {
 
   useEffect(() => {
     loadSchedules();
-  }, []);
+  }, [employeeId, fromDate, toDate, otStatus]);
 
-  const handleSave = async (form) => {
+  const handleSave = async (form, isBulk = false) => {
     try {
-      const payload = {
-        ...form,
-        status:
-          form.status === "Active"
-            ? "ACTIVE"
-            : form.status === "Inactive"
-            ? "INACTIVE"
-            : form.status,
-      };
-      if (editData) {
-        await updateWorkSchedule(editData.scheduleId, payload);
+      if (isBulk) {
+        await createBulkWorkSchedules(form);
+      } else if (editData) {
+        await updateWorkSchedule(editData.scheduleId, form);
       } else {
-        await createWorkSchedule(payload);
+        await createWorkSchedule(form);
       }
       setShowForm(false);
       setEditData(null);
       loadSchedules();
     } catch (err) {
-      console.error("Failed to save work schedule:", err);
-      alert("Failed to save schedule");
+      console.error("Failed to save work schedule(s):", err);
+      alert("Failed to save schedule(s)");
     }
   };
 
@@ -96,7 +111,31 @@ const WorkScheduleList = () => {
     }
   };
 
-  // Pagination logic with ellipsis
+  const handleSoftDelete = async (id) => {
+    if (window.confirm("Soft delete this schedule?")) {
+      try {
+        await softDeleteWorkSchedule(id);
+        loadSchedules();
+      } catch (err) {
+        console.error("Failed to soft delete work schedule:", err);
+        alert("Failed to soft delete schedule");
+      }
+    }
+  };
+
+  const handleApproveOvertime = async (id) => {
+    if (window.confirm("Approve this overtime schedule?")) {
+      try {
+        await approveOvertime(id);
+        loadSchedules();
+      } catch (err) {
+        console.error("Failed to approve overtime:", err);
+        alert("Failed to approve overtime");
+      }
+    }
+  };
+
+  // Pagination logic
   const totalPages = Math.ceil(schedules.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -119,8 +158,7 @@ const WorkScheduleList = () => {
   } else {
     const startPage = Math.max(2, currentPage - 2);
     const endPage = Math.min(totalPages - 1, currentPage + 2);
-
-    pageNumbers.push(1); // Always show first page
+    pageNumbers.push(1);
     if (startPage > 2) {
       pageNumbers.push(ellipsis);
     }
@@ -131,7 +169,7 @@ const WorkScheduleList = () => {
       pageNumbers.push(ellipsis);
     }
     if (totalPages > 1) {
-      pageNumbers.push(totalPages); // Always show last page
+      pageNumbers.push(totalPages);
     }
   }
 
@@ -150,7 +188,56 @@ const WorkScheduleList = () => {
           <FaPlus style={{ marginRight: 6 }} />
           Add
         </button>
+        <button
+          className="WorkScheduleFilterButton"
+          onClick={() => setShowFilters(!showFilters)}
+        >
+          <FaFilter style={{ marginRight: 6 }} />
+          {showFilters ? "Hide Filters" : "Show Filters"}
+        </button>
       </div>
+
+      {showFilters && (
+        <div className="WorkScheduleFilters">
+          <div className="WorkScheduleFormField">
+            <label>Employee ID:</label>
+            <input
+              type="text"
+              value={employeeId}
+              onChange={(e) => setEmployeeId(e.target.value)}
+              placeholder="Enter Employee ID"
+            />
+          </div>
+          <div className="WorkScheduleFormField">
+            <label>From Date:</label>
+            <input
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+            />
+          </div>
+          <div className="WorkScheduleFormField">
+            <label>To Date:</label>
+            <input
+              type="date"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+            />
+          </div>
+          <div className="WorkScheduleFormField">
+            <label>OT Status:</label>
+            <select
+              value={otStatus}
+              onChange={(e) => setOtStatus(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="PENDING">Pending</option>
+              <option value="APPROVED">Approved</option>
+              <option value="REJECTED">Rejected</option>
+            </select>
+          </div>
+        </div>
+      )}
 
       {showForm && (
         <>
@@ -217,15 +304,25 @@ const WorkScheduleList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="WorkScheduleDeleteButton"
                     onClick={() => handleDelete(s.scheduleId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
+                  
+                  {s.displayStatus === "Pending" && (
+                    <button
+                      className="WorkScheduleApproveButton"
+                      onClick={() => handleApproveOvertime(s.scheduleId)}
+                    >
+                      <FaCheck style={{ marginRight: 4 }} />
+                      Approve OT
+                    </button>
+                  )}
                 </td>
               </tr>
             ))

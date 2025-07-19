@@ -127,20 +127,20 @@ const EmployeeHistoryList = () => {
                 <td className={`EmployeeHistoryStatus ${h.displayStatus}`}>
                   {h.displayStatus}
                 </td>
-                <td>
+                <td className="iconemployhis">
                   <button
                     className="EmployeeHistoryEditButton"
                     onClick={() => setEditingHistory(h)}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="EmployeeHistoryDeleteButton"
                     onClick={() => handleDelete(h.historyId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
                 </td>
               </tr>

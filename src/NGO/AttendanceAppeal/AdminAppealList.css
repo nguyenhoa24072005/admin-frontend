@@ -1,16 +1,124 @@
-.EditButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #007bff;
-  font-size: 1rem;
+/* Container */
+.AdminContainer {
+  padding: 24px;
+  background-color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 10px;
+  max-width: 1100px;
+  margin: 30px auto;
+  /* border: 0.01cm solid #000000; */ /* Removed black border */
 }
 
+/* Header */
+.AdminContainer h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Filter Bar */
+.FilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.FilterBar input,
+.FilterBar select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.FilterBar input:focus,
+.FilterBar select:focus {
+  border-color: #f5a623;
+  outline: none;
+}
+
+/* Table */
+.AdminTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.AdminTable th,
+.AdminTable td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 14px;
+  text-align: left;
+}
+
+.AdminTable th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.AdminTable tr:last-child td {
+  border-bottom: none;
+}
+
+.AdminTable img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Status styling */
+.StatusBadge.Pending {
+  color: #f5a623;
+  font-weight: bold;
+}
+
+.StatusBadge.Approved {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.StatusBadge.Rejected {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Action buttons */
+.EditButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: #f5a623;
+  color: #ffffff;
+}
+
+.EditButton:hover {
+  background-color: #d68f1e;
+}
+
+/* Modal */
 .ModalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .ModalBox {
@@ -18,41 +126,131 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  width: 400px;
-  z-index: 1000;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  /* border: 0.01cm solid #000000; */ /* Removed black border */
 }
 
-.ModalBox textarea,
-.ModalBox select {
+/* Modal Content */
+.ModalBox h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  color: #333;
+}
+
+.ModalBox p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.ModalBox label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.ModalBox select,
+.ModalBox textarea {
   width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.ModalBox textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.ModalBox select:focus,
+.ModalBox textarea:focus {
+  border-color: #f5a623;
+  outline: none;
 }
 
 .ModalButtons {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
+  justify-content: flex-end;
 }
 
 .SaveButton,
 .CancelButton {
-  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .SaveButton {
-  background-color: #28a745;
-  color: white;
+  background: #f5a623;
+}
+
+.SaveButton:hover {
+  background: #d68f1e;
 }
 
 .CancelButton {
-  background-color: #dc3545;
-  color: white;
+  background: #6c757d;
+}
+
+.CancelButton:hover {
+  background: #5a6268;
+}
+
+/* Loading and Empty States */
+.AdminContainer p {
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  margin: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .FilterBar {
+    flex-direction: column;
+  }
+
+  .FilterBar input,
+  .FilterBar select {
+    width: 100%;
+  }
+
+  .AdminTable th,
+  .AdminTable td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .EditButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ModalButtons {
+    flex-direction: column;
+  }
+
+  .ModalBox {
+    max-width: 90%;
+    padding: 20px;
+  }
 }

@@ -1,46 +1,47 @@
-/* User.css */
-
 /* Container */
 .UserContainer {
-  padding: 24px;
-  background-color: #ffffff; /* White background */
-  font-family: "Segoe UI", sans-serif;
-  border-radius: 10px;
-  max-width: 1100px;
-  margin: 30px auto;
-  border: 0.01cm solid #000000; /* 1cm black border */
+  padding: 32px;
+  background-color: #ffffff;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  border-radius: 12px;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Header */
 .UserContainer h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-  border-bottom: 1px solid #ccc; /* Light separator */
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a1a1a;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 8px;
 }
 
 /* Controls */
 .UserControls {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 24px;
   align-items: center;
 }
 
 .UserControls input,
 .UserControls select {
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 10px 14px;
+  font-size: 15px;
   border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #ffffff; /* White background */
-  transition: border-color 0.2s ease-in-out;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .UserControls input:focus,
 .UserControls select:focus {
-  border-color: #f5a623; /* Yellow-orange border on focus */
+  border-color: #f5a623;
+  box-shadow: 0 0 8px rgba(245, 166, 35, 0.2);
   outline: none;
 }
 
@@ -48,49 +49,54 @@
 .UserAddButton {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background-color: #f5a623; /* Yellow-orange background */
-  color: #ffffff; /* White text */
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #f5a623;
+  color: #ffffff;
   border: none;
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-left: auto;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .UserAddButton:hover {
-  background-color: #d68f1e; /* Darker yellow-orange on hover */
+  background-color: #d68f1e;
+  transform: translateY(-2px);
 }
 
 /* Table */
 .UserTable {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  background-color: #ffffff; /* White background */
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
+  margin-top: 12px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .UserTable th,
 .UserTable td {
-  padding: 12px;
-  border-bottom: 1px solid #dee2e6;
-  font-size: 14px;
+  padding: 14px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 15px;
   text-align: left;
 }
 
 .UserTable th {
-  background-color: #f5f5f5; /* Light gray for header */
+  background-color: #f8f9fa;
   font-weight: 600;
-  color: #333;
+  color: #1a1a1a;
 }
 
 .UserTable tr:last-child td {
   border-bottom: none;
+}
+
+.UserTable tr:hover {
+  background-color: #f8f9fa;
 }
 
 /* Action buttons */
@@ -98,44 +104,46 @@
 .UserDeleteButton {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  margin-right: 8px;
-  padding: 6px 12px;
-  font-size: 13px;
+  gap: 6px;
+  margin-right: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
   font-weight: 600;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .UserEditButton {
-  background-color: #f5a623; /* Yellow-orange background */
-  color: #ffffff; /* White text */
+  /* background-color: #f5a623; */
+  color: #f5a623;
 }
 
 .UserEditButton:hover {
-  background-color: #d68f1e; /* Darker yellow-orange */
+  /* background-color: #d68f1e; */
+  transform: translateY(-2px);
 }
 
 .UserDeleteButton {
-  background-color: #dc3545; /* Red for delete */
-  color: #ffffff; /* White text */
+  /* background-color: #dc3545; */
+  color: #dc3545;
 }
 
 .UserDeleteButton:hover {
-  background-color: #c82333; /* Darker red */
+  /* background-color: #c82333; */
+  transform: translateY(-2px);
 }
 
 /* Status styling */
 .UserStatus.Active {
-  color: #f5a623; /* Yellow-orange for Active */
-  font-weight: bold;
+  color: green;
+  font-weight: 600;
 }
 
 .UserStatus.Inactive {
-  color: #6c757d; /* Gray for Inactive */
-  font-weight: bold;
+  color: #6c757d;
+  font-weight: 600;
 }
 
 /* Modal */
@@ -152,32 +160,32 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
-  background: #ffffff; /* White background */
-  padding: 50px;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
   width: 90%;
-  max-width: 600px; /* Adjusted for horizontal layout */
-  border: 0.01cm solid #000000; /* 1cm black border */
+  max-width: 620px;
 }
 
 /* Form */
 .UserForm {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .UserForm h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #333;
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .UserFormGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .UserFormField {
@@ -186,29 +194,31 @@
 }
 
 .UserForm label {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  color: #1a1a1a;
+  font-size: 15px;
 }
 
 .UserForm input {
-  width: 93%;
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
   border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 14px;
-  background: #ffffff; /* White background */
+  border-radius: 6px;
+  font-size: 15px;
+  background: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .UserForm input:focus {
-  border-color: #f5a623; /* Yellow-orange border on focus */
+  border-color: #f5a623;
+  box-shadow: 0 0 8px rgba(245, 166, 35, 0.2);
   outline: none;
 }
 
 .UserFormButtons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   justify-content: flex-end;
 }
 
@@ -216,30 +226,33 @@
 .UserCancelButton {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 8px 14px;
-  font-size: 14px;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: #ffffff; /* White text */
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .UserSaveButton {
-  background: #f5a623; /* Yellow-orange background */
+  background: #f5a623;
 }
 
 .UserSaveButton:hover {
-  background: #d68f1e; /* Darker yellow-orange */
+  background: #d68f1e;
+  transform: translateY(-2px);
 }
 
 .UserCancelButton {
-  background: #6c757d; /* Gray for cancel */
+  background: #6c757d;
 }
 
 .UserCancelButton:hover {
-  background: #5a6268; /* Darker gray */
+  background: #5a6268;
+  transform: translateY(-2px);
 }
 
 /* Pagination */
@@ -247,65 +260,72 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 
 .PaginationButton {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background-color: #f5a623; /* Yellow-orange background */
-  color: #ffffff; /* White text */
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #f5a623;
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .PaginationButton:hover:not(:disabled) {
-  background-color: #d68f1e; /* Darker yellow-orange */
+  background-color: #d68f1e;
+  transform: translateY(-2px);
 }
 
 .PaginationButton:disabled {
-  background-color: #cccccc; /* Gray for disabled */
+  background-color: #cccccc;
   cursor: not-allowed;
 }
 
 .PaginationNumbers {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 
 .PaginationNumber {
-  padding: 8px 12px;
-  background-color: #ffffff; /* White background */
-  color: #333;
+  padding: 10px 16px;
+  background-color: #ffffff;
+  color: #1a1a1a;
   border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .PaginationNumber:hover {
-  background-color: #ffe8a8; /* Light yellow-orange on hover */
+  background-color: #ffe8a8;
 }
 
 .PaginationNumber.active {
-  background-color: #f5a623; /* Yellow-orange for active page */
-  color: #ffffff; /* White text */
-  font-weight: bold;
+  background-color: #f5a623;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .UserContainer {
+    padding: 24px;
+    margin: 20px auto;
+  }
+
   .UserControls {
     flex-direction: column;
+    gap: 10px;
   }
 
   .UserAddButton,
@@ -316,7 +336,7 @@
   }
 
   .UserFormGrid {
-    grid-template-columns: 1fr; /* Single column on small screens */
+    grid-template-columns: 1fr;
   }
 
   .UserFormButtons {
@@ -325,6 +345,7 @@
 
   .PaginationControls {
     flex-direction: column;
+    gap: 10px;
   }
 
   .PaginationNumbers {
@@ -333,11 +354,16 @@
 
   .UserTable th,
   .UserTable td {
-    font-size: 12px;
-    padding: 8px;
+    font-size: 13px;
+    padding: 10px;
   }
 
   .UserModal {
     max-width: 90%;
+    padding: 24px;
+  }
+
+  .UserContainer h2 {
+    font-size: 24px;
   }
 }

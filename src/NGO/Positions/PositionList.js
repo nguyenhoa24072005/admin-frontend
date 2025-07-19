@@ -128,14 +128,14 @@ const PositionList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="PositionDeleteButton"
                     onClick={() => handleDelete(pos.positionId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
                 </td>
               </tr>

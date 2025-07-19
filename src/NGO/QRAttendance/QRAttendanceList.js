@@ -13,7 +13,6 @@ const QRAttendanceList = () => {
   const itemsPerPage = 10;
 
   const mapStatus = (status) => {
-    // Normalize status to handle various backend values
     const normalizedStatus = status ? status.toString().toLowerCase() : "";
     if (["valid", "active", "true", "1"].includes(normalizedStatus)) {
       return "Active";
@@ -21,7 +20,7 @@ const QRAttendanceList = () => {
     if (["expired", "inactive", "false", "0"].includes(normalizedStatus)) {
       return "Inactive";
     }
-    return status; // Fallback to original status if unknown
+    return status;
   };
 
   const loadData = async () => {
@@ -31,7 +30,7 @@ const QRAttendanceList = () => {
         const displayStatus = mapStatus(a.status);
         console.log(
           `Attendance ${a.qrId} status: ${a.status}, mapped to: ${displayStatus}`
-        ); // Debug log
+        );
         return { ...a, displayStatus };
       });
       setAttendances(mappedData);
@@ -46,7 +45,7 @@ const QRAttendanceList = () => {
   }, []);
 
   const handleDelete = async (qrId) => {
-    if (window.confirm("Bạn có chắc chắn muốn xoá bản ghi này không?")) {
+    if (window.confirm("Are you sure you want to delete this record?")) {
       try {
         await deleteAttendance(qrId);
         loadData();
@@ -55,7 +54,7 @@ const QRAttendanceList = () => {
         }
       } catch (err) {
         console.error("Failed to delete attendance:", err);
-        alert("Xoá thất bại.");
+        alert("Failed to delete.");
       }
     }
   };
@@ -64,7 +63,6 @@ const QRAttendanceList = () => {
     a.employee?.fullName?.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Pagination logic with ellipsis
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -88,7 +86,7 @@ const QRAttendanceList = () => {
     const startPage = Math.max(2, currentPage - 2);
     const endPage = Math.min(totalPages - 1, currentPage + 2);
 
-    pageNumbers.push(1); // Always show first page
+    pageNumbers.push(1);
     if (startPage > 2) {
       pageNumbers.push(ellipsis);
     }
@@ -99,18 +97,18 @@ const QRAttendanceList = () => {
       pageNumbers.push(ellipsis);
     }
     if (totalPages > 1) {
-      pageNumbers.push(totalPages); // Always show last page
+      pageNumbers.push(totalPages);
     }
   }
 
   return (
     <div className="QRAttendanceContainer">
-      <h2>Danh sách chấm công QR / FaceGPS</h2>
+      <h2>QR / FaceGPS Attendance List</h2>
 
       <div className="QRAttendanceControls">
         <input
           type="text"
-          placeholder="Tìm theo tên nhân viên..."
+          placeholder="Search by employee name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -119,7 +117,7 @@ const QRAttendanceList = () => {
           onClick={() => setCurrentPage(1)}
         >
           <FaSearch style={{ marginRight: 6 }} />
-          Tìm
+          Search
         </button>
       </div>
 
@@ -127,14 +125,14 @@ const QRAttendanceList = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nhân viên</th>
-            <th>Ngày chấm</th>
-            <th>Phương thức</th>
-            <th>Trạng thái</th>
+            <th>Employee</th>
+            <th>Attendance Date</th>
+            <th>Method</th>
+            <th>Status</th>
             <th>Lat</th>
             <th>Long</th>
-            <th>Ảnh nhận diện</th>
-            <th>Thao tác</th>
+            <th>Face Image</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -142,7 +140,7 @@ const QRAttendanceList = () => {
             currentAttendances.map((a) => (
               <tr key={a.qrId}>
                 <td>{a.qrId}</td>
-                <td>{a.employee?.fullName || "Không rõ"}</td>
+                <td>{a.employee?.fullName || "Unknown"}</td>
                 <td>{new Date(a.attendanceDate).toLocaleDateString()}</td>
                 <td>{a.attendanceMethod}</td>
                 <td className={`QRAttendanceStatus ${a.displayStatus}`}>
@@ -158,7 +156,7 @@ const QRAttendanceList = () => {
                       width="60"
                     />
                   ) : (
-                    "Không có"
+                    "No Image"
                   )}
                 </td>
                 <td>
@@ -167,7 +165,6 @@ const QRAttendanceList = () => {
                     onClick={() => handleDelete(a.qrId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Xoá
                   </button>
                 </td>
               </tr>
@@ -175,7 +172,7 @@ const QRAttendanceList = () => {
           ) : (
             <tr>
               <td colSpan="9" style={{ textAlign: "center" }}>
-                Không tìm thấy bản ghi nào.
+                No records found.
               </td>
             </tr>
           )}
@@ -190,7 +187,7 @@ const QRAttendanceList = () => {
             disabled={currentPage === 1}
           >
             <FaArrowLeft style={{ marginRight: 6 }} />
-            Trước
+            Previous
           </button>
           <div className="PaginationNumbers">
             {pageNumbers.map((page, index) =>
@@ -216,7 +213,7 @@ const QRAttendanceList = () => {
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
-            Tiếp
+            Next
             <FaArrowRight style={{ marginLeft: 6 }} />
           </button>
         </div>

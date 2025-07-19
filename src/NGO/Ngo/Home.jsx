@@ -292,39 +292,6 @@ function DashBoard() {
           </div>
         </div>
       </div>
-
-      {/* Recent Leaves Table */}
-      <div className="DashBoardRecentLeaves">
-        <h4>Recent Leave Requests</h4>
-        <table className="DashBoardTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Employee</th>
-              <th>Leave Type</th>
-              <th>Start Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stats.recentLeaves.length > 0 ? (
-              stats.recentLeaves.map((leave) => (
-                <tr key={leave.id}>
-                  <td>{leave.id}</td>
-                  <td>{leave.employee}</td>
-                  <td>{leave.type}</td>
-                  <td>{leave.startDate}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4" style={{ textAlign: "center" }}>
-                  No recent leaves.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
     </main>
   );
 }

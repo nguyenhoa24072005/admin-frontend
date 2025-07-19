@@ -200,14 +200,14 @@ const AttendanceList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="AttendanceDeleteButton"
                     onClick={() => handleDelete(att.attendanceId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
                 </td>
               </tr>

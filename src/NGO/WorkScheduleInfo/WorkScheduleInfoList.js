@@ -208,14 +208,13 @@ const WorkScheduleInfoList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="WorkScheduleInfoDeleteButton"
                     onClick={() => handleDelete(info.scheduleInfoId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
                   </button>
                 </td>
               </tr>

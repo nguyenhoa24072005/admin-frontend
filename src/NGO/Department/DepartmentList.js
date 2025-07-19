@@ -130,14 +130,13 @@ const DepartmentList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="DepartmentDeleteButton"
                     onClick={() => handleDelete(dept.departmentId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
                   </button>
                 </td>
               </tr>

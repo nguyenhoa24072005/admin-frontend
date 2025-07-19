@@ -8,13 +8,13 @@
     "sidebar main";
   height: 100vh;
   transition: all 0.3s ease-in-out;
-  background-color: #ffffff; /* White background for grid container */
+  background-color: #ffffff;
 }
 
 /* Sidebar active item */
 .sidebar-list-item.active .sidebar-link {
-  background-color: #f5a623; /* Yellow-orange for active item */
-  color: #ffffff; /* White text for active item */
+  background-color: #f5a623;
+  color: #ffffff;
   font-weight: bold;
   border-radius: 10px;
 }
@@ -23,17 +23,17 @@
 }
 
 .sidebar-list-item .sidebar-link {
-  color: #333; /* Default text color */
+  color: #333;
   text-decoration: none;
   padding: 10px;
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and text */
+  gap: 10px;
 }
 
 /* Hover effect */
 .sidebar-list-item:hover .sidebar-link {
-  background-color: #ffe8a8; /* Light yellow-orange for hover */
+  background-color: #ffe8a8;
   color: #333;
   border-radius: 10px;
 }
@@ -46,20 +46,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  background-color: #ffffff; /* White background */
-  border-bottom: 0.01cm solid #000000; /* 1cm black border */
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ thay vì viền đen */
 }
 
 /* Sidebar */
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  background: #ffffff; /* White background */
+  background: #ffffff;
   color: #333;
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
-  border-right: 0.01cm solid #000000; /* 1cm black border */
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); /* Bóng đổ bên phải */
 }
 
 /* Sidebar title */
@@ -70,7 +70,7 @@
   padding: 15px 30px;
   margin-bottom: 30px;
   color: #333;
-  border-bottom: 0.01cm solid #000000; /* 1cm black border below title */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Bóng đổ nhẹ dưới */
 }
 
 .sidebar-brand {
@@ -98,7 +98,7 @@
   padding: 15px 20px;
   font-size: 1.2rem;
   color: #333;
-  border-bottom: 1px solid #ccc; /* Light separator for list items */
+  border-bottom: 1px solid #ccc;
 }
 
 .sidebar-list-item > a {
@@ -111,21 +111,21 @@
   display: inline !important;
   position: absolute;
   z-index: 12 !important;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.15); /* Bóng đổ khi sidebar nổi */
 }
 
 /* Main content area */
 .main {
   grid-area: main;
   padding: 20px;
-  background-color: #ffffff; /* White background */
-  border-left: 1cm solid #000000; /* 1cm black border */
-  border-top: 1cm solid #000000; /* 1cm black border */
+  background-color: #ffffff;
+  box-shadow: inset 0px 8px 8px -6px rgba(0, 0, 0, 0.08); /* Hiệu ứng nổi nhẹ từ trong */
 }
 
 /* Icons */
 .icon-1,
 .icon_header {
-  color: #f5a623; /* Yellow-orange for icons */
+  color: #f5a623;
   font-size: 18px;
 }
 
@@ -140,12 +140,12 @@
 
   #sidebar {
     display: none;
-    border-right: none; /* Remove border when sidebar is hidden */
+    box-shadow: none;
   }
 
   .menu-icon {
     display: inline;
-    color: #f5a623; /* Yellow-orange for menu icon */
+    color: #f5a623;
   }
 
   .sidebar-title > span {
@@ -153,7 +153,7 @@
   }
 
   .sidebar-responsive {
-    border-right: 1cm solid #000000; /* Restore border when responsive sidebar is active */
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.15);
   }
 }
 

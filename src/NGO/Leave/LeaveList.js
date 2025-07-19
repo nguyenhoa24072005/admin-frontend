@@ -188,7 +188,7 @@ const LeaveList = () => {
                     onClick={() => handleDelete(l.leaveId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                
                   </button>
                 </td>
               </tr>

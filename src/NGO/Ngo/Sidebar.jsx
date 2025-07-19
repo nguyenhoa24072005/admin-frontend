@@ -130,11 +130,13 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           className={`sidebar-list-item ${
             isActive("/ngo/WorkScheduleInfo") ? "active" : ""
           }`}
+
         >
           <Link to="/ngo/WorkScheduleInfo" className="sidebar-link">
             <FaCalendarAlt className="icon-1" /> Work Schedule Info
           </Link>
         </li>
+        
         <li
           className={`sidebar-list-item ${
             isActive("/ngo/WorkSchedule") ? "active" : ""
@@ -161,6 +163,17 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           <Link to="/ngo/AttendanceAppeal" className="sidebar-link">
             <FaCheckCircle className="icon-1" /> AttendanceAppeal
           </Link>
+        </li>
+
+        <li
+          className={`sidebar-list-item ${
+            isActive("/ngo/Notification") ? "active" : ""
+          }`}
+        >
+          <Link to="/ngo/Notification" className="sidebar-link">
+            <FaCheckCircle className="icon-1" /> Notìication
+          </Link>
+          
         </li>
       </ul>
     </aside>

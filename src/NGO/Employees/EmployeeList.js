@@ -138,7 +138,7 @@ const EmployeeList = () => {
                 <td>{emp.positionName}</td>
                 <td>{emp.roleName || "-"}</td>
                 <td className={`EmployeeStatus ${emp.status}`}>{emp.status}</td>
-                <td>
+                <td className="iconemploy">
                   <button
                     className="EmployeeEditButton"
                     onClick={() => {
@@ -147,14 +147,14 @@ const EmployeeList = () => {
                     }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
-                    Edit
+                    
                   </button>
                   <button
                     className="EmployeeDeleteButton"
                     onClick={() => handleDelete(emp.employeeId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
                 </td>
               </tr>

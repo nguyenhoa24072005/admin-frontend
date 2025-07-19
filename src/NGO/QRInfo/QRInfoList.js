@@ -181,7 +181,7 @@ const QRInfoList = () => {
                     onClick={() => handleDelete(qr.qrInfoId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    Delete
+                    
                   </button>
                 </td>
               </tr>
