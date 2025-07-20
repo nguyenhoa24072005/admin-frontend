@@ -222,3 +222,20 @@ export const getOvertimeSchedulesFlexible = async (employeeId, status, fromDate,
     throw error;
   }
 };
+
+export const getFilteredWorkSchedules = async (filters) => {
+  try {
+    const res = await axios.get(`${API_BASE_URL}/filter`, {
+      headers: getAuthHeaders(),
+      params: filters,
+    });
+    return res.data.result || [];
+  } catch (error) {
+    console.error("Error fetching filtered schedules:", {
+      message: error.message,
+      status: error.response?.status,
+      data: error.response?.data,
+    });
+    throw error;
+  }
+};

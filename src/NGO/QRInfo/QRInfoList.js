@@ -3,6 +3,7 @@ import {
   fetchAllQRInfos,
   searchQRInfos,
   deleteQRInfo,
+  filterQRInfos,
 } from "../Service/qrService";
 import "./QRInfo.css";
 import { FaSearch, FaTrash, FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -12,6 +13,10 @@ const QRInfoList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [statusFilter, setStatusFilter] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
 
   const mapStatus = (status) => {
     // Normalize status to handle various backend values
@@ -125,6 +130,21 @@ const QRInfoList = () => {
       pageNumbers.push(totalPages); // Always show last page
     }
   }
+  const handleFilter = async () => {
+    try {
+      const results = await filterQRInfos(statusFilter, startDate, endDate);
+      const mapped = results.map((qr) => ({
+        ...qr,
+        displayStatus: mapStatus(qr.status),
+      }));
+      setQrs(mapped);
+      setCurrentPage(1);
+    } catch (err) {
+      console.error("Failed to filter QR infos:", err);
+      alert("Failed to filter QR infos.");
+    }
+  };
+
 
   return (
     <div className="QRInfoContainer">
@@ -142,6 +162,31 @@ const QRInfoList = () => {
           Search
         </button>
       </div>
+      <div className="QRInfoFilters">
+        <label>
+          Status:
+          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+            <option value="">All</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
+          </select>
+        </label>
+
+        <label>
+          Start Date:
+          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+        </label>
+
+        <label>
+          End Date:
+          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+        </label>
+
+        <button className="QRInfoSearchButton" onClick={handleFilter}>
+          Filter
+        </button>
+      </div>
+
 
       <table className="QRInfoTable">
         <thead>
@@ -181,7 +226,7 @@ const QRInfoList = () => {
                     onClick={() => handleDelete(qr.qrInfoId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-                    
+
                   </button>
                 </td>
               </tr>
@@ -215,9 +260,8 @@ const QRInfoList = () => {
               ) : (
                 <button
                   key={page}
-                  className={`PaginationNumber ${
-                    currentPage === page ? "active" : ""
-                  }`}
+                  className={`PaginationNumber ${currentPage === page ? "active" : ""
+                    }`}
                   onClick={() => handlePageChange(page)}
                 >
                   {page}

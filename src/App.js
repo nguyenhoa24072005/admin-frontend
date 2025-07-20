@@ -59,7 +59,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Client Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LoginForm />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/ngos" element={<Ngos />} />

@@ -7,6 +7,7 @@ import {
   deleteWorkSchedule,
   softDeleteWorkSchedule,
   approveOvertime,
+  getFilteredWorkSchedules,
 } from "../Service/workScheduleService";
 import WorkScheduleForm from "./WorkScheduleForm";
 import WorkScheduleInlineForm from "./WorkScheduleInlineForm";
@@ -40,6 +41,8 @@ const WorkScheduleList = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [scheduleToDelete, setScheduleToDelete] = useState(null);
   const itemsPerPage = 10;
+
+
 
   // Hàm ánh xạ trạng thái
   const mapStatus = (status) => {
@@ -85,93 +88,59 @@ const WorkScheduleList = () => {
 
   // Hàm tải dữ liệu lịch làm việc
   const loadSchedules = async () => {
-    if (!validateFilters()) {
-      setSchedules([]);
-      setIsLoading(false);
-      return;
-    }
-    
-    setIsLoading(true);
-    setErrorMessage("");
-    
-    try {
-      const params = { status: status ? status.toUpperCase() : undefined };
-      if (workDay) params.workDay = workDay;
-      if (startTime && endTime) {
-        params.startTime = `${startTime}:00`;
-        params.endTime = `${endTime}:00`;
-      }
-      
-      const data = await getWorkSchedules(params);
-      
-      let processedData = Array.isArray(data)
-        ? data.filter(s => 
-            isValidDate(s.workDay) && 
-            isValidTime(s.startTime) && 
+  if (!validateFilters()) {
+    setSchedules([]);
+    setIsLoading(false);
+    return;
+  }
+
+  setIsLoading(true);
+  setErrorMessage("");
+
+  try {
+    const params = {
+      status: status ? status.toUpperCase() : undefined,
+      workDay: workDay || undefined,
+      startTime: startTime ? `${startTime}:00` : undefined,
+      endTime: endTime ? `${endTime}:00` : undefined,
+    };
+
+    const data = await getFilteredWorkSchedules(params);
+
+    let processedData = Array.isArray(data)
+      ? data
+          .filter(s =>
+            isValidDate(s.workDay) &&
+            isValidTime(s.startTime) &&
             isValidTime(s.endTime)
-          ).map(s => ({
+          )
+          .map(s => ({
             ...s,
             displayStatus: mapStatus(s.status),
           }))
-        : [];
-      
-      // Áp dụng bộ lọc trạng thái
-      if (status && processedData.length > 0) {
-        const normalizedSelectedStatus = status.toLowerCase();
-        processedData = processedData.filter(s => {
-          const normalizedDataStatus = s.status?.toLowerCase() || "";
-          return (
-            normalizedDataStatus === normalizedSelectedStatus ||
-            (["active", "true", "1"].includes(normalizedDataStatus) && 
-             normalizedSelectedStatus === "active") ||
-            (["inactive", "false", "0"].includes(normalizedDataStatus) && 
-             normalizedSelectedStatus === "inactive")
-          );
-        });
-      }
-      
-      // Áp dụng bộ lọc ngày làm việc
-      if (workDay && processedData.length > 0) {
-        processedData = processedData.filter(s => {
-          const scheduleWorkDay = isValidDate(s.workDay)
-            ? new Date(s.workDay).toISOString().split("T")[0]
-            : "";
-          return !workDay || scheduleWorkDay === workDay;
-        });
-      }
-      
-      // Áp dụng bộ lọc thời gian
-      if (startTime && endTime && processedData.length > 0) {
-        processedData = processedData.filter(s => {
-          const scheduleStartTime = isValidTime(s.startTime) ? s.startTime.slice(0, 5) : "";
-          const scheduleEndTime = isValidTime(s.endTime) ? s.endTime.slice(0, 5) : "";
-          return (
-            (!startTime || scheduleStartTime === startTime) &&
-            (!endTime || scheduleEndTime === endTime)
-          );
-        });
-      }
-      
-      setSchedules(processedData);
-      if (processedData.length === 0) {
-        setErrorMessage("No schedules found for the selected filters.");
-      }
-    } catch (err) {
-      console.error("Failed to load work schedules:", {
-        message: err.message,
-        status: err.response?.status,
-        data: err.response?.data,
-      });
-      
-      const errorMsg = err.response?.status === 400
-        ? `Invalid input: ${err.response?.data?.message || "Check date and time formats"}`
-        : `Failed to load work schedules: ${err.response?.data?.message || err.message || "Unknown error"}`;
-      
-      setErrorMessage(errorMsg);
-    } finally {
-      setIsLoading(false);
+      : [];
+
+    setSchedules(processedData);
+    if (processedData.length === 0) {
+      setErrorMessage("No schedules found for the selected filters.");
     }
-  };
+  } catch (err) {
+    console.error("Failed to load filtered work schedules:", {
+      message: err.message,
+      status: err.response?.status,
+      data: err.response?.data,
+    });
+
+    const errorMsg = err.response?.status === 400
+      ? `Invalid input: ${err.response?.data?.message || "Check date and time formats"}`
+      : `Failed to load schedules: ${err.response?.data?.message || err.message || "Unknown error"}`;
+
+    setErrorMessage(errorMsg);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   // Tải dữ liệu khi component mount hoặc khi bộ lọc thay đổi
   useEffect(() => {

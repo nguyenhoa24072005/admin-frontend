@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   getAllActiveAttendances,
   deleteAttendance,
+  filterAttendances,
 } from "../Service/qrAttendanceService";
 import "./QRAttendance.css";
 import { FaSearch, FaTrash, FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -11,6 +12,10 @@ const QRAttendanceList = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [statusFilter, setStatusFilter] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
 
   const mapStatus = (status) => {
     const normalizedStatus = status ? status.toString().toLowerCase() : "";
@@ -100,6 +105,20 @@ const QRAttendanceList = () => {
       pageNumbers.push(totalPages);
     }
   }
+  const handleFilter = async () => {
+    try {
+      const data = await filterAttendances(statusFilter, startDate, endDate);
+      const mappedData = data.map((a) => ({
+        ...a,
+        displayStatus: mapStatus(a.activeStatus),
+      }));
+      setAttendances(mappedData);
+      setCurrentPage(1);
+    } catch (err) {
+      console.error("Failed to filter attendances:", err);
+      alert("Failed to filter attendances.");
+    }
+  };
 
   return (
     <div className="QRAttendanceContainer">
@@ -120,6 +139,32 @@ const QRAttendanceList = () => {
           Search
         </button>
       </div>
+      <div className="QRAttendanceFilters">
+        <label>
+          Status:
+          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+            <option value="">All</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </label>
+
+        <label>
+          Start Date:
+          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+        </label>
+
+        <label>
+          End Date:
+          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+        </label>
+
+        <button className="QRAttendanceSearchButton" onClick={handleFilter}>
+          <FaSearch style={{ marginRight: 6 }} />
+          Filter
+        </button>
+      </div>
+
 
       <table className="QRAttendanceTable">
         <thead>
@@ -198,9 +243,8 @@ const QRAttendanceList = () => {
               ) : (
                 <button
                   key={page}
-                  className={`PaginationNumber ${
-                    currentPage === page ? "active" : ""
-                  }`}
+                  className={`PaginationNumber ${currentPage === page ? "active" : ""
+                    }`}
                   onClick={() => handlePageChange(page)}
                 >
                   {page}

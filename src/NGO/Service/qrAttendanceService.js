@@ -21,3 +21,17 @@ export const deleteAttendance = async (qrId) => {
     headers: getAuthHeaders(),
   });
 };
+
+export const filterAttendances = async (status, startDate, endDate) => {
+  const params = new URLSearchParams();
+  if (status) params.append("status", status);
+  if (startDate) params.append("startDate", startDate);
+  if (endDate) params.append("endDate", endDate);
+
+  const response = await axios.get(`${API_BASE_URL}/filter?${params.toString()}`, {
+    headers: getAuthHeaders(),
+  });
+
+  return response.data;
+};
+
