@@ -130,7 +130,10 @@ const EmployeeHistoryList = () => {
                 <td className="iconemployhis">
                   <button
                     className="EmployeeHistoryEditButton"
-                    onClick={() => setEditingHistory(h)}
+                    onClick={() => {
+                      setEditingHistory(h);
+                      setShowForm(true); // <<< Bổ sung dòng này
+                    }}
                   >
                     <FaEdit style={{ marginRight: 4 }} />
                     

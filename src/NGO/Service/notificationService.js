@@ -45,9 +45,9 @@ export const pushToRoles = async (title, message, sentBy, roles) => {
   }
 };
 
-export const pushToUser = async (userId, title, message) => {
+export const pushToUser = async (userId, title, message, senderId) => {
   try {
-    const payload = { userId, title, message };
+    const payload = { userId, title, message, senderId,};
     const res = await axios.post(`${API_BASE_URL}/push-to-user`, payload, {
       headers: {
         ...getAuthHeaders(),

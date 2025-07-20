@@ -92,26 +92,26 @@
 }
 
 .AttendanceEditButton {
-  background-color: #f5a623;
-  color: #ffffff;
+background: white;
+  color: #f5a623;
 }
 
 .AttendanceEditButton:hover {
-  background-color: #d68f1e;
+  /* background-color: #d68f1e; */
 }
 
 .AttendanceDeleteButton {
-  background-color: #dc3545;
-  color: #ffffff;
+background: white;
+  color: #dc3545;
 }
 
 .AttendanceDeleteButton:hover {
-  background-color: #c82333;
+  /* background-color: #c82333; */
 }
 
 /* Status styling */
 .AttendanceTable .AttendanceStatus.Active {
-  color: #f5a623 !important;
+  color: green !important;
   font-weight: bold;
 }
 

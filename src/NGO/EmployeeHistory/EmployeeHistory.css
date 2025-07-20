@@ -108,21 +108,21 @@
 }
 
 .EmployeeHistoryEditButton {
-  /* background-color: #f5a623; */
+  background: white;
   color: #f5a623;
 }
 
 .EmployeeHistoryEditButton:hover {
-  background-color: #d68f1e;
+  /* background-color: #d68f1e; */
 }
 
 .EmployeeHistoryDeleteButton {
-  /* background-color: #dc3545; */
-  color: #dc3545;
+background: white;
+color: #dc3545;
 }
 
 .EmployeeHistoryDeleteButton:hover {
-  background-color: #c82333;
+  /* background-color: #c82333; */
 }
 .iconemployhis{
   display: flex;

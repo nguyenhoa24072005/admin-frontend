@@ -104,12 +104,12 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
-  background-color: #dc3545;
-  color: #ffffff;
+background: white;
+  color:#dc3545;
 }
 
 .QRInfoDeleteButton:hover {
-  background-color: #c82333;
+  /* background-color: #c82333; */
 }
 
 /* Status styling */

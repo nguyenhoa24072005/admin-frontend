@@ -7,11 +7,14 @@ import {
   markAsRead,
   markAllAsRead,
 } from "../Service/notificationService";
-// import "./WorkSchedule.css";
+import PushToUserForm from "./PushToUserForm";
+import PushNotificationForm from "./PushNotificationForm";
+import "./Notification.css"
 import { FaPaperPlane, FaCheck, FaCheckDouble, FaTimes, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Notification = ({ userId, role }) => {
   const [notifications, setNotifications] = useState([]);
+  const [activeFormTab, setActiveFormTab] = useState("user"); // 'user' hoặc 'notification'
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [showSendForm, setShowSendForm] = useState(false);
@@ -166,12 +169,7 @@ const Notification = ({ userId, role }) => {
     <div className="WorkScheduleContainer">
       <h2>Notifications</h2>
 
-      {error && (
-        <div className="WorkScheduleError">
-          {error}
-        </div>
-      )}
-
+  
       {loading && (
         <div className="WorkScheduleLoading">
           Loading notifications...
@@ -189,13 +187,28 @@ const Notification = ({ userId, role }) => {
           </button>
         )}
         <button
-          className="WorkScheduleFilterButton"
+          className="WorkScheduleFilterButton1"
           onClick={handleMarkAllAsRead}
         >
-          <FaCheckDouble style={{ marginRight: 6 }} />
-          Mark All as Read
+        
         </button>
       </div>
+
+      <div className="FormSwitchButtons" style={{ marginBottom: "10px" }}>
+  <button
+    onClick={() => {setActiveFormTab("user"); setShowSendForm(true);}}
+    className={activeFormTab === "user" ? "active" : ""}
+    style={{ marginRight: "8px" }}
+  >
+    Push To User
+  </button>
+  <button
+    onClick={() => {setActiveFormTab("notification"); setShowSendForm(true);}}
+    className={activeFormTab === "notification" ? "active" : ""}
+  >
+    Push To Roles / Topic
+  </button>
+</div>
 
       {showSendForm && (
         <>
@@ -204,121 +217,20 @@ const Notification = ({ userId, role }) => {
             onClick={() => setShowSendForm(false)}
           />
           <div className="WorkScheduleModal">
-            <form className="WorkScheduleForm" onSubmit={handleSend}>
-              <h3>Send Notification</h3>
-              <div className="WorkScheduleFormGrid">
-                <div className="WorkScheduleFormField">
-                  <label>Send To:</label>
-                  <select
-                    name="sendType"
-                    value={sendType}
-                    onChange={(e) => setSendType(e.target.value)}
-                  >
-                    <option value="roles">Roles (Hr, User, or both)</option>
-                    <option value="user">Specific User</option>
-                    <option value="topic">Topic</option>
-                  </select>
-                </div>
-                {sendType === "roles" && (
-                  <div className="WorkScheduleFormField">
-                    <label>Roles (select one or more):</label>
-                    <select
-                      name="roles"
-                      multiple
-                      value={form.roles}
-                      onChange={handleFormChange}
-                      required
-                    >
-                      {validRoles.map((r) => (
-                        <option key={r} value={r}>
-                          {r}
-                        </option>
-                      ))}
-                    </select>
-                    <small>Hold Ctrl (Cmd on Mac) to select multiple roles</small>
-                  </div>
-                )}
-                {sendType === "user" && (
-                  <div className="WorkScheduleFormField">
-                    <label>User ID:</label>
-                    <input
-                      type="text"
-                      name="userId"
-                      value={form.userId}
-                      onChange={handleFormChange}
-                      placeholder="Enter User ID"
-                      required
-                    />
-                  </div>
-                )}
-                {sendType === "topic" && (
-                  <div className="WorkScheduleFormField">
-                    <label>Topic:</label>
-                    <input
-                      type="text"
-                      name="topic"
-                      value={form.topic}
-                      onChange={handleFormChange}
-                      placeholder="Enter Topic"
-                      required
-                    />
-                  </div>
-                )}
-                <div className="WorkScheduleFormField">
-                  <label>Title:</label>
-                  <input
-                    type="text"
-                    name="title"
-                    value={form.title}
-                    onChange={handleFormChange}
-                    placeholder="Enter notification title"
-                    required
-                  />
-                </div>
-                <div className="WorkScheduleFormField">
-                  <label>Message:</label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleFormChange}
-                    placeholder="Enter notification message"
-                    required
-                    rows="4"
-                    style={{ width: "100%", padding: "10px" }}
-                  />
-                </div>
-              </div>
-              <div className="WorkScheduleFormButtons">
-                <button type="submit" className="WorkScheduleSaveButton">
-                  <FaPaperPlane style={{ marginRight: 5 }} />
-                  Send
-                </button>
-                <button
-                  type="button"
-                  className="WorkScheduleCancelButton"
-                  onClick={() => setShowSendForm(false)}
-                >
-                  <FaTimes style={{ marginRight: 5 }} />
-                  Cancel
-                </button>
-              </div>
-            </form>
+            {activeFormTab === "user" ? (
+              <PushToUserForm onClose={() => setShowSendForm(false)} />
+            ) : (
+              <PushNotificationForm
+                defaultSender={userId}
+                onClose={() => setShowSendForm(false)}
+              />
+            )}
           </div>
         </>
       )}
 
       <table className="WorkScheduleTable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Message</th>
-            <th>Sent By</th>
-            <th>Received At</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+
         <tbody>
           {notifications.length > 0 ? (
             notifications.map((n) => (
@@ -346,9 +258,7 @@ const Notification = ({ userId, role }) => {
             ))
           ) : (
             <tr>
-              <td colSpan="7" style={{ textAlign: "center" }}>
-                No notifications available.
-              </td>
+          
             </tr>
           )}
         </tbody>

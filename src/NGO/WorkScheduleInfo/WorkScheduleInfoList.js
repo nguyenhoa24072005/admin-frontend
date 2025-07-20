@@ -199,7 +199,7 @@ const WorkScheduleInfoList = () => {
                 <td className={`WorkScheduleInfoStatus ${info.displayStatus}`}>
                   {info.displayStatus}
                 </td>
-                <td>
+                <td className="iconwork">
                   <button
                     className="WorkScheduleInfoEditButton"
                     onClick={() => {

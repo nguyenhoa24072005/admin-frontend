@@ -112,12 +112,12 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
-  background-color: #dc3545;
-  color: #ffffff;
+  background-color:#ffffff;
+  color: #dc3545;
 }
 
 .QRAttendanceDeleteButton:hover {
-  background-color: #c82333;
+  color: #dd717b;
 }
 
 /* Status styling */

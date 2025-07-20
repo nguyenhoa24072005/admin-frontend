@@ -63,7 +63,7 @@
 
 .WorkScheduleInfoTable th,
 .WorkScheduleInfoTable td {
-  padding: 14px 16px;
+  padding: 14px 14px;
   font-size: 14px;
   border-bottom: 1px solid #e9ecef;
   text-align: left;
@@ -96,26 +96,29 @@
 }
 
 .WorkScheduleInfoEditButton {
-  background-color: #d68f1e;
-  color: #ffffff;
+background: white;
+  color: #d68f1e;
 }
 
 .WorkScheduleInfoEditButton:hover {
-  background-color: #d39737;
+  /* background-color: #d39737; */
 }
 
 .WorkScheduleInfoDeleteButton {
-  background-color: #dc3545;
-  color: #ffffff;
+background: white;
+  color:#dc3545;
 }
 
 .WorkScheduleInfoDeleteButton:hover {
-  background-color: #c82333;
+  /* background-color: #c82333; */
+}
+.iconwork{
+  display: flex;
 }
 
 /* Status styling */
 .WorkScheduleInfoTable .WorkScheduleInfoStatus.Active {
-  color: #f5a623 !important;
+  color: green !important;
   font-weight: bold;
 }
 

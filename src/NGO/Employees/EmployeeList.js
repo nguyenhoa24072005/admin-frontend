@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getEmployees, deleteEmployee } from "../Service/employeeService";
 import EmployeeForm from "./EmployeeForm";
+import { getRoles } from "../Service/RoleService";
 import "./Employee.css";
 import {
   FaPlus,
@@ -18,18 +19,31 @@ const EmployeeList = () => {
   const [roleFilter, setRoleFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [roles, setRoles] = useState([]);
   const itemsPerPage = 10;
 
   const loadEmployees = async () => {
     try {
       const data = await getEmployees(statusFilter, roleFilter);
+      console.log("Loaded Employees:", data);
       setEmployees(data);
     } catch (error) {
       alert("Failed to load employees.");
     }
   };
 
+  const loadRoles = async () => {
+  try {
+    const data = await getRoles();
+    setRoles(data);
+  } catch (error) {
+    console.error("Failed to load roles:", error);
+  }
+};
+
+
   useEffect(() => {
+    loadRoles();
     loadEmployees();
   }, [statusFilter, roleFilter]);
 
@@ -78,18 +92,7 @@ const EmployeeList = () => {
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
         </select>
-
-        <select
-          value={roleFilter}
-          onChange={(e) => setRoleFilter(e.target.value)}
-        >
-          <option value="">All Roles</option>
-          <option value="User">User</option>
-          <option value="Hr">Hr</option>
-          <option value="Admin">Admin</option>
-        </select>
-
-        <button
+      <button
           className="EmployeeAddButton"
           onClick={() => {
             setEditEmployee(null);
@@ -121,7 +124,6 @@ const EmployeeList = () => {
             <th>Phone</th>
             <th>Department</th>
             <th>Position</th>
-            <th>Role</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -136,7 +138,6 @@ const EmployeeList = () => {
                 <td>{emp.phone}</td>
                 <td>{emp.departmentName}</td>
                 <td>{emp.positionName}</td>
-                <td>{emp.roleName || "-"}</td>
                 <td className={`EmployeeStatus ${emp.status}`}>{emp.status}</td>
                 <td className="iconemploy">
                   <button

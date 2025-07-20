@@ -116,7 +116,7 @@
 }
 
 .PositionEditButton {
-  /* background-color: #f5a623; */
+background: white;
   color: #f5a623;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .PositionDeleteButton {
-  /* background-color: #dc3545; */
+background: white;
   color:#dc3545;
 }
 
@@ -137,7 +137,7 @@
 
 /* Status styling */
 .PositionStatus.Active {
-  color: #f5a623;
+  color: green;
   font-weight: 600;
 }
 

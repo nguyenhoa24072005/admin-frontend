@@ -116,7 +116,8 @@
 }
 
 .UserEditButton {
-  /* background-color: #f5a623; */
+
+background: white;
   color: #f5a623;
 }
 
@@ -126,7 +127,7 @@
 }
 
 .UserDeleteButton {
-  /* background-color: #dc3545; */
+background: white;
   color: #dc3545;
 }
 

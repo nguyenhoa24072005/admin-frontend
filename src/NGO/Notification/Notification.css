@@ -1,0 +1,606 @@
+/* General container styles */
+.WorkScheduleContainer {
+  font-family: 'Inter', 'Arial', sans-serif;
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Heading styles */
+.WorkScheduleContainer h2,
+.PushNotificationForm__heading,
+.PushToUserForm__heading {
+  font-size: 1.75rem;
+  color: #1f2937;
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Error and Loading Messages */
+.WorkScheduleError,
+.WorkScheduleLoading {
+  padding: 12px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.WorkScheduleError {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.WorkScheduleLoading {
+  background-color: #fefce8;
+  color: #f5a623;
+}
+
+/* Control buttons container */
+.WorkScheduleControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Button styles */
+.WorkScheduleAddButton,
+.WorkScheduleFilterButton,
+.WorkScheduleEditButton,
+.PushNotificationForm__button,
+.PushToUserForm__button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.WorkScheduleAddButton {
+  background-color: #f5a623;
+  color: #ffffff;
+}
+
+.WorkScheduleAddButton:hover {
+  background-color: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.WorkScheduleFilterButton {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.WorkScheduleFilterButton:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.WorkScheduleEditButton {
+  background-color: #6b7280;
+  color: #ffffff;
+}
+
+.WorkScheduleEditButton:hover {
+  background-color: #4b5563;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Switch Buttons */
+.FormSwitchButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.FormSwitchButtons button {
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.FormSwitchButtons button.active {
+  background-color: #f5a623;
+  color: #ffffff;
+  border-color: #f5a623;
+}
+
+.FormSwitchButtons button:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* Modal and Overlay */
+.WorkScheduleOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.WorkScheduleModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  z-index: 1001;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Animation for modal */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Form styles for PushNotificationForm and PushToUserForm */
+.PushNotificationForm,
+.PushToUserForm {
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.PushNotificationForm__form,
+.PushToUserForm__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.PushNotificationForm__field,
+.PushToUserForm__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.PushNotificationForm__label,
+.PushToUserForm__label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1f2937;
+  letter-spacing: 0.01em;
+}
+
+.PushNotificationForm__input,
+.PushNotificationForm__textarea,
+.PushToUserForm__input,
+.PushToUserForm__textarea {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.PushNotificationForm__input:focus,
+.PushNotificationForm__textarea:focus,
+.PushToUserForm__input:focus,
+.PushToUserForm__textarea:focus {
+  outline: none;
+  border-color: #f5a623;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.2);
+  background: #ffffff;
+}
+
+.PushNotificationForm__textarea,
+.PushToUserForm__textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 300px;
+}
+
+/* Custom dropdown styles for PushNotificationForm */
+.PushNotificationForm__dropdown,
+.PushToUserForm__dropdown {
+  position: relative;
+}
+
+.PushNotificationForm__dropdown-toggle,
+.PushToUserForm__dropdown-toggle {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fafafa;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.PushNotificationForm__dropdown-toggle:hover,
+.PushToUserForm__dropdown-toggle:hover {
+  background: #f1f5f9;
+}
+
+.PushNotificationForm__dropdown-toggle:focus,
+.PushToUserForm__dropdown-toggle:focus {
+  outline: none;
+  border-color: #f5a623;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.2);
+  background: #ffffff;
+}
+
+.PushNotificationForm__dropdown-icon,
+.PushToUserForm__dropdown-icon {
+  font-size: 0.9rem;
+  color: #1f2937;
+  transition: transform 0.2s;
+}
+
+.PushNotificationForm__dropdown-icon.open,
+.PushToUserForm__dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.PushNotificationForm__dropdown-list,
+.PushToUserForm__dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  z-index: 1002;
+  margin-top: 6px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.PushNotificationForm__dropdown-item,
+.PushToUserForm__dropdown-item {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  color: #1f2937;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.PushNotificationForm__dropdown-item:hover,
+.PushToUserForm__dropdown-item:hover {
+  background: #fff7ed;
+  color: #d97706;
+}
+
+.PushNotificationForm__dropdown-item--selected,
+.PushToUserForm__dropdown-item--selected {
+  background: #fefce8;
+  color: #f5a623;
+  font-weight: 600;
+}
+
+.PushNotificationForm__dropdown-item::before,
+.PushToUserForm__dropdown-item::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.PushNotificationForm__dropdown-item--selected::before,
+.PushToUserForm__dropdown-item--selected::before {
+  border-color: #f5a623;
+  background-color: #f5a623;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffffff' viewBox='0 0 24 24'><path d='M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z'/></svg>");
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Custom scrollbar for dropdowns */
+.PushNotificationForm__dropdown-list::-webkit-scrollbar,
+.PushToUserForm__dropdown-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.PushNotificationForm__dropdown-list::-webkit-scrollbar-track,
+.PushToUserForm__dropdown-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.PushNotificationForm__dropdown-list::-webkit-scrollbar-thumb,
+.PushToUserForm__dropdown-list::-webkit-scrollbar-thumb {
+  background: #f5a623;
+  border-radius: 4px;
+}
+
+.PushNotificationForm__dropdown-list::-webkit-scrollbar-thumb:hover,
+.PushToUserForm__dropdown-list::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
+
+/* Firefox scrollbar */
+.PushNotificationForm__dropdown-list,
+.PushToUserForm__dropdown-list {
+  scrollbar-color: #f5a623 #f1f5f9;
+  scrollbar-width: thin;
+      padding-left: 0px;
+}
+
+/* Animation for dropdown */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Table styles */
+.WorkScheduleTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.WorkScheduleTable th,
+.WorkScheduleTable td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  
+}
+
+.WorkScheduleTable th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.WorkScheduleTable tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.WorkScheduleStatus.Read {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.WorkScheduleStatus.Unread {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Pagination styles */
+.PaginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.PaginationButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5a623;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.PaginationButton:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.PaginationButton:hover:not(:disabled) {
+  background-color: #d97706;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.PaginationNumbers {
+  display: flex;
+  gap: 10px;
+}
+
+.PaginationNumber {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.PaginationNumber.active {
+  background-color: #f5a623;
+  color: #ffffff;
+  border-color: #f5a623;
+}
+
+.PaginationNumber:hover:not(.active) {
+  background-color: #f3f4f6;
+}
+
+.PaginationEllipsis {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Status message styles */
+.PushNotificationForm__status,
+.PushToUserForm__status {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #1f2937;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.PushNotificationForm__status:empty,
+.PushToUserForm__status:empty {
+  display: none;
+}
+
+.PushNotificationForm__status:not(:empty):has(✅),
+.PushToUserForm__status:not(:empty):has(✅) {
+  background: #ecfce5;
+  color: #10b981;
+}
+
+.PushNotificationForm__status:not(:empty):has(❌),
+.PushToUserForm__status:not(:empty):has(❌) {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .WorkScheduleContainer {
+    max-width: 100%;
+    margin: 16px 8px;
+    padding: 16px;
+  }
+
+  .WorkScheduleTable th,
+  .WorkScheduleTable td {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .WorkScheduleModal {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .PaginationControls {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .PaginationNumbers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .PushNotificationForm__heading,
+  .PushToUserForm__heading {
+    font-size: 1.4rem;
+  }
+
+  .PushNotificationForm__input,
+  .PushNotificationForm__textarea,
+  .PushNotificationForm__dropdown-toggle,
+  .PushToUserForm__input,
+  .PushToUserForm__textarea,
+  .PushToUserForm__dropdown-toggle {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .PushNotificationForm__button,
+  .PushToUserForm__button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .PushNotificationForm__dropdown-list,
+  .PushToUserForm__dropdown-list {
+    max-height: 180px;
+  }
+
+  .PushNotificationForm__dropdown-item,
+  .PushToUserForm__dropdown-item {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .WorkScheduleContainer h2,
+  .PushNotificationForm__heading,
+  .PushToUserForm__heading {
+    font-size: 1.3rem;
+  }
+
+  .PushNotificationForm__label,
+  .PushToUserForm__label {
+    font-size: 0.85rem;
+  }
+
+  .PushNotificationForm__status,
+  .PushToUserForm__status {
+    font-size: 0.85rem;
+  }
+
+  .WorkScheduleControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .WorkScheduleAddButton,
+  .WorkScheduleFilterButton,
+  .WorkScheduleEditButton {
+    width: 100%;
+  }
+}

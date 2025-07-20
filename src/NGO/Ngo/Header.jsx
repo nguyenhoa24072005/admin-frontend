@@ -19,13 +19,13 @@ function Header({ OpenSidebar }) {
 
   return (
     <header className="HeaderContainer">
-      <div className="HeaderMenuIcon">
+      {/* <div className="HeaderMenuIcon">
         <BsJustify className="HeaderIcon" onClick={OpenSidebar} />
-      </div>
+      </div> */}
 
       <div className="HeaderRight">
         <BsFillBellFill className="HeaderIcon" />
-        <BsFillEnvelopeFill className="HeaderIcon" />
+        {/* <BsFillEnvelopeFill className="HeaderIcon" /> */}
         <div className="HeaderProfile">
           <BsPersonCircle className="HeaderIcon" onClick={toggleDropdown} />
           {isDropdownVisible && (

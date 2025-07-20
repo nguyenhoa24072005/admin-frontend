@@ -23,7 +23,7 @@
 
 .LeaveAddButton {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #f5a623;
   border: none;
   border-radius: 5px;
   color: #ffffff;
@@ -33,7 +33,7 @@
 }
 
 .LeaveAddButton:hover {
-  background-color: #0056b3;
+  background-color: #f5a623;
 }
 
 .LeaveTable {
@@ -91,4 +91,148 @@
 
 .LeaveDeleteButton:hover i {
   color: darkred;
+}
+
+/* Leave.css */
+
+/* Container for the modal */
+.LeaveModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Form container */
+.LeaveForm {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  margin: 20px;
+}
+
+/* Form heading */
+.LeaveForm h3 {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  color:#f5a623;
+  text-align: center;
+}
+
+/* Grid layout for form fields */
+.LeaveFormGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* Form field container */
+.LeaveFormField {
+  display: flex;
+  flex-direction: column;
+}
+
+.LeaveFormField label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f5a623;
+  margin-bottom: 5px;
+}
+
+/* Input and select styles */
+.LeaveFormField input,
+.LeaveFormField select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.LeaveFormField input:focus,
+.LeaveFormField select:focus {
+  border-color: #f5a623;
+}
+
+/* Placeholder text style */
+.LeaveFormField input::placeholder {
+  color: #f5a623;
+}
+
+/* Buttons container */
+.LeaveFormButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Save button */
+.LeaveSaveButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color:#f5a623;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.LeaveSaveButton:hover {
+  background-color: #f5a623;
+}
+
+/* Cancel button */
+.LeaveCancelButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color:#f5a623;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.LeaveCancelButton:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .LeaveForm {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  .LeaveForm h3 {
+    font-size: 1.3rem;
+  }
+
+  .LeaveFormField input,
+  .LeaveFormField select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .LeaveSaveButton,
+  .LeaveCancelButton {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
 }
