@@ -359,25 +359,7 @@ function DashBoard() {
         </div>
       </div>
 
-      <div className="DashBoardDebug">
-        <h4>Debug: Today's Attendance Records</h4>
-        {isLoading ? (
-          <p>Loading debug data...</p>
-        ) : qrAttendances.length > 0 ? (
-          <pre>
-            {JSON.stringify(
-              qrAttendances.filter(
-                (att) =>
-                  new Date(att.attendanceDate).toISOString().slice(0, 10) === todayString
-              ),
-              null,
-              2
-            )}
-          </pre>
-        ) : (
-          <p>No attendance records found for today.</p>
-        )}
-      </div>
+      
     </main>
   );
 }

@@ -171,7 +171,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           }`}
         >
           <Link to="/ngo/Notification" className="sidebar-link">
-            <FaCheckCircle className="icon-1" /> Notìication
+            <FaCheckCircle className="icon-1" /> Notification
           </Link>
           
         </li>
