@@ -2,8 +2,8 @@
 
 .logout-icon {
   margin-right: 8px; /* Add space between icon and text */
-  color: white;
+  color: #eaa826;
 }
 .logout-item:hover {
-  color: #8db883;
+  color: #eaa826;
 }

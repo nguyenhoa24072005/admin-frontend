@@ -7,7 +7,6 @@ import {
   deleteWorkSchedule,
   softDeleteWorkSchedule,
   approveOvertime,
-  getFilteredWorkSchedules,
 } from "../Service/workScheduleService";
 import WorkScheduleForm from "./WorkScheduleForm";
 import WorkScheduleInlineForm from "./WorkScheduleInlineForm";
@@ -42,14 +41,11 @@ const WorkScheduleList = () => {
   const [scheduleToDelete, setScheduleToDelete] = useState(null);
   const itemsPerPage = 10;
 
-
-
   // Hàm ánh xạ trạng thái
   const mapStatus = (status) => {
     const normalizedStatus = status ? status.toString().toLowerCase() : "";
     if (["active", "true", "1"].includes(normalizedStatus)) return "Active";
     if (["inactive", "false", "0"].includes(normalizedStatus)) return "Inactive";
-    if (["pending", "approved", "rejected"].includes(normalizedStatus)) 
       return normalizedStatus.charAt(0).toUpperCase() + normalizedStatus.slice(1);
     return status || "Unknown";
   };
@@ -88,59 +84,105 @@ const WorkScheduleList = () => {
 
   // Hàm tải dữ liệu lịch làm việc
   const loadSchedules = async () => {
-  if (!validateFilters()) {
-    setSchedules([]);
-    setIsLoading(false);
-    return;
-  }
-
-  setIsLoading(true);
-  setErrorMessage("");
-
-  try {
-    const params = {
-      status: status ? status.toUpperCase() : undefined,
-      workDay: workDay || undefined,
-      startTime: startTime ? `${startTime}:00` : undefined,
-      endTime: endTime ? `${endTime}:00` : undefined,
-    };
-
-    const data = await getFilteredWorkSchedules(params);
-
-    let processedData = Array.isArray(data)
-      ? data
-          .filter(s =>
-            isValidDate(s.workDay) &&
-            isValidTime(s.startTime) &&
-            isValidTime(s.endTime)
-          )
-          .map(s => ({
-            ...s,
-            displayStatus: mapStatus(s.status),
-          }))
-      : [];
-
-    setSchedules(processedData);
-    if (processedData.length === 0) {
-      setErrorMessage("No schedules found for the selected filters.");
+    if (!validateFilters()) {
+      setSchedules([]);
+      setIsLoading(false);
+      return;
     }
-  } catch (err) {
-    console.error("Failed to load filtered work schedules:", {
-      message: err.message,
-      status: err.response?.status,
-      data: err.response?.data,
-    });
 
-    const errorMsg = err.response?.status === 400
-      ? `Invalid input: ${err.response?.data?.message || "Check date and time formats"}`
-      : `Failed to load schedules: ${err.response?.data?.message || err.message || "Unknown error"}`;
+    setIsLoading(true);
+    setErrorMessage("");
 
-    setErrorMessage(errorMsg);
-  } finally {
-    setIsLoading(false);
-  }
-};
+    try {
+      const params = { status: status ? status.toUpperCase() : undefined };
+      if (workDay) params.workDay = workDay;
+      if (startTime && endTime) {
+        params.startTime = `${startTime}:00`;
+        params.endTime = `${endTime}:00`;
+      }
 
+      const data = await getWorkSchedules(params);
+
+      let processedData = Array.isArray(data)
+        ? data
+            .filter(
+              (s) =>
+                isValidDate(s.workDay) &&
+                isValidTime(s.startTime) &&
+                isValidTime(s.endTime)
+            )
+            .map((s) => ({
+              ...s,
+              displayStatus: mapStatus(s.status),
+            }))
+        : [];
+
+      // Áp dụng bộ lọc trạng thái
+      if (status && processedData.length > 0) {
+        const normalizedSelectedStatus = status.toLowerCase();
+        processedData = processedData.filter((s) => {
+          const normalizedDataStatus = s.status?.toLowerCase() || "";
+          return (
+            normalizedDataStatus === normalizedSelectedStatus ||
+            (["active", "true", "1"].includes(normalizedDataStatus) &&
+             normalizedSelectedStatus === "active") ||
+            (["inactive", "false", "0"].includes(normalizedDataStatus) &&
+             normalizedSelectedStatus === "inactive")
+          );
+        });
+      }
+
+      // Áp dụng bộ lọc ngày làm việc
+      if (workDay && processedData.length > 0) {
+        processedData = processedData.filter((s) => {
+          const scheduleWorkDay = isValidDate(s.workDay)
+            ? new Date(s.workDay).toISOString().split("T")[0]
+            : "";
+          return !workDay || scheduleWorkDay === workDay;
+        });
+      }
+
+      // Áp dụng bộ lọc thời gian
+      if (startTime && endTime && processedData.length > 0) {
+        processedData = processedData.filter((s) => {
+          const scheduleStartTime = isValidTime(s.startTime)
+            ? s.startTime.slice(0, 5)
+            : "";
+          const scheduleEndTime = isValidTime(s.endTime)
+            ? s.endTime.slice(0, 5)
+            : "";
+          return (
+            (!startTime || scheduleStartTime === startTime) &&
+            (!endTime || scheduleEndTime === endTime)
+          );
+        });
+      }
+
+      setSchedules(processedData);
+      if (processedData.length === 0) {
+        setErrorMessage("No schedules found for the selected filters.");
+      }
+    } catch (err) {
+      console.error("Failed to load work schedules:", {
+        message: err.message,
+        status: err.response?.status,
+        data: err.response?.data,
+      });
+
+      const errorMsg =
+        err.response?.status === 400
+          ? `Invalid input: ${
+              err.response?.data?.message || "Check date and time formats"
+            }`
+          : `Failed to load work schedules: ${
+              err.response?.data?.message || err.message || "Unknown error"
+            }`;
+
+      setErrorMessage(errorMsg);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Tải dữ liệu khi component mount hoặc khi bộ lọc thay đổi
   useEffect(() => {
@@ -151,7 +193,7 @@ const WorkScheduleList = () => {
   const handleSave = async (form, isBulk = false) => {
     setIsEditing(true);
     setErrorMessage("");
-    
+
     try {
       if (isBulk) {
         await createBulkWorkSchedules(form);
@@ -160,21 +202,32 @@ const WorkScheduleList = () => {
           employeeId: form.employeeId || editData.employeeId,
           scheduleInfoId: form.scheduleInfoId || editData.scheduleInfoId,
           workDay: form.workDay,
-          startTime: form.startTime.endsWith(":00") ? form.startTime : `${form.startTime}:00`,
-          endTime: form.endTime.endsWith(":00") ? form.endTime : `${form.endTime}:00`,
+          startTime: form.startTime.endsWith(":00")
+            ? form.startTime
+            : `${form.startTime}:00`,
+          endTime: form.endTime.endsWith(":00")
+            ? form.endTime
+            : `${form.endTime}:00`,
           status: form.status || editData.status,
-          isOvertime: form.isOvertime !== undefined ? form.isOvertime : editData.isOvertime,
+          isOvertime:
+            form.isOvertime !== undefined
+              ? form.isOvertime
+              : editData.isOvertime,
         };
         await updateWorkSchedule(editData.scheduleId, updateData);
       } else {
         const createData = {
           ...form,
-          startTime: form.startTime.endsWith(":00") ? form.startTime : `${form.startTime}:00`,
-          endTime: form.endTime.endsWith(":00") ? form.endTime : `${form.endTime}:00`,
+          startTime: form.startTime.endsWith(":00")
+            ? form.startTime
+            : `${form.startTime}:00`,
+          endTime: form.endTime.endsWith(":00")
+            ? form.endTime
+            : `${form.endTime}:00`,
         };
         await createWorkSchedule(createData);
       }
-      
+
       setShowForm(false);
       setEditData(null);
       loadSchedules();
@@ -184,11 +237,18 @@ const WorkScheduleList = () => {
         status: err.response?.status,
         data: err.response?.data,
       });
-      
-      const errorMsg = err.response?.status === 400
-        ? `Failed to update schedule: ${err.response?.data?.message || "Invalid date or time format"}`
-        : `Failed to ${editData ? "update" : "create"} schedule: ${err.response?.data?.message || err.message || "Unknown error"}`;
-      
+
+      const errorMsg =
+        err.response?.status === 400
+          ? `Failed to update schedule: ${
+              err.response?.data?.message || "Invalid date or time format"
+            }`
+          : `Failed to ${
+              editData ? "update" : "create"
+            } schedule: ${
+              err.response?.data?.message || err.message || "Unknown error"
+            }`;
+
       setErrorMessage(errorMsg);
     } finally {
       setIsEditing(false);
@@ -201,45 +261,81 @@ const WorkScheduleList = () => {
       setErrorMessage("Invalid schedule selected for editing.");
       return;
     }
-    
-    if (!isValidDate(schedule.workDay) || !isValidTime(schedule.startTime) || !isValidTime(schedule.endTime)) {
-      setErrorMessage("Selected schedule contains invalid or missing date/time fields.");
+
+    if (
+      !isValidDate(schedule.workDay) ||
+      !isValidTime(schedule.startTime) ||
+      !isValidTime(schedule.endTime)
+    ) {
+      setErrorMessage(
+        "Selected schedule contains invalid or missing date/time fields."
+      );
       return;
     }
-    
+
     setEditingScheduleId(schedule.scheduleId);
     setIsEditing(true);
   };
 
-  // Hàm lưu modal form
+  // Hàm lưu modal form (cập nhật mà không load lại trang)
   const handleInlineSave = async (scheduleId, formData) => {
     setIsEditing(true);
     setErrorMessage("");
-    
+
     try {
+      const currentSchedule = schedules.find(
+        (s) => s.scheduleId === scheduleId
+      );
       const updateData = {
-        employeeId: schedules.find(s => s.scheduleId === scheduleId).employeeId,
-        scheduleInfoId: schedules.find(s => s.scheduleId === scheduleId).scheduleInfoId,
+        employeeId: currentSchedule.employeeId,
+        scheduleInfoId: currentSchedule.scheduleInfoId,
         workDay: formData.workDay,
-        startTime: formData.startTime.endsWith(":00") ? formData.startTime : `${formData.startTime}:00`,
-        endTime: formData.endTime.endsWith(":00") ? formData.endTime : `${formData.endTime}:00`,
+        startTime: formData.startTime.endsWith(":00")
+          ? formData.startTime
+          : `${formData.startTime}:00`,
+        endTime: formData.endTime.endsWith(":00")
+          ? formData.endTime
+          : `${formData.endTime}:00`,
         status: formData.status,
         isOvertime: formData.isOvertime,
       };
+
+      // Gửi yêu cầu cập nhật tới server
       await updateWorkSchedule(scheduleId, updateData);
+
+      // Cập nhật schedules state mà không cần gọi lại loadSchedules
+      setSchedules((prevSchedules) =>
+        prevSchedules.map((schedule) =>
+          schedule.scheduleId === scheduleId
+            ? {
+                ...schedule,
+                ...updateData,
+                displayStatus: mapStatus(formData.status),
+                startTime: updateData.startTime,
+                endTime: updateData.endTime,
+              }
+            : schedule
+        )
+      );
+
       setEditingScheduleId(null);
-      loadSchedules();
+      setIsEditing(false);
     } catch (err) {
       console.error("Failed to save work schedule:", {
         message: err.message,
         status: err.response?.status,
         data: err.response?.data,
       });
-      
-      const errorMsg = err.response?.status === 400
-        ? `Failed to update schedule: ${err.response?.data?.message || "Invalid date or time format"}`
-        : `Failed to update schedule: ${err.response?.data?.message || err.message || "Unknown error"}`;
-      
+
+      const errorMsg =
+        err.response?.status === 400
+          ? `Failed to update schedule: ${
+              err.response?.data?.message || "Invalid date or time format"
+            }`
+          : `Failed to update schedule: ${
+              err.response?.data?.message || err.message || "Unknown error"
+            }`;
+
       setErrorMessage(errorMsg);
     } finally {
       setIsEditing(false);
@@ -256,20 +352,22 @@ const WorkScheduleList = () => {
   // Hàm xử lý xóa
   const handleDelete = async () => {
     if (!scheduleToDelete) return;
-    
+
     setIsDeleting(true);
     setErrorMessage("");
-    
+
     try {
       await deleteWorkSchedule(scheduleToDelete);
-      setSchedules(prevSchedules => 
-        prevSchedules.filter(schedule => schedule.scheduleId !== scheduleToDelete)
+      setSchedules((prevSchedules) =>
+        prevSchedules.filter(
+          (schedule) => schedule.scheduleId !== scheduleToDelete
+        )
       );
-      
+
       if (schedules.length <= itemsPerPage && currentPage > 1) {
         setCurrentPage(currentPage - 1);
       }
-      
+
       setShowDeleteConfirm(false);
       setScheduleToDelete(null);
     } catch (err) {
@@ -278,11 +376,14 @@ const WorkScheduleList = () => {
         status: err.response?.status,
         data: err.response?.data,
       });
-      
-      const errorMsg = err.response?.status === 404
-        ? "Schedule not found"
-        : `Failed to delete schedule: ${err.response?.data?.message || err.message || "Unknown error"}`;
-      
+
+      const errorMsg =
+        err.response?.status === 404
+          ? "Schedule not found"
+          : `Failed to delete schedule: ${
+              err.response?.data?.message || err.message || "Unknown error"
+            }`;
+
       setErrorMessage(errorMsg);
     } finally {
       setIsDeleting(false);
@@ -310,32 +411,45 @@ const WorkScheduleList = () => {
     if (window.confirm("Approve this overtime schedule?")) {
       try {
         await approveOvertime(id);
-        loadSchedules();
+        setSchedules((prevSchedules) =>
+          prevSchedules.map((schedule) =>
+            schedule.scheduleId === id
+              ? {
+                  ...schedule,
+                  status: "Approved",
+                  displayStatus: "Approved",
+                }
+              : schedule
+          )
+        );
       } catch (err) {
         console.error("Failed to approve overtime:", {
           message: err.message,
           status: err.response?.status,
           data: err.response?.data,
         });
-        
-        const errorMsg = err.response?.status === 404
-          ? "Schedule not found"
-          : `Failed to approve overtime: ${err.response?.data?.message || err.message || "Unknown error"}`;
-        
+
+        const errorMsg =
+          err.response?.status === 404
+            ? "Schedule not found"
+            : `Failed to approve overtime: ${
+                err.response?.data?.message || err.message || "Unknown error"
+              }`;
+
         setErrorMessage(errorMsg);
       }
     }
   };
 
   // Hàm reset bộ lọc
-  const handleResetFilters = () => {
-    setWorkDay("");
-    setStartTime("");
-    setEndTime("");
-    setStatus("");
-    setShowFilters(false);
-    setErrorMessage("");
-  };
+  // const handleResetFilters = () => {
+  //   setWorkDay("");
+  //   setStartTime("");
+  //   setEndTime("");
+  //   setStatus("");
+  //   setShowFilters(false);
+  //   setErrorMessage("");
+  // };
 
   // Logic phân trang
   const totalPages = Math.ceil(schedules.length / itemsPerPage);
@@ -361,14 +475,14 @@ const WorkScheduleList = () => {
   } else {
     const startPage = Math.max(2, currentPage - 2);
     const endPage = Math.min(totalPages - 1, currentPage + 2);
-    
+
     pageNumbers.push(1);
     if (startPage > 2) pageNumbers.push(ellipsis);
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(i);
     }
-    
+
     if (endPage < totalPages - 1) pageNumbers.push(ellipsis);
     if (totalPages > 1) pageNumbers.push(totalPages);
   }
@@ -376,7 +490,7 @@ const WorkScheduleList = () => {
   return (
     <div className="WorkScheduleContainer1">
       <h2>Work Schedule List</h2>
-      
+
       <div className="WorkScheduleControls1">
         <button
           className="WorkScheduleAddButton1"
@@ -389,9 +503,9 @@ const WorkScheduleList = () => {
           <FaPlus style={{ marginRight: 6 }} />
           Add
         </button>
-        
+
         <button
-          className="WorkScheduleFilterButton1"
+          className="WorkScheduleFilterButton12"
           onClick={() => setShowFilters(!showFilters)}
           disabled={isEditing || isDeleting}
         >
@@ -399,7 +513,7 @@ const WorkScheduleList = () => {
           {showFilters ? "Hide Filters" : "Show Filters"}
         </button>
       </div>
-      
+
       {showFilters && (
         <div className="WorkScheduleFilters1">
           <div className="WorkScheduleFormField1">
@@ -411,7 +525,7 @@ const WorkScheduleList = () => {
               disabled={isEditing || isDeleting}
             />
           </div>
-          
+
           <div className="WorkScheduleFormField1">
             <label>Start Time:</label>
             <input
@@ -421,7 +535,7 @@ const WorkScheduleList = () => {
               disabled={isEditing || isDeleting}
             />
           </div>
-          
+
           <div className="WorkScheduleFormField1">
             <label>End Time:</label>
             <input
@@ -431,7 +545,7 @@ const WorkScheduleList = () => {
               disabled={isEditing || isDeleting}
             />
           </div>
-          
+
           <div className="WorkScheduleFormField1">
             <label>Status:</label>
             <select
@@ -442,32 +556,18 @@ const WorkScheduleList = () => {
               <option value="">All</option>
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
-              <option value="Pending">Pending</option>
-              <option value="Approved">Approved</option>
-              <option value="Rejected">Rejected</option>
+        
             </select>
           </div>
+
           
-          <div className="WorkScheduleFormField1">
-            <button
-              type="button"
-              className="WorkScheduleResetButton1"
-              onClick={handleResetFilters}
-              disabled={isEditing || isDeleting}
-            >
-              <FaTimes style={{ marginRight: 5 }} />
-              Reset Filters
-            </button>
-          </div>
         </div>
       )}
-      
+
       {errorMessage && (
-        <div className="WorkScheduleError1">
-          {errorMessage}
-        </div>
+        <div className="WorkScheduleError1">{errorMessage}</div>
       )}
-      
+
       {showForm && (
         <div>
           <div
@@ -485,7 +585,7 @@ const WorkScheduleList = () => {
           />
         </div>
       )}
-      
+
       {editingScheduleId && (
         <div>
           <div
@@ -494,14 +594,14 @@ const WorkScheduleList = () => {
           />
           <div className="WorkScheduleModal1">
             <WorkScheduleInlineForm
-              schedule={schedules.find(s => s.scheduleId === editingScheduleId)}
+              schedule={schedules.find((s) => s.scheduleId === editingScheduleId)}
               onSave={(formData) => handleInlineSave(editingScheduleId, formData)}
               onCancel={handleInlineCancel}
             />
           </div>
         </div>
       )}
-      
+
       {showDeleteConfirm && (
         <div>
           <div
@@ -537,7 +637,7 @@ const WorkScheduleList = () => {
           </div>
         </div>
       )}
-      
+
       {isLoading ? (
         <div style={{ textAlign: "center", padding: "20px" }}>
           Loading schedules...
@@ -591,7 +691,13 @@ const WorkScheduleList = () => {
                     <button
                       className="WorkScheduleEditButton1"
                       onClick={() => handleEdit(s)}
-                      disabled={isEditing || isDeleting || !isValidDate(s.workDay) || !isValidTime(s.startTime) || !isValidTime(s.endTime)}
+                      disabled={
+                        isEditing ||
+                        isDeleting ||
+                        !isValidDate(s.workDay) ||
+                        !isValidTime(s.startTime) ||
+                        !isValidTime(s.endTime)
+                      }
                       aria-label="Edit schedule"
                     >
                       <FaEdit />
@@ -631,7 +737,7 @@ const WorkScheduleList = () => {
           </tbody>
         </table>
       )}
-      
+
       {totalPages > 1 && !isLoading && (
         <div className="WorkSchedulePaginationControls1">
           <button
@@ -642,11 +748,14 @@ const WorkScheduleList = () => {
             <FaArrowLeft style={{ marginRight: 6 }} />
             Previous
           </button>
-          
+
           <div className="WorkSchedulePaginationNumbers1">
             {pageNumbers.map((page, index) =>
               page === ellipsis ? (
-                <span key={`ellipsis-${index}`} className="WorkSchedulePaginationEllipsis1">
+                <span
+                  key={`ellipsis-${index}`}
+                  className="WorkSchedulePaginationEllipsis1"
+                >
                   {ellipsis}
                 </span>
               ) : (
@@ -663,7 +772,7 @@ const WorkScheduleList = () => {
               )
             )}
           </div>
-          
+
           <button
             className="WorkSchedulePaginationButton1"
             onClick={() => handlePageChange(currentPage + 1)}

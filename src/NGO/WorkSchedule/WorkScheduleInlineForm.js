@@ -73,9 +73,7 @@ const WorkScheduleInlineForm = ({ schedule, onSave, onCancel }) => {
         >
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
-          <option value="Pending">Pending</option>
-          <option value="Approved">Approved</option>
-          <option value="Rejected">Rejected</option>
+
         </select>
       </div>
       <div className="FormField checkbox">

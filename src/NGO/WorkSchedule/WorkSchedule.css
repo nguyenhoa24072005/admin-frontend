@@ -25,7 +25,7 @@
 }
 
 .WorkScheduleAddButton1,
-.WorkScheduleFilterButton1 {
+.WorkScheduleFilterButton12 {
   display: flex;
   align-items: center;
   padding: 10px 16px;
@@ -51,17 +51,17 @@
   cursor: not-allowed;
 }
 
-.WorkScheduleFilterButton1 {
+.WorkScheduleFilterButton12 {
   background-color: #6c757d;
   color: white;
 }
 
-.WorkScheduleFilterButton1:hover {
+.WorkScheduleFilterButton12:hover {
   background-color: #5a6268;
   transform: scale(1.05);
 }
 
-.WorkScheduleFilterButton1:disabled {
+.WorkScheduleFilterButton12:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
 }
@@ -368,47 +368,77 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-/* Inline form styling (modal-style) */
-.WorkScheduleInlineForm1 {
+/* Inline form styling (for WorkScheduleInlineForm) */
+.ScheduleForm {
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.WorkScheduleInlineForm1 h3 {
+.ScheduleForm h3 {
   color: #333333;
   margin-bottom: 15px;
   font-size: 20px;
   text-align: center;
 }
 
-.WorkScheduleInlineForm1 input,
-.WorkScheduleInlineForm1 select {
+.FormField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.FormField label {
+  color: #333333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.FormField input,
+.FormField select {
   padding: 8px;
   border: 1px solid #dee2e6;
   border-radius: 4px;
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.3s;
 }
 
-.WorkScheduleInlineForm1 input:focus,
-.WorkScheduleInlineForm1 select:focus {
+.FormField input:focus,
+.FormField select:focus {
   border-color: #f5a623;
   outline: none;
 }
 
-.WorkScheduleInlineForm1 label {
+.FormField.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.FormField.checkbox label {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 14px;
-  color: #333333;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
-.WorkScheduleInlineForm1 button {
+.FormField.checkbox input {
+  width: auto;
+}
+
+.FormButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.FormButtons button {
   padding: 10px 16px;
   border: none;
   border-radius: 4px;
@@ -417,22 +447,22 @@
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.WorkScheduleInlineForm1 button[type="submit"] {
+.FormButtons button[type="submit"] {
   background-color: #f5a623;
   color: white;
 }
 
-.WorkScheduleInlineForm1 button[type="submit"]:hover {
+.FormButtons button[type="submit"]:hover {
   background-color: #d18e1f;
   transform: scale(1.05);
 }
 
-.WorkScheduleInlineForm1 button[type="button"] {
+.FormButtons button[type="button"] {
   background-color: #6c757d;
   color: white;
 }
 
-.WorkScheduleInlineForm1 button[type="button"]:hover {
+.FormButtons button[type="button"]:hover {
   background-color: #5a6268;
   transform: scale(1.05);
 }
@@ -493,7 +523,7 @@
 
 .WorkScheduleEditButton1 {
   background-color: #ffffff; /* White background */
-  color: #007bff; /* Blue icon */
+  color: #f5a623; /* Blue icon */
   width: 32px; /* Fixed size for icon-only */
   height: 32px;
   padding: 0; /* Remove padding to center icon */
@@ -722,16 +752,250 @@
     align-items: stretch;
   }
 
-  .WorkScheduleInlineForm1 {
+  .ScheduleForm {
     padding: 15px;
   }
 
-  .WorkScheduleInlineForm1 input,
-  .WorkScheduleInlineForm1 select {
+  .FormField input,
+  .FormField select {
     font-size: 12px;
   }
 
-  .WorkScheduleInlineForm1 button {
+  .FormButtons button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+/* Modal overlay (optional, if used in parent component) */
+.WorkScheduleOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal */
+.WorkScheduleModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  max-width: 700px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: scaleIn 0.3s ease-in-out;
+}
+
+/* Form styling */
+.WorkScheduleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.WorkScheduleForm h3 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.WorkScheduleFormGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.WorkScheduleFormField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.WorkScheduleFormField label {
+  color: #333333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.WorkScheduleFormField input,
+.WorkScheduleFormField select {
+  padding: 8px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.WorkScheduleFormField input:focus,
+.WorkScheduleFormField select:focus {
+  border-color: #f5a623;
+  outline: none;
+}
+
+.WorkScheduleFormField input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+.WorkScheduleFormField.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.WorkScheduleFormField.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0;
+}
+
+/* Form buttons */
+.WorkScheduleFormButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.WorkScheduleSaveButton,
+.WorkScheduleCancelButton,
+.WorkScheduleAddBulkButton,
+.WorkScheduleRemoveBulkButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.WorkScheduleSaveButton {
+  background-color: #f5a623;
+  color: white;
+}
+
+.WorkScheduleSaveButton:hover {
+  background-color: #d18e1f;
+  transform: scale(1.05);
+}
+
+.WorkScheduleCancelButton {
+  background-color: #6c757d;
+  color: white;
+}
+
+.WorkScheduleCancelButton:hover {
+  background-color: #5a6268;
+  transform: scale(1.05);
+}
+
+.WorkScheduleAddBulkButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.WorkScheduleAddBulkButton:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.WorkScheduleAddBulkButton:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.WorkScheduleRemoveBulkButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.WorkScheduleRemoveBulkButton:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Bulk section */
+.WorkScheduleBulkSection {
+  margin-top: 15px;
+}
+
+.WorkScheduleBulkList {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.WorkScheduleBulkList h4 {
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.WorkScheduleBulkList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.WorkScheduleBulkList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: translate(-50%, -50%) scale(0.95); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .WorkScheduleModal {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .WorkScheduleForm {
+    padding: 15px;
+  }
+
+  .WorkScheduleFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .WorkScheduleFormField input,
+  .WorkScheduleFormField select {
+    font-size: 12px;
+  }
+
+  .WorkScheduleSaveButton,
+  .WorkScheduleCancelButton,
+  .WorkScheduleAddBulkButton,
+  .WorkScheduleRemoveBulkButton {
     padding: 8px 12px;
     font-size: 12px;
   }

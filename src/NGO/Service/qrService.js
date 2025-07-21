@@ -1,7 +1,7 @@
 // src/Service/qrService.js
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/qrcodes";
+const API_URL = "https://hr-sem4-project-egcmcze0dmgwhdgb.eastasia-01.azurewebsites.net/api/qrcodes";
 
 const getAuthHeaders = () => ({
   Authorization: `Bearer ${localStorage.getItem("authToken")}`,

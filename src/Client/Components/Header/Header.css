@@ -186,6 +186,9 @@
   cursor: pointer;
   margin-left: 15px;
 }
+.logout-icon:hover{
+  color: #e2b624;
+}
 
 .logout-icon-style {
   font-size: 20px;
@@ -194,7 +197,7 @@
 }
 
 .logout-icon-style:hover {
-  color: #8db883;
+  color: #e2b624;
 }
 
 /* Khi header cuộn, thay đổi màu của logo đăng xuất thành màu đen */

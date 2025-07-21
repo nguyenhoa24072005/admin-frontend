@@ -1,7 +1,7 @@
 // src/Service/EmployeeHistoryService.js
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/api/employee-histories";
+const API_BASE_URL = "https://hr-sem4-project-egcmcze0dmgwhdgb.eastasia-01.azurewebsites.net/api/employee-histories";
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem("authToken");

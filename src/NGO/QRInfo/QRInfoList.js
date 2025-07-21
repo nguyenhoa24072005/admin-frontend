@@ -17,9 +17,7 @@ const QRInfoList = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-
   const mapStatus = (status) => {
-    // Normalize status to handle various backend values
     const normalizedStatus = status ? status.toString().toLowerCase() : "";
     if (["valid", "active", "true", "1"].includes(normalizedStatus)) {
       return "Active";
@@ -27,7 +25,7 @@ const QRInfoList = () => {
     if (["expired", "inactive", "false", "0"].includes(normalizedStatus)) {
       return "Inactive";
     }
-    return status; // Fallback to original status if unknown
+    return status;
   };
 
   const loadQRs = async () => {
@@ -37,7 +35,7 @@ const QRInfoList = () => {
         const displayStatus = mapStatus(qr.status);
         console.log(
           `QR ${qr.qrInfoId} status: ${qr.status}, mapped to: ${displayStatus}`
-        ); // Debug log
+        );
         return { ...qr, displayStatus };
       });
       setQrs(mappedData);
@@ -63,14 +61,14 @@ const QRInfoList = () => {
           const displayStatus = mapStatus(qr.status);
           console.log(
             `Search QR ${qr.qrInfoId} status: ${qr.status}, mapped to: ${displayStatus}`
-          ); // Debug log
+          );
           return { ...qr, displayStatus };
         });
         setQrs(mappedResults);
       } else {
         loadQRs();
       }
-      setCurrentPage(1); // Reset to first page on search
+      setCurrentPage(1);
     } catch (err) {
       console.error("Failed to search QR infos:", err);
       alert("Failed to search QR infos.");
@@ -92,7 +90,21 @@ const QRInfoList = () => {
     }
   };
 
-  // Pagination logic with ellipsis
+  const handleFilter = async () => {
+    try {
+      const results = await filterQRInfos(statusFilter, startDate, endDate);
+      const mapped = results.map((qr) => ({
+        ...qr,
+        displayStatus: mapStatus(qr.status),
+      }));
+      setQrs(mapped);
+      setCurrentPage(1);
+    } catch (err) {
+      console.error("Failed to filter QR infos:", err);
+      alert("Failed to filter QR infos.");
+    }
+  };
+
   const totalPages = Math.ceil(qrs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -116,7 +128,7 @@ const QRInfoList = () => {
     const startPage = Math.max(2, currentPage - 2);
     const endPage = Math.min(totalPages - 1, currentPage + 2);
 
-    pageNumbers.push(1); // Always show first page
+    pageNumbers.push(1);
     if (startPage > 2) {
       pageNumbers.push(ellipsis);
     }
@@ -127,24 +139,9 @@ const QRInfoList = () => {
       pageNumbers.push(ellipsis);
     }
     if (totalPages > 1) {
-      pageNumbers.push(totalPages); // Always show last page
+      pageNumbers.push(totalPages);
     }
   }
-  const handleFilter = async () => {
-    try {
-      const results = await filterQRInfos(statusFilter, startDate, endDate);
-      const mapped = results.map((qr) => ({
-        ...qr,
-        displayStatus: mapStatus(qr.status),
-      }));
-      setQrs(mapped);
-      setCurrentPage(1);
-    } catch (err) {
-      console.error("Failed to filter QR infos:", err);
-      alert("Failed to filter QR infos.");
-    }
-  };
-
 
   return (
     <div className="QRInfoContainer">
@@ -162,31 +159,49 @@ const QRInfoList = () => {
           Search
         </button>
       </div>
+
       <div className="QRInfoFilters">
-        <label>
-          Status:
-          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+        <div className="QRInfoFormField">
+          <label>Status:</label>
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
             <option value="">All</option>
             <option value="ACTIVE">Active</option>
             <option value="INACTIVE">Inactive</option>
           </select>
-        </label>
+        </div>
 
-        <label>
-          Start Date:
-          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-        </label>
+        <div className="QRInfoFormField">
+          <label>Start Date:</label>
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </div>
 
-        <label>
-          End Date:
-          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-        </label>
+        <div className="QRInfoFormField">
+          <label>End Date:</label>
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </div>
+        
+           <div className="QRInfoFormField1">
+          <button className="QRInfoFilterButton" onClick={handleFilter}>
+            <FaSearch style={{ marginRight: 6 }} />
+            Filter
+          </button>
+        
+        </div>
 
-        <button className="QRInfoSearchButton" onClick={handleFilter}>
-          Filter
-        </button>
+        
       </div>
-
+     
 
       <table className="QRInfoTable">
         <thead>
@@ -226,7 +241,6 @@ const QRInfoList = () => {
                     onClick={() => handleDelete(qr.qrInfoId)}
                   >
                     <FaTrash style={{ marginRight: 4 }} />
-
                   </button>
                 </td>
               </tr>
@@ -260,8 +274,9 @@ const QRInfoList = () => {
               ) : (
                 <button
                   key={page}
-                  className={`PaginationNumber ${currentPage === page ? "active" : ""
-                    }`}
+                  className={`PaginationNumber ${
+                    currentPage === page ? "active" : ""
+                  }`}
                   onClick={() => handlePageChange(page)}
                 >
                   {page}

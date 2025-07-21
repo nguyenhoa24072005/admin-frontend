@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://charitynavigator-hma3agega6fwfgb2.canadacentral-01.azurewebsites.net/api";
+const API_URL = "https://hr-sem4-project-egcmcze0dmgwhdgb.eastasia-01.azurewebsites.net/api";
 
 const register = async (data) => {
   const response = await axios.post(`${API_URL}/auth/register`, data);

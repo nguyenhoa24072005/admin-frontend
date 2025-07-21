@@ -45,10 +45,10 @@
 
 /* Control buttons container */
 .WorkScheduleControls {
-  display: flex;
+  /* display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 24px; */
 }
 
 /* Button styles */
@@ -594,8 +594,8 @@
   }
 
   .WorkScheduleControls {
-    flex-direction: column;
-    align-items: stretch;
+    /* flex-direction: column;
+    align-items: stretch; */
   }
 
   .WorkScheduleAddButton,
@@ -603,4 +603,7 @@
   .WorkScheduleEditButton {
     width: 100%;
   }
+}
+.WorkScheduleFilterButton1{
+    background: #ffffff;
 }

@@ -9,8 +9,9 @@ import {
 import { getEmployees } from "../Service/employeeService";
 import { getDepartments } from "../Service/departmentService";
 import { getWorkSchedules } from "../Service/workScheduleService";
-import { getAttendances } from "../Service/AttendanceService";
+import { getAllActiveAttendances, filterAttendances } from "../Service/qrAttendanceService";
 import { getLeaves } from "../Service/leaveService";
+import { getAllAppeals } from "../Service/attendanceAppealService";
 import { Pie, Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -39,18 +40,30 @@ ChartJS.register(
 function DashBoard() {
   const [stats, setStats] = useState({
     totalEmployees: 0,
-    totalDepartments: 0,
+    totalOvertimeShifts: 0,
     totalSchedules: 0,
     totalPresentToday: 0,
     recentLeaves: [],
-    attendanceDistribution: { Present: 0, Absent: 0, Late: 0, OnLeave: 0 },
+    attendanceDistribution: { CheckIn: 0, CheckOut: 0 },
     employeesPerDepartment: {},
     leavesPerMonth: [],
+    presentEmployeesToday: [],
   });
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [qrAttendances, setQrAttendances] = useState([]);
+  const [todayString, setTodayString] = useState("");
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
+
+      // Set today's date
+      const today = new Date();
+      const todayStr = today.toISOString().slice(0, 10); // "2025-07-21"
+      console.log("Today (+07):", todayStr);
+      setTodayString(todayStr);
+
       // Fetch Employees
       const employees = await getEmployees("Active");
       const totalEmployees = employees.length;
@@ -61,31 +74,37 @@ function DashBoard() {
 
       // Fetch Work Schedules
       const schedules = await getWorkSchedules();
-      const totalSchedules = (schedules.data?.result || schedules).length;
+      const allSchedules = schedules?.data?.result || schedules;
+      const totalOvertimeShifts = allSchedules.filter(
+        (sch) => sch.isOvertime === true
+      ).length;
 
-      // Fetch Attendances
-      const today = new Date().toISOString().slice(0, 10);
-      const attendances = await getAttendances();
+      // Fetch QR Attendances
+      const qrData = await filterAttendances("", todayStr, todayStr);
+      console.log("Filtered QR Attendances:", qrData);
+      setQrAttendances(qrData);
+
       const attendanceDistribution = {
-        Present: 0,
-        Absent: 0,
-        Late: 0,
-        OnLeave: 0,
+        CheckIn: 0,
+        CheckOut: 0,
       };
-      attendances.forEach((att) => {
-        const status = att.status?.toLowerCase();
-        if (att.attendanceDate?.slice(0, 10) === today) {
-          if (status === "present") attendanceDistribution.Present++;
-          else if (status === "absent") attendanceDistribution.Absent++;
-          else if (status === "late") attendanceDistribution.Late++;
-          else if (status === "onleave") attendanceDistribution.OnLeave++;
+
+      qrData.forEach((att) => {
+        const attDate = new Date(att.attendanceDate).toISOString().slice(0, 10);
+        console.log(
+          `Attendance ${att.qrId}: Date=${attDate}, Method=${att.attendanceMethod}, Status=${att.status}`
+        );
+        if (attDate === todayStr) {
+          const status = att.status?.toLowerCase();
+          if (["checkin", "check_in", "active", "valid"].includes(status)) {
+            attendanceDistribution.CheckIn++;
+          } else if (["checkout", "check_out", "inactive", "expired"].includes(status)) {
+            attendanceDistribution.CheckOut++;
+          }
         }
       });
-      const totalPresentToday = attendanceDistribution.Present;
 
-      // Log attendance data for debugging
-      console.log("Attendance Distribution:", attendanceDistribution);
-      console.log("Total Present Today:", totalPresentToday);
+      const totalPresentToday = attendanceDistribution.CheckIn;
 
       // Employees per Department
       const employeesPerDepartment = departments.reduce((acc, dept) => {
@@ -95,19 +114,36 @@ function DashBoard() {
         return acc;
       }, {});
 
-      // Fetch Leaves
-      const leaves = await getLeaves();
-      const recentLeaves = leaves
-        .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
+      // Fetch Leaves and Appeals
+      const leavesResponse = await getLeaves();
+      const appealsResponse = await getAllAppeals();
+
+      const leaveList = leavesResponse?.data?.result || leavesResponse;
+      const appealList = appealsResponse?.data?.result || appealsResponse;
+
+      // Filter for Pending status only
+      const pendingLeaves = leaveList.filter(
+        (leave) => leave.status?.toLowerCase() === "pending"
+      );
+      const pendingAppeals = appealList.filter(
+        (appeal) => appeal.status?.toLowerCase() === "pending"
+      );
+      const totalRequests = pendingLeaves.length + pendingAppeals.length;
+
+      const recentLeaves = [...pendingLeaves, ...pendingAppeals]
+        .sort(
+          (a, b) =>
+            new Date(b.startDate || b.appealDate) -
+            new Date(a.startDate || a.appealDate)
+        )
         .slice(0, 5)
-        .map((leave) => ({
-          id: leave.leaveId,
-          employee: leave.employee?.fullName || "N/A",
-          type: leave.leaveType,
-          startDate: leave.startDate?.slice(0, 10),
+        .map((req) => ({
+          id: req.leaveId || req.appealId,
+          employee: req.employee?.fullName || "N/A",
+          type: req.leaveType || "Giải trình",
+          startDate: (req.startDate || req.appealDate)?.slice(0, 10),
         }));
 
-      // Leaves per Month (last 6 months)
       const months = Array.from({ length: 6 }, (_, i) => {
         const date = new Date();
         date.setMonth(date.getMonth() - i);
@@ -116,12 +152,21 @@ function DashBoard() {
           year: "numeric",
         });
       }).reverse();
+
+      const presentEmployeesToday = qrData
+        .filter(
+          (att) =>
+            new Date(att.attendanceDate).toISOString().slice(0, 10) === todayStr &&
+            ["checkin", "check_in", "active", "valid"].includes(att.status?.toLowerCase())
+        )
+        .map((att) => att.employee?.fullName || "N/A");
+
       const leavesPerMonth = months.map((month) => {
         const [monthName, year] = month.split(" ");
         const monthIndex = new Date(
           Date.parse(`${monthName} 1, ${year}`)
         ).getMonth();
-        return leaves.filter((leave) => {
+        return pendingLeaves.filter((leave) => {
           const leaveDate = new Date(leave.startDate);
           return (
             leaveDate.getMonth() === monthIndex &&
@@ -130,19 +175,25 @@ function DashBoard() {
         }).length;
       });
 
+      console.log("Attendance Distribution:", attendanceDistribution);
+      console.log("Pending Requests:", { pendingLeaves, pendingAppeals, totalRequests });
       setStats({
         totalEmployees,
+        totalOvertimeShifts,
         totalDepartments,
-        totalSchedules,
+        totalSchedules: totalRequests,
         totalPresentToday,
         recentLeaves,
         attendanceDistribution,
         employeesPerDepartment,
         leavesPerMonth,
+        presentEmployeesToday,
       });
     } catch (err) {
       console.error("Error fetching dashboard data:", err.message);
       setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -150,28 +201,23 @@ function DashBoard() {
     fetchData();
   }, []);
 
-  // Pie Chart: Attendance Distribution
   const pieData = {
-    labels: ["Present", "Absent", "Late", "OnLeave"],
+    labels: ["CheckIn", "CheckOut"],
     datasets: [
       {
         data: [
-          stats.attendanceDistribution.Present || 0,
-          stats.attendanceDistribution.Absent || 0,
-          stats.attendanceDistribution.Late || 0,
-          stats.attendanceDistribution.OnLeave || 0,
+          stats.attendanceDistribution.CheckIn || 0,
+          stats.attendanceDistribution.CheckOut || 0,
         ],
-        backgroundColor: ["#f5a623", "#6c757d", "#dc3545", "#007bff"],
+        backgroundColor: ["#f5a623", "#6c757d"],
         hoverOffset: 4,
       },
     ],
   };
 
-  // Check if pie chart has valid data
   const hasPieData = pieData.datasets[0].data.some((value) => value > 0);
-  console.log("Pie Chart Data Valid:", hasPieData, pieData.datasets[0].data);
+  console.log("Pie Data:", pieData.datasets[0].data, "Has Data:", hasPieData);
 
-  // Bar Chart: Employees per Department
   const barData = {
     labels: Object.keys(stats.employeesPerDepartment),
     datasets: [
@@ -185,7 +231,6 @@ function DashBoard() {
     ],
   };
 
-  // Line Chart: Leaves per Month
   const lineData = {
     labels: Array.from({ length: 6 }, (_, i) => {
       const date = new Date();
@@ -194,7 +239,7 @@ function DashBoard() {
     }).reverse(),
     datasets: [
       {
-        label: "Leave Requests",
+        label: "Pending Leave Requests",
         data: stats.leavesPerMonth,
         fill: false,
         borderColor: "#f5a623",
@@ -205,7 +250,7 @@ function DashBoard() {
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false, // Allow custom height
+    maintainAspectRatio: false,
     plugins: {
       legend: { position: "top" },
       tooltip: { enabled: true },
@@ -220,34 +265,45 @@ function DashBoard() {
 
       {error && <div className="DashBoardError">Error: {error}</div>}
 
-      {/* Statistic Cards */}
       <div className="DashBoardCards">
         <div className="DashBoardCard">
           <div className="DashBoardCardInner">
             <h3>EMPLOYEES</h3>
             <FaUsers className="DashBoardCardIcon" />
           </div>
-          <NavLink to="/employees" className="DashBoardCardNumber">
+          <NavLink
+            to="/ngo/Employees"
+            className="DashBoardCardNumber"
+            onClick={() => console.log("Navigating to /ngo/Employees")}
+          >
             <h1>{stats.totalEmployees}</h1>
           </NavLink>
         </div>
 
         <div className="DashBoardCard">
           <div className="DashBoardCardInner">
-            <h3>DEPARTMENTS</h3>
+            <h3>OVERTIME SHIFTS</h3>
             <FaBuilding className="DashBoardCardIcon" />
           </div>
-          <NavLink to="/departments" className="DashBoardCardNumber">
-            <h1>{stats.totalDepartments}</h1>
+          <NavLink
+            to="/ngo/Schedules"
+            className="DashBoardCardNumber"
+            onClick={() => console.log("Navigating to /ngo/Schedules")}
+          >
+            <h1>{stats.totalOvertimeShifts}</h1>
           </NavLink>
         </div>
 
         <div className="DashBoardCard">
           <div className="DashBoardCardInner">
-            <h3>SCHEDULES</h3>
+            <h3>PENDING REQUESTS</h3>
             <FaCalendarAlt className="DashBoardCardIcon" />
           </div>
-          <NavLink to="/schedules" className="DashBoardCardNumber">
+          <NavLink
+            to="/ngo/Leaves"
+            className="DashBoardCardNumber"
+            onClick={() => console.log("Navigating to /ngo/Leaves")}
+          >
             <h1>{stats.totalSchedules}</h1>
           </NavLink>
         </div>
@@ -257,23 +313,33 @@ function DashBoard() {
             <h3>PRESENT TODAY</h3>
             <FaCheckCircle className="DashBoardCardIcon" />
           </div>
-          <NavLink to="/attendances" className="DashBoardCardNumber">
+          <NavLink
+            to="/ngo/QRAttendance"
+            className="DashBoardCardNumber"
+            onClick={() => console.log("Navigating to /ngo/QRAttendance")}
+          >
             <h1>{stats.totalPresentToday}</h1>
           </NavLink>
+          {/* <ul className="present-list">
+            {stats.presentEmployeesToday?.map((name, idx) => (
+              <li key={idx}>{name}</li>
+            ))}
+          </ul> */}
         </div>
       </div>
 
-      {/* Charts Section */}
       <div className="DashBoardCharts">
         <div className="DashBoardChart">
           <h4>Attendance Distribution (Today)</h4>
-          {hasPieData ? (
+          {isLoading ? (
+            <p>Loading attendance data...</p>
+          ) : hasPieData ? (
             <div className="ChartWrapper">
               <Pie data={pieData} options={chartOptions} height={300} />
             </div>
           ) : (
             <p className="DashBoardChartNoData">
-              No attendance data for today.
+              No check-in/check-out data for today.
             </p>
           )}
         </div>
@@ -286,11 +352,31 @@ function DashBoard() {
         </div>
 
         <div className="DashBoardChart">
-          <h4>Leave Requests (Last 6 Months)</h4>
+          <h4>Pending Leave Requests (Last 6 Months)</h4>
           <div className="ChartWrapper">
             <Line data={lineData} options={chartOptions} height={300} />
           </div>
         </div>
+      </div>
+
+      <div className="DashBoardDebug">
+        <h4>Debug: Today's Attendance Records</h4>
+        {isLoading ? (
+          <p>Loading debug data...</p>
+        ) : qrAttendances.length > 0 ? (
+          <pre>
+            {JSON.stringify(
+              qrAttendances.filter(
+                (att) =>
+                  new Date(att.attendanceDate).toISOString().slice(0, 10) === todayString
+              ),
+              null,
+              2
+            )}
+          </pre>
+        ) : (
+          <p>No attendance records found for today.</p>
+        )}
       </div>
     </main>
   );

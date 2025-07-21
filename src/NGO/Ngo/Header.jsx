@@ -31,7 +31,6 @@ function Header({ OpenSidebar }) {
           {isDropdownVisible && (
             <div className="HeaderDropdown">
               {/* Thêm link đến thông tin tài khoản */}
-              <Link to={`/ngo/users/${userId}`}>View User</Link>
 
               <Logout onLogout={() => setIsDropdownVisible(false)} />
             </div>

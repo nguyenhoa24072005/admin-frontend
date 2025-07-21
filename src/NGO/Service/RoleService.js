@@ -1,7 +1,7 @@
 // src/Service/RoleService.js
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/api/roles";
+const API_BASE_URL = "https://hr-sem4-project-egcmcze0dmgwhdgb.eastasia-01.azurewebsites.net/api/roles";
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem("authToken");

@@ -168,8 +168,6 @@ const Notification = ({ userId, role }) => {
   return (
     <div className="WorkScheduleContainer">
       <h2>Notifications</h2>
-
-  
       {loading && (
         <div className="WorkScheduleLoading">
           Loading notifications...
@@ -186,12 +184,7 @@ const Notification = ({ userId, role }) => {
             Send Notification
           </button>
         )}
-        <button
-          className="WorkScheduleFilterButton1"
-          onClick={handleMarkAllAsRead}
-        >
-        
-        </button>
+
       </div>
 
       <div className="FormSwitchButtons" style={{ marginBottom: "10px" }}>
